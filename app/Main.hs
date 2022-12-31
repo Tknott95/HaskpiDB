@@ -75,13 +75,13 @@ data IMetadata02 = IMetadata02
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      "policy_id" .= toJSON (policy_id metadataObj)
+      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
     [
-      "nft_name" .= toJSON (nft_name metadataObj)
+      "TheCypherBox" .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
