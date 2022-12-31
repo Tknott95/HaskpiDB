@@ -162,13 +162,16 @@ main = do
   print $ show $  i
 
   print $ show $ A.encode i
+  
   -- print $ show $ (i !! 0)
 
   putStrLn "\n\n  "
 
   let iij =  A.encode i :: LB.ByteString
   putStrLn $ show iij
-
+  
+  let abc = A.decode iij :: Maybe IMetadata
+  print $ show $ abc
   -- let z =  (i !! 0)
   print $ show $ i -- z
   
