@@ -61,6 +61,16 @@ instance ToJSON IMetadata02 where
     , "description" .= toJSON (description metadataObj)
     ]
 
+
+instance FromJSON IMetadata02 where
+  parseJSON = withObject "IMetadata02" $ \o -> do
+    _id <- o .: "id"
+    _name <- o .: "name"
+    _image <- o .: "image"
+    _description <- o .: "description"
+    return $ IMetadata02 _id _name _image _description
+
+
 localPG :: ConnectInfo
 localPG = defaultConnectInfo
   { connectHost = "127.0.0.1"
