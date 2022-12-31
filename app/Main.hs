@@ -3,7 +3,6 @@ module Main where
 
 import Database.PostgreSQL.Simple
 import Colors
-import Text.JSON
 
 localPG :: ConnectInfo
 localPG = defaultConnectInfo
@@ -29,7 +28,7 @@ main = do
    \ AS tx_id FROM multi_asset JOIN ma_tx_mint ON ma_tx_mint.ident = multi_asset.id JOIN tx ON tx.id = ma_tx_mint.tx_id JOIN tx_metadata ON tx_metadata.tx_id = ma_tx_mint.tx_id \
    \ WHERE tx_metadata.key IN(721) \
    \ AND multi_asset.policy = '\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6' \
-   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" ::  IO [Only Text.JSON])
+   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;")
   
   -- ijk <- "SELECT tx_metadata.json \
   --  \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
