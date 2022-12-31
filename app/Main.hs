@@ -116,7 +116,7 @@ grabMeta conn pid = ijk
    \ JOIN tx_metadata ON tx_metadata.tx_id = ma_tx_mint.tx_id \
    \ WHERE tx_metadata.key IN(721) \
    \ AND multi_asset.policy = ? \
-   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" $ (Only pid)
+   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [pid :: String)
 
 
 main :: IO ()
