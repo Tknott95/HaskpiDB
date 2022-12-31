@@ -167,7 +167,7 @@ main = do
   putStrLn "\n\n  "
 
   let iij =  A.encode i
-  putStrLn $ iij
+  putStrLn $ show iij
 
   -- let z =  (i !! 0)
   print $ show $ i -- z
