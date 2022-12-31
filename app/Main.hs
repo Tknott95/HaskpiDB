@@ -43,6 +43,9 @@ import  Database.PostgreSQL.Simple.FromRow
 -- } deriving (Show, Eq)
 
 
+-- data IMeta = IMeta {
+--   all :: [IMetadata]
+-- } deriving (Show, Generic)
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
