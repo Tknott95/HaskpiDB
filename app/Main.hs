@@ -124,8 +124,8 @@ localPG = defaultConnectInfo
 
 
 -- this is dogshit
-grabMeta :: Connection -> String -> IO () -- [Only AT.Value]
-grabMeta conn pid = mapM_ print =<< ijk 
+grabMeta :: Connection -> String -> IO [Only AT.Value]
+grabMeta conn pid = ijk 
   where 
     ijk = query conn "SELECT json(tx_metadata.json) \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
