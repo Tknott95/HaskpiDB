@@ -12,8 +12,25 @@ import Data.Aeson.Types as AT
 import Data.Aeson as A
 import Data.ByteString.Lazy.UTF8 as BLU
 
+-- {"f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": 
+-- {"TheCypherBox": 
+-- {"id": "1", "name": "The Cypher Box", "image": 
+-- "ipfs://QmQumL3C5yqa3KxtFUogo6RLvjTfss7Xwp1S4C3YuVV6if", "description": "This is a little cypher box NFT."}}}
+
+
+-- will pass in a and b, as parameterized types, after one run to set name if possible
+-- probably can just set things in TOJSON
+data IMetadata = IMetadata {
+  policy_id :: IMetadata01
+}
+-- will pass in a, as a parameterized type, after one run to set name if possible
+-- probably can just set things in TOJSON
+data IMetadata01 = IMetadata01 { 
+  nft_name :: IMetadata02
+}
+
 data IMetadata02 = IMetadata02
-  { id    :: String
+  { id    :: Int
   , name  :: String
   , image :: String
   , description :: String
