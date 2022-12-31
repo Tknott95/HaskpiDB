@@ -56,6 +56,10 @@ main = do
   print $ show $ Just i
   
 
+
+
+
+  -- OLD CODE LEAVING FOR NOW
   -- mapM_ print =<< (query_ conn "SELECT 1 + 1" :: IO [Only Int])
   -- mapM_ print =<< (query_ conn "SELECT tx_metadata.json \
   --  \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
