@@ -13,7 +13,7 @@ import qualified Data.ByteString.Lazy as LB
 
 -- import Text.JSONb.Simple as TJS
 import Data.Aeson.Types as AT
-import Data.Aeson as A
+import Data.Aeson   as A
 import Data.ByteString.Lazy.UTF8 as BLU
 import Data.Text
 
@@ -160,9 +160,14 @@ main = do
 
   --xx <- AT.fromJSON (head i)
   print $ show $  i
+
+  print $ show $ A.encode i
   -- print $ show $ (i !! 0)
 
   putStrLn "\n\n  "
+
+  let iij =  A.encode i
+  print $ iij
 
   -- let z =  (i !! 0)
   print $ show $ i -- z
