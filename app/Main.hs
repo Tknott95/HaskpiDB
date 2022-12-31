@@ -166,7 +166,7 @@ main = do
 
   putStrLn "\n\n  "
 
-  let iij =  A.encode i
+  let iij =  A.encode i :: A.Value
   putStrLn $ show iij
 
   -- let z =  (i !! 0)
