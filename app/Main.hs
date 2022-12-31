@@ -42,14 +42,14 @@ import  Database.PostgreSQL.Simple.FromRow
 --   meta_under_policy :: [IMetadata]
 -- } deriving (Show, Eq)
 
-instance FromRow IMetadata where
-    fromRow = IMetadata <$> field
+-- instance FromRow IMetadata where
+--     fromRow = IMetadata <$> field
 
-instance FromRow IMetadata01 where
-    fromRow = IMetadata01 <$> field
+-- instance FromRow IMetadata01 where
+--     fromRow = IMetadata01 <$> field
 
-instance FromRow IMetadata02 where
-    fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
+-- instance FromRow IMetadata02 where
+--     fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
@@ -124,7 +124,7 @@ localPG = defaultConnectInfo
 
 
 -- this is dogshit
-grabMeta :: Connection -> String -> IO [Only IMetadata]
+grabMeta :: Connection -> String -> IO [Only AT.Value]
 grabMeta conn pid = ijk 
   where 
     ijk = query conn "SELECT json(tx_metadata.json) \
