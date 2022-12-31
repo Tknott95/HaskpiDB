@@ -10,6 +10,7 @@ import qualified Data.ByteString.Lazy as LB
 -- import Text.JSONb.Simple as TJS
 import Data.Aeson.Types as AT
 import Data.Aeson as A
+import Data.ByteString.Lazy.UTF8 as BLU
 
 data IMetadata02 = IMetadata02
   { id    :: String
@@ -50,8 +51,7 @@ main = do
   i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- print $ show $ A.encode i :: Maybe IMetadata
-  print $ show $ A.decode i :: Maybe AT.Value
-  print $ show i
+  print $ show $ Just i
   
 
   -- mapM_ print =<< (query_ conn "SELECT 1 + 1" :: IO [Only Int])
