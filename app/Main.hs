@@ -13,7 +13,8 @@ import Data.Aeson as A
 import Data.ByteString.Lazy.UTF8 as BLU
 
 import Prelude hiding (id)
-
+-- import qualified Data.ByteString.Char8 as BS
+-- import qualified Data.Text             as T
 
 -- {"f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": 
 -- {"TheCypherBox": 
@@ -103,6 +104,9 @@ grabMeta conn pid = ijk
    \ AND multi_asset.policy = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;"  $ (Only pid)
 
+-- bst :: BS.ByteString -> T.Text
+-- bst = T.pack . BS.unpack
+
 main :: IO ()
 main = do
   putStrLn $ bCyan
@@ -111,7 +115,7 @@ main = do
   conn <- connect localPG
   i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  print $ show $ A.encode i :: IO ()
+  print $ show $ ((A.encode (bst i)) :: IMetadata)
   -- print (show (A.decode (Just i) :: Maybe AT.Value))
   
   print $ show $ Just i
