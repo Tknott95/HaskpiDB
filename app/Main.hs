@@ -176,6 +176,8 @@ main = do
   print $ show $ abc
   -- let z =  (i !! 0)
   print $ show $ i -- z
+
+  print $ abc
   
   
 
