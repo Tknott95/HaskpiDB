@@ -172,6 +172,7 @@ main = do
   putStrLn $ show iij
   
   let abc = A.decode iij :: Maybe IMetadata
+  print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
   print $ show $ i -- z
