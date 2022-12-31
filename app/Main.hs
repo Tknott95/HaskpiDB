@@ -6,8 +6,10 @@ import Colors
 import Text.JSON
 -- import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.ByteString.Lazy as LB
+
 -- import Text.JSONb.Simple as TJS
 import Data.Aeson.Types as AT
+import Data.Aeson as A
 
 data IMetadata02 = IMetadata02
   { id    :: String
@@ -47,7 +49,7 @@ main = do
   conn <- connect localPG
   i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  -- z <- decode (i !! 0) :: Maybe AT.Value
+  -- print $ show $ A.encode i :: IMetadata
   print $ show i
   
 
