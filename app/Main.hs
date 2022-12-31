@@ -1,8 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric #-}
+
 module Main where
 
 import Database.PostgreSQL.Simple
 import Colors
+import GHC.Generics
+
 import Text.JSON
 -- import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.ByteString.Lazy as LB
@@ -32,19 +36,29 @@ import  Database.PostgreSQL.Simple.FromRow
 -- will pass in a and b, as parameterized types, after one run to set name if possible
 -- probably can just set things in TOJSON
 
-data IMetada = IMetada {
-  meta_under_policy :: [IMetadata]
-} deriving (Show, Eq)
+
+-- data IMetada = IMetada {
+--   meta_under_policy :: [IMetadata]
+-- } deriving (Show, Eq)
+
+instance FromRow IMetadata where
+    fromRow = IMetadata <$> field
+
+instance FromRow IMetadata01 where
+    fromRow = IMetadata01 <$> field
+
+instance FromRow IMetadata02 where
+    fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
-} deriving (Show, Eq)
+} deriving (Show, Generic)
 
 -- will pass in a, as a parameterized type, after one run to set name if possible
 -- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
   nft_name :: IMetadata02
-} deriving (Show, Eq)
+} deriving (Show, Generic)
 
 
 data IMetadata02 = IMetadata02
@@ -52,46 +66,52 @@ data IMetadata02 = IMetadata02
   , name  :: String
   , image :: String
   , description :: String
-  } deriving (Show, Eq)
+  } deriving (Show, Generic)
 
-instance ToJSON IMetadata where
-  toJSON metadataObj = object
-    [
-      "policy_id" .= toJSON (policy_id metadataObj)
-    ]
+-- instance ToJSON IMetadata where
+--   toJSON metadataObj = object
+--     [
+--       "policy_id" .= toJSON (policy_id metadataObj)
+--     ]
 
-instance ToJSON IMetadata01 where
-  toJSON metadataObj = object
-    [
-      "nft_name" .= toJSON (nft_name metadataObj)
-    ]
+-- instance ToJSON IMetadata01 where
+--   toJSON metadataObj = object
+--     [
+--       "nft_name" .= toJSON (nft_name metadataObj)
+--     ]
 
-instance ToJSON IMetadata02 where
-  toJSON metadataObj = object
-    [ "id" .= toJSON (id metadataObj)
-    , "name" .= toJSON (name metadataObj)
-    , "image" .= toJSON (image metadataObj)
-    , "description" .= toJSON (description metadataObj)
-    ]
+-- instance ToJSON IMetadata02 where
+--   toJSON metadataObj = object
+--     [ "id" .= toJSON (id metadataObj)
+--     , "name" .= toJSON (name metadataObj)
+--     , "image" .= toJSON (image metadataObj)
+--     , "description" .= toJSON (description metadataObj)
+--     ]
 
-instance FromJSON IMetadata where
-  parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
-    _nftName <- o .: "TheCypherbox" -- "nft_name"
-    return $ IMetadata _nftName
+-- instance FromJSON IMetadata where
+--   parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
+--     _nftName <- o .: "TheCypherbox" -- "nft_name"
+--     return $ IMetadata _nftName
   
-instance FromJSON IMetadata01 where
-  parseJSON = withObject "IMetadata01" $ \o -> do
-    _nftName <- o .: "TheCypherbox" -- "nft_name"
-    return $ IMetadata01 _nftName
+-- instance FromJSON IMetadata01 where
+--   parseJSON = withObject "IMetadata01" $ \o -> do
+--     _nftName <- o .: "TheCypherbox" -- "nft_name"
+--     return $ IMetadata01 _nftName
 
-instance FromJSON IMetadata02 where
-  parseJSON = withObject "IMetadata02" $ \o -> do
-    _id <- o .: "id"
-    _name <- o .: "name"
-    _image <- o .: "image"
-    _description <- o .: "description"
-    return $ IMetadata02 _id _name _image _description
+-- instance FromJSON IMetadata02 where
+--   parseJSON = withObject "IMetadata02" $ \o -> do
+--     _id <- o .: "id"
+--     _name <- o .: "name"
+--     _image <- o .: "image"
+--     _description <- o .: "description"
+--     return $ IMetadata02 _id _name _image _description
 
+instance ToJSON IMetadata
+instance FromJSON IMetadata
+instance ToJSON IMetadata01
+instance FromJSON IMetadata01
+instance ToJSON IMetadata02
+instance FromJSON IMetadata02
 
 localPG :: ConnectInfo
 localPG = defaultConnectInfo
@@ -103,7 +123,7 @@ localPG = defaultConnectInfo
 
 
 -- this is dogshit
-grabMeta :: Connection -> String -> IO [Only AT.Value]
+grabMeta :: Connection -> String -> IO [Only IMetadata]
 grabMeta conn pid = ijk 
   where 
     ijk = query conn "SELECT json(tx_metadata.json) \
