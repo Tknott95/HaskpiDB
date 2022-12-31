@@ -12,6 +12,9 @@ import Data.Aeson.Types as AT
 import Data.Aeson as A
 import Data.ByteString.Lazy.UTF8 as BLU
 
+import Prelude hiding (id)
+
+
 -- {"f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": 
 -- {"TheCypherBox": 
 -- {"id": "1", "name": "The Cypher Box", "image": 
@@ -35,6 +38,26 @@ data IMetadata02 = IMetadata02
   , image :: String
   , description :: String
   } deriving (Show, Eq)
+
+instance ToJSON IMetadata where
+  toJSON metadataObj = object
+    [
+      "policy_id" .= toJSON (policy_id metadataObj)
+    ]
+
+instance ToJSON IMetadata01 where
+  toJSON metadataObj = object
+    [
+      "nft_name" .= toJSON (nft_name metadataObj)
+    ]
+
+instance ToJSON IMetadata02 where
+  toJSON metadataObj = object
+    [ "id" .= toJSON (id metadataObj)
+    , "name" .= toJSON (name metadataObj)
+    , "image" .= toJSON (image metadataObj)
+    , "description" .= toJSON (description metadataObj)
+    ]
 
 localPG :: ConnectInfo
 localPG = defaultConnectInfo
