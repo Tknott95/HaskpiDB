@@ -17,6 +17,7 @@ import Data.Aeson as A
 import Data.ByteString.Lazy.UTF8 as BLU
 import Data.Text
 
+import Data.Row.Aeson
 
 
 import Prelude hiding (id)
