@@ -72,50 +72,51 @@ data IMetadata02 = IMetadata02
 -- instance FromRow IMetadata02 where
 --     fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
--- instance ToJSON IMetadata where
---   toJSON metadataObj = object
---     [
---       "policy_id" .= toJSON (policy_id metadataObj)
---     ]
+instance ToJSON IMetadata where
+  toJSON metadataObj = object
+    [
+      "policy_id" .= toJSON (policy_id metadataObj)
+    ]
 
--- instance ToJSON IMetadata01 where
---   toJSON metadataObj = object
---     [
---       "nft_name" .= toJSON (nft_name metadataObj)
---     ]
+instance ToJSON IMetadata01 where
+  toJSON metadataObj = object
+    [
+      "nft_name" .= toJSON (nft_name metadataObj)
+    ]
 
--- instance ToJSON IMetadata02 where
---   toJSON metadataObj = object
---     [ "id" .= toJSON (id metadataObj)
---     , "name" .= toJSON (name metadataObj)
---     , "image" .= toJSON (image metadataObj)
---     , "description" .= toJSON (description metadataObj)
---     ]
+instance ToJSON IMetadata02 where
+  toJSON metadataObj = object
+    [ "id" .= toJSON (id metadataObj)
+    , "name" .= toJSON (name metadataObj)
+    , "image" .= toJSON (image metadataObj)
+    , "description" .= toJSON (description metadataObj)
+    ]
 
--- instance FromJSON IMetadata where
---   parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
---     _nftName <- o .: "TheCypherbox" -- "nft_name"
---     return $ IMetadata _nftName
+instance FromJSON IMetadata where
+  parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
+    _nftName <- o .: "TheCypherbox" -- "nft_name"
+    return $ IMetadata _nftName
   
--- instance FromJSON IMetadata01 where
---   parseJSON = withObject "IMetadata01" $ \o -> do
---     _nftName <- o .: "TheCypherbox" -- "nft_name"
---     return $ IMetadata01 _nftName
+instance FromJSON IMetadata01 where
+  parseJSON = withObject "IMetadata01" $ \o -> do
+    _nftName <- o .: "TheCypherbox" -- "nft_name"
+    return $ IMetadata01 _nftName
 
--- instance FromJSON IMetadata02 where
---   parseJSON = withObject "IMetadata02" $ \o -> do
---     _id <- o .: "id"
---     _name <- o .: "name"
---     _image <- o .: "image"
---     _description <- o .: "description"
---     return $ IMetadata02 _id _name _image _description
+instance FromJSON IMetadata02 where
+  parseJSON = withObject "IMetadata02" $ \o -> do
+    _id <- o .: "id"
+    _name <- o .: "name"
+    _image <- o .: "image"
+    _description <- o .: "description"
+    return $ IMetadata02 _id _name _image _description
 
-instance ToJSON IMetadata
-instance FromJSON IMetadata
-instance ToJSON IMetadata01
-instance FromJSON IMetadata01
-instance ToJSON IMetadata02
-instance FromJSON IMetadata02
+-- GENERICS
+-- instance ToJSON IMetadata
+-- instance FromJSON IMetadata
+-- instance ToJSON IMetadata01
+-- instance FromJSON IMetadata01
+-- instance ToJSON IMetadata02
+-- instance FromJSON IMetadata02
 
 localPG :: ConnectInfo
 localPG = defaultConnectInfo
