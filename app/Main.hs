@@ -29,7 +29,8 @@ retrieveMeta conn pid = query conn "SELECT tx_metadata.json \
    \ AS asset_name, multi_asset.fingerprint \
    \ AS fingerprint, sum(ma_tx_mint.quantity) AS quantity, count(DISTINCT ma_tx_mint.id) \
    \ AS mint_or_burn_count, max(tx_metadata.id) AS tx_metadata_id, min(tx.id) \
-   \ AS tx_id FROM multi_asset JOIN ma_tx_mint ON ma_tx_mint.ident = multi_asset.id JOIN tx ON tx.id = ma_tx_mint.tx_id JOIN tx_metadata ON tx_metadata.tx_id = ma_tx_mint.tx_id \
+   \ AS tx_id FROM multi_asset JOIN ma_tx_mint ON ma_tx_mint.ident = multi_asset.id JOIN tx ON tx.id = ma_tx_mint.tx_id \
+   \ JOIN tx_metadata ON tx_metadata.tx_id = ma_tx_mint.tx_id \
    \ WHERE tx_metadata.key IN(721) \
    \ AND multi_asset.policy = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;"  $ (Only pid)
