@@ -7,6 +7,7 @@ import Text.JSON
 -- import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.ByteString.Lazy as LB
 -- import Text.JSONb.Simple as TJS
+import Data.Aeson.Types as AT
 
 data IMetadata02 = IMetadata02
   { id    :: String
@@ -24,7 +25,7 @@ localPG = defaultConnectInfo
   }
 
 
-grabMeta :: Connection -> String -> IO [Only LB.ByteString]
+grabMeta :: Connection -> String -> IO [Only AT.Value]
 grabMeta conn pid = ijk
   where ijk = query conn "SELECT tx_metadata.json \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
