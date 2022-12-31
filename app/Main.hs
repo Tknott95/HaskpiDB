@@ -22,8 +22,8 @@ localPG = defaultConnectInfo
   }
 
 
-retrieveMeta :: Connection -> String -> IO [Only String]
-retrieveMeta conn pid = query conn "SELECT tx_metadata.json \
+grabMeta :: Connection -> String -> IO [Only String]
+grabMeta conn pid = query conn "SELECT tx_metadata.json \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
    \ AS policy_id, encode(multi_asset.name, 'escape') \
    \ AS asset_name, multi_asset.fingerprint \
@@ -41,7 +41,10 @@ main = do
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
   conn <- connect localPG
-  mapM_ print =<< retrieveMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  
+  
+
   -- mapM_ print =<< (query_ conn "SELECT 1 + 1" :: IO [Only Int])
   -- mapM_ print =<< (query_ conn "SELECT tx_metadata.json \
   --  \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
