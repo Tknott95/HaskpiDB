@@ -102,6 +102,7 @@ localPG = defaultConnectInfo
   }
 
 
+-- this is dogshit
 grabMeta :: Connection -> String -> IO [Only AT.Value]
 grabMeta conn pid = ijk 
   where 
@@ -141,7 +142,6 @@ main = do
   print $ show $ z
   
   
-
 
 
 
