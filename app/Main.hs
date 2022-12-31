@@ -103,7 +103,7 @@ localPG = defaultConnectInfo
 
 
 -- this is dogshit
-grabMeta :: Connection -> String -> IO [AT.Value]
+grabMeta :: Connection -> String -> IO [Only AT.Value]
 grabMeta conn pid = ijk 
   where 
     ijk = query conn "SELECT json(tx_metadata.json) \
