@@ -64,7 +64,7 @@ instance ToJSON IMetadata02 where
 instance FromJSON IMetadata where
   parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
     _nftName <- o .: "TheCypherbox" -- "nft_name"
-    return $ IMetadata01 _nftName
+    return $ IMetadata _nftName
   
 instance FromJSON IMetadata01 where
   parseJSON = withObject "IMetadata01" $ \o -> do
@@ -111,7 +111,7 @@ main = do
   conn <- connect localPG
   i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  print $ show $ A.encode i :: Maybe IMetadata
+  print $ show $ A.encode i :: IO ()
   -- print (show (A.decode (Just i) :: Maybe AT.Value))
   
   print $ show $ Just i
