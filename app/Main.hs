@@ -42,14 +42,7 @@ import  Database.PostgreSQL.Simple.FromRow
 --   meta_under_policy :: [IMetadata]
 -- } deriving (Show, Eq)
 
--- instance FromRow IMetadata where
---     fromRow = IMetadata <$> field
 
--- instance FromRow IMetadata01 where
---     fromRow = IMetadata01 <$> field
-
--- instance FromRow IMetadata02 where
---     fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
@@ -68,6 +61,16 @@ data IMetadata02 = IMetadata02
   , image :: String
   , description :: String
   } deriving (Show, Generic)
+
+
+-- instance FromRow IMetadata where
+--     fromRow = IMetadata <$> field
+
+-- instance FromRow IMetadata01 where
+--     fromRow = IMetadata01 <$> field
+
+-- instance FromRow IMetadata02 where
+--     fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
 -- instance ToJSON IMetadata where
 --   toJSON metadataObj = object
@@ -124,10 +127,9 @@ localPG = defaultConnectInfo
 
 
 -- this is dogshit
-grabMeta :: Connection -> String -> IO [Only AT.Value]
-grabMeta conn pid = ijk 
-  where 
-    ijk = query conn "SELECT json(tx_metadata.json) \
+grabMeta :: Connection -> String -> IO AT.Value
+grabMeta conn pid = do 
+  [Only ijk] <- query conn "SELECT json(tx_metadata.json) \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
    \ AS policy_id, encode(multi_asset.name, 'escape') \
    \ AS asset_name, multi_asset.fingerprint \
@@ -138,6 +140,8 @@ grabMeta conn pid = ijk
    \ WHERE tx_metadata.key IN(721) \
    \ AND multi_asset.policy = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [pid :: String] 
+
+  return ijk
 
 
 main :: IO ()
@@ -155,12 +159,12 @@ main = do
 
   --xx <- AT.fromJSON (head i)
   print $ show $  i
-  print $ show $ (i !! 0)
+  -- print $ show $ (i !! 0)
 
   putStrLn "\n\n  "
 
-  let z =  (i !! 0)
-  print $ show $ z
+  -- let z =  (i !! 0)
+  print $ show $ i -- z
   
   
 
