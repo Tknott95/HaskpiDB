@@ -25,12 +25,14 @@ import Prelude hiding (id)
 -- probably can just set things in TOJSON
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
-}
+} deriving (Show, Eq)
+
 -- will pass in a, as a parameterized type, after one run to set name if possible
 -- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
   nft_name :: IMetadata02
-}
+} deriving (Show, Eq)
+
 
 data IMetadata02 = IMetadata02
   { id    :: Int
