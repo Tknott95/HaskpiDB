@@ -19,7 +19,6 @@ import Data.Text
 
 import Data.Row.Aeson
 
-
 import Prelude hiding (id)
 import Database.PostgreSQL.Simple.FromField hiding (name)
 import Data.Aeson.KeyMap
