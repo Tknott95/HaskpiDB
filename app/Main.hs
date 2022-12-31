@@ -45,8 +45,9 @@ main = do
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
   conn <- connect localPG
-  decode $ i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  -- z <- decode (i !! 0) :: Maybe AT.Value
   print $ show i
   
 
