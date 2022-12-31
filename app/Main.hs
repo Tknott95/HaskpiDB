@@ -11,8 +11,15 @@ import qualified Data.ByteString.Lazy as LB
 import Data.Aeson.Types as AT
 import Data.Aeson as A
 import Data.ByteString.Lazy.UTF8 as BLU
+import Data.Text
+
+
 
 import Prelude hiding (id)
+import Database.PostgreSQL.Simple.FromField hiding (name)
+import Data.Aeson.KeyMap
+import  Database.PostgreSQL.Simple.FromRow
+
 -- import qualified Data.ByteString.Char8 as BS
 -- import qualified Data.Text             as T
 
@@ -24,6 +31,11 @@ import Prelude hiding (id)
 
 -- will pass in a and b, as parameterized types, after one run to set name if possible
 -- probably can just set things in TOJSON
+
+data IMetada = IMetada {
+  meta_under_policy :: [IMetadata]
+} deriving (Show, Eq)
+
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
 } deriving (Show, Eq)
@@ -91,8 +103,9 @@ localPG = defaultConnectInfo
 
 
 grabMeta :: Connection -> String -> IO [Only AT.Value]
-grabMeta conn pid = ijk
-  where ijk = query conn "SELECT tx_metadata.json \
+grabMeta conn pid = ijk 
+  where 
+    ijk = query conn "SELECT json(tx_metadata.json) \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
    \ AS policy_id, encode(multi_asset.name, 'escape') \
    \ AS asset_name, multi_asset.fingerprint \
@@ -104,8 +117,6 @@ grabMeta conn pid = ijk
    \ AND multi_asset.policy = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;"  $ (Only pid)
 
--- bst :: BS.ByteString -> T.Text
--- bst = T.pack . BS.unpack
 
 main :: IO ()
 main = do
@@ -117,8 +128,18 @@ main = do
   -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- print $ show $ ((A.encode (bst i)) :: IMetadata)
   -- print (show (A.decode (Just i) :: Maybe AT.Value))
+  -- d <- (eitherDecode <$> (Just i)) :: IO (Either String [IMetadata])
+  -- xx <- parseMeta i
+
+  --xx <- AT.fromJSON (head i)
+  print $ show $  i
+  print $ show $ (i !! 0)
+
+  putStrLn "\n\n  "
+
+  let z =  (i !! 0)
+  print $ show $ z
   
-  print $ show $ Just i
   
 
 
