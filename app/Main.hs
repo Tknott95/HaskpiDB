@@ -4,7 +4,9 @@ module Main where
 import Database.PostgreSQL.Simple
 import Colors
 import Text.JSON
-import qualified Data.ByteString.Lazy.Char8 as BLC
+-- import qualified Data.ByteString.Lazy.Char8 as BLC
+import qualified Data.ByteString.Lazy as LB
+-- import Text.JSONb.Simple as TJS
 
 data IMetadata02 = IMetadata02
   { id    :: String
@@ -22,8 +24,9 @@ localPG = defaultConnectInfo
   }
 
 
-grabMeta :: Connection -> String -> IO [Only String]
-grabMeta conn pid = query conn "SELECT tx_metadata.json \
+grabMeta :: Connection -> String -> IO [Only LB.ByteString]
+grabMeta conn pid = ijk
+  where ijk = query conn "SELECT tx_metadata.json \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
    \ AS policy_id, encode(multi_asset.name, 'escape') \
    \ AS asset_name, multi_asset.fingerprint \
@@ -41,8 +44,9 @@ main = do
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
   conn <- connect localPG
-  mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  
+  i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  print $ show i
   
 
   -- mapM_ print =<< (query_ conn "SELECT 1 + 1" :: IO [Only Int])
