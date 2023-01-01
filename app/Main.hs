@@ -175,9 +175,7 @@ main = do
   -- print $ show $ ((A.encode (bst i)) :: IMetadata)
   -- print (show (A.decode (Just i) :: Maybe AT.Value))
   -- d <- (eitherDecode <$> (Just i)) :: IO (Either String [IMetadata])
-  -- xx <- parseMeta i
 
-  --xx <- AT.fromJSON (head i)
   print $ show $  i
 
   print $ show $ A.encode i
