@@ -26,6 +26,7 @@ import Data.Aeson.KeyMap
 import  Database.PostgreSQL.Simple.FromRow
 
 import Data.Aeson.Encode.Pretty
+import Data.Aeson.QQ
 
 import Data.Maybe (maybeToList)
 
@@ -174,6 +175,17 @@ grabMeta conn pid = do
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [pid :: String] 
 
   return ijk
+
+someJSON :: Value
+someJSON = [aesonQQ|
+  {
+    "data": {
+      "timestamps": {
+        "created_at": "2019-05-11 17:53:21"
+      }
+    }
+  }
+|]
 
 
 main :: IO ()
