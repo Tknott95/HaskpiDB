@@ -25,6 +25,9 @@ import Database.PostgreSQL.Simple.FromField hiding (name)
 import Data.Aeson.KeyMap
 import  Database.PostgreSQL.Simple.FromRow
 
+
+import Data.Maybe (maybeToList)
+
 -- import qualified Data.ByteString.Char8 as BS
 -- import qualified Data.Text             as T
 
@@ -196,7 +199,7 @@ main = do
   putStrLn $ show iij
 
   let abcc = A.decode iij :: Maybe Object
-  let abc = A.decode iij :: Maybe IMetadata
+  let abc = Prelude.concat . maybeToList $ A.decode iij :: [Maybe IMetadata]
   print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
