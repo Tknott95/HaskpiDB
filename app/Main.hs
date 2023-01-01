@@ -198,7 +198,7 @@ main = do
   let iij =  A.encode i :: LB.ByteString
   putStrLn $ show iij
 
-  let abcc = A.decode iij :: Maybe Object
+  let abcc = Prelude.concat . maybeToList $ A.decode iij :: [Maybe Object]
   let abc = Prelude.concat . maybeToList $ A.decode iij :: [Maybe IMetadata]
   print $ show $ Just abc
   print $ show $ abc
