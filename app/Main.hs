@@ -28,6 +28,8 @@ import  Database.PostgreSQL.Simple.FromRow
 
 import Data.Aeson.Encode.Pretty
 import Data.Aeson.QQ
+import Control.Lens
+import Data.Aeson.Lens
 
 import Data.Maybe (maybeToList)
 
@@ -180,9 +182,10 @@ grabMeta conn pid = do
 someJSON :: Value
 someJSON = [aesonQQ|
   {
-    "data": {
-      "timestamps": {
-        "created_at": "2019-05-11 17:53:21"
+    "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": {
+      "TheCypherBox": {
+        "id": "",
+        "name: "",
       }
     }
   }
