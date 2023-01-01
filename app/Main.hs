@@ -48,13 +48,13 @@ import  Database.PostgreSQL.Simple.FromRow
 -- } deriving (Show, Generic)
 
 data IMetadata = IMetadata {
-  policy_id :: IMetadata01
+  f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6 :: IMetadata01
 } deriving (Show, Generic)
 
 -- will pass in a, as a parameterized type, after one run to set name if possible
 -- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
-  nft_name :: IMetadata02
+  TheCypherBox :: IMetadata02
 } deriving (Show, Generic)
 
 
@@ -75,24 +75,24 @@ data IMetadata02 = IMetadata02
 -- instance FromRow IMetadata02 where
 --     fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
-instance ToJSON IMetadata where
-  toJSON metadataObj = object
-    [
-      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (policy_id metadataObj)
-    ]
+-- instance ToJSON IMetadata where
+--   toJSON metadataObj = object
+--     [
+--       "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (policy_id metadataObj)
+--     ]
 
-instance ToJSON IMetadata01 where
-  toJSON metadataObj = object
-    [
-      "TheCypherBox" .= toJSON (nft_name metadataObj)
-    ]
+-- instance ToJSON IMetadata01 where
+--   toJSON metadataObj = object
+--     [
+--       "TheCypherBox" .= toJSON (nft_name metadataObj)
+--     ]
 
-instance ToJSON IMetadata02 where
-  toJSON metadataObj = object
-    [ "id" .= toJSON (id metadataObj)
-    , "name" .= toJSON (name metadataObj)
-    , "image" .= toJSON (image metadataObj)
-    , "description" .= toJSON (description metadataObj)
+-- instance ToJSON IMetadata02 where
+--   toJSON metadataObj = object
+--     [ "id" .= toJSON (id metadataObj)
+--     , "name" .= toJSON (name metadataObj)
+--     , "image" .= toJSON (image metadataObj)
+--     , "description" .= toJSON (description metadataObj)
     ]
 
 -- instance FromJSON IMetadata where
