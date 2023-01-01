@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE QuasiQuotes #-}
-{-# LANGUAGE DeriveAnyClass    #-}
 
 module Main where
 
@@ -58,13 +57,13 @@ import Data.Maybe (maybeToList)
 
 data IMetadata = IMetadata {
   policy_id :: [IMetadata01]
-} deriving (Show, Generic, ToJSON, FromJSON)
+} deriving (Show, Generic)
 
 -- will pass in a, as a parameterized type, after one run to set name if possible
 -- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
   nft_name :: [IMetadata02]
-} deriving (Show, Generic, ToJSON, FromJSON)
+} deriving (Show, Generic)
 
 
 data IMetadata02 = IMetadata02
@@ -72,7 +71,7 @@ data IMetadata02 = IMetadata02
   , name  :: String
   , image :: String
   , description :: String
-  } deriving (Show, Generic, ToJSON, FromJSON)
+  } deriving (Show, Generic)
 
 
 -- instance FromRow IMetadata where
@@ -86,7 +85,7 @@ data IMetadata02 = IMetadata02
 
 newtype Items = Items
   { items :: [IMetadata]
-  } deriving (Generic, Show, ToJSON, FromJSON)
+  } deriving (Generic, Show)
 
 instance FromJSON Items
 instance ToJSON Items
