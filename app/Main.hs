@@ -56,13 +56,13 @@ import Data.Maybe (maybeToList)
 -- } deriving (Show, Generic)
 
 data IMetadata = IMetadata {
-  policy_id :: IMetadata01
+  policy_id :: [IMetadata01]
 } deriving (Show, Generic)
 
 -- will pass in a, as a parameterized type, after one run to set name if possible
 -- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
-  nft_name :: IMetadata02
+  nft_name :: [IMetadata02]
 } deriving (Show, Generic)
 
 
