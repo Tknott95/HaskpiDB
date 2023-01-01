@@ -216,7 +216,7 @@ main = do
   putStrLn $ show iij
 
   let abcc = A.decode iij :: Maybe Object
-  let abc = A.decode iij :: Maybe [IMetadata]
+  let abc = A.eitherDecode iij :: Either String IMetadata
   print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
