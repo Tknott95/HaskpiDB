@@ -17,7 +17,6 @@ import Data.Aeson   as A
 import Data.ByteString.Lazy.UTF8 as BLU
 
 import Data.Text
-import Data.Text (pack)
 
 import Data.Row.Aeson
 
@@ -108,11 +107,11 @@ instance ToJSON IMetadata02 where
 
 instance FromJSON IMetadata where
   parseJSON = withObject "IMetadata" $ \o -> IMetadata
-    <$> o .: pack "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+    <$> o A..: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
 
 instance FromJSON IMetadata01 where
   parseJSON = withObject "IMetadata01" $ \o -> IMetadata01
-    <$> o .: pack "TheCypherBox"
+    <$> o A..: "TheCypherBox"
 
 
 -- instance FromJSON IMetadata02 where
