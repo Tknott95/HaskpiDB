@@ -25,6 +25,7 @@ import Database.PostgreSQL.Simple.FromField hiding (name)
 import Data.Aeson.KeyMap
 import  Database.PostgreSQL.Simple.FromRow
 
+import Data.Aeson.Encode.Pretty
 
 import Data.Maybe (maybeToList)
 
@@ -189,7 +190,7 @@ main = do
 
   print $ show $  i
 
-  print $ show $ A.encode i
+  print $ show $ encodePretty i
   
   -- print $ show $ (i !! 0)
 
