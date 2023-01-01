@@ -122,11 +122,11 @@ instance ToJSON IMetadata02 where
 
 instance FromJSON IMetadata where
   parseJSON = withObject "IMetadata" $ \o -> IMetadata
-    <$> o A..: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+    <$> o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
 
 instance FromJSON IMetadata01 where
   parseJSON = withObject "IMetadata01" $ \o -> IMetadata01
-    <$> o A..: "TheCypherBox"
+    <$> o .: "TheCypherBox"
 
 
 -- instance FromJSON IMetadata02 where
