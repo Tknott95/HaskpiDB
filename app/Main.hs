@@ -51,9 +51,9 @@ import Data.Maybe (maybeToList)
 -- } deriving (Show, Eq)
 
 
--- data IMeta = IMeta {
---   all :: [IMetadata]
--- } deriving (Show, Generic)
+data IMeta = IMeta [IMetadata] deriving (Show, Generic)
+instance FromJSON IMeta
+instance ToJSON IMeta
 
 data IMetadata = IMetadata {
   policy_id :: [IMetadata01]
