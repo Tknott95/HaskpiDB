@@ -28,7 +28,7 @@ import  Database.PostgreSQL.Simple.FromRow
 
 import Data.Aeson.Encode.Pretty
 import Data.Aeson.QQ
-import Control.Lens
+
 import Data.Aeson.Lens
 
 import Data.Maybe (maybeToList)
@@ -179,17 +179,17 @@ grabMeta conn pid = do
 
   return ijk
 
-someJSON :: Value
-someJSON = [aesonQQ|
-  {
-    "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": {
-      "TheCypherBox": {
-        "id": "",
-        "name: "",
-      }
-    }
-  }
-|]
+-- someJSON :: Value
+-- someJSON = [aesonQQ|
+--   {
+--     "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": {
+--       "TheCypherBox": {
+--         "id": "",
+--         "name: "",
+--       }
+--     }
+--   }
+-- |]
 
 
 main :: IO ()
@@ -216,7 +216,7 @@ main = do
   putStrLn $ show iij
 
   let abcc = A.decode iij :: Maybe Object
-  let abc = A.decode iij :: Maybe IMetadata
+  let abc = A.decode iij :: Maybe Items -- IMetadata
   print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
