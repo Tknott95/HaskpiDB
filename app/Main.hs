@@ -215,7 +215,8 @@ main = do
   let iij =  A.encode i :: LB.ByteString
   putStrLn $ show iij
 
-  let abcc = A.decode iij :: Maybe Object
+  let abcc = A.eitherDecode iij ::Either String Object
+  --  A.decode iij :: Maybe Object
   let abc = A.eitherDecode iij :: Either String IMetadata
   print $ show $ Just abc
   print $ show $ abc
