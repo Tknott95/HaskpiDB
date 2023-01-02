@@ -234,6 +234,10 @@ main = do
     ++ (show $  maybeUnwrap custType)
     ++ clr
 
+  putStrLn $ dYlw 
+    ++ (show $ unwrappedObj01)
+    ++ clr
+  
   putStrLn $ bRed 
     ++ (show $  nft_name unwrappedObj01)
     ++ clr
