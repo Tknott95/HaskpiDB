@@ -18,6 +18,7 @@ import Data.Aeson.Types as AT
 import Data.Aeson   as A
 
 import Data.Text
+import Data.Either
 
 import Data.Row.Aeson
 
@@ -216,13 +217,13 @@ main = do
 
   let abcc = A.eitherDecode iij ::Either String Object
   --  A.decode iij :: Maybe Object
-  let custType = A.eitherDecode iij :: Either String IMetadata
-  -- let custType = A.decode iij ::  Maybe IMetadata
+  let custTypeEither = A.eitherDecode iij :: Either String IMetadata
+  let custType = A.decode iij :: Maybe IMetadata
 
-  putStrLn $ dYlw 
+  putStrLn $ alt 
     ++  (show $ Just custType) 
     ++ clr
-  putStrLn $ dYlw 
+  putStrLn $ alt2 
     ++ (show $ custType)
     ++ clr
 
