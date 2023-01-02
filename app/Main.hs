@@ -221,10 +221,11 @@ main = do
   print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
-  print $ show $ i -- z
+  -- print $ show $ i -- z
 
   print $ abcc
   
+  print $ abcc
   
 
 
