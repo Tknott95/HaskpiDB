@@ -19,6 +19,7 @@ import Data.Aeson   as A
 
 import Data.Text
 import Data.Either
+import Data.Maybe
 
 import Data.Row.Aeson
 
@@ -223,8 +224,11 @@ main = do
   putStrLn $ alt 
     ++  (show $ Just custType) 
     ++ clr
+
+  let x =  maybe custType
+
   putStrLn $ alt2 
-    ++ (show $ fromMaybe custType)
+    ++ (show $  custType)
     ++ clr
 
   -- putStrLn $ dYlw ++  policy_id custType ++ clr
