@@ -11,11 +11,11 @@ import GHC.Generics
 import Text.JSON
 -- import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.ByteString.Lazy as LB
+import Data.ByteString.Lazy.UTF8 as BLU -- from utf8-string
 
 -- import Text.JSONb.Simple as TJS
 import Data.Aeson.Types as AT
 import Data.Aeson   as A
-import Data.ByteString.Lazy.UTF8 as BLU
 
 import Data.Text
 
@@ -120,6 +120,7 @@ instance ToJSON IMetadata02 where
 --     _nftName <- o .: "TheCypherbox" -- "nft_name"
 --     return $ IMetadata01 _nftName
 
+
 instance FromJSON IMetadata where
   parseJSON = withObject "IMetadata" $ \o -> IMetadata
     <$> o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
@@ -208,6 +209,9 @@ main = do
 
   print $ show $ encodePretty i
   
+
+  let bstring = BLU.fromString $ show i
+  print $ "\n " ++ show bstring
   -- print $ show $ (i !! 0)
 
   putStrLn "\n\n  "
@@ -215,9 +219,12 @@ main = do
   let iij =  A.encode i :: LB.ByteString
   putStrLn $ show iij
 
-  let abcc = A.eitherDecode iij ::Either String Object
+  -- let fxt =  iij !! 0
+  -- putStrLn $ show fxt
+
+  let abcc = A.eitherDecode bstring ::Either String Object
   --  A.decode iij :: Maybe Object
-  let abc = A.eitherDecode iij :: Either String IMetadata
+  let abc = A.eitherDecode bstring :: Either String IMetadata
   print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
