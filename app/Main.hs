@@ -159,7 +159,7 @@ main = do
   let unwrappedObj02 = nft_name unwrappedObj01
 
   putStrLn $ alt2 
-    ++ (show $  maybeUnwrap custType)
+    ++ (show $ image $ nft_name $ policy_id $ maybeUnwrap custType)
     ++ clr
 
   putStrLn $ dYlw 
@@ -167,7 +167,7 @@ main = do
     ++ clr
   
   putStrLn $ bRed 
-    ++ (show $  unwrappedObj02)
+    ++ (show $ unwrappedObj02)
     ++ clr
   
   putStrLn $ bCyan 
