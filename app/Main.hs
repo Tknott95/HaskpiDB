@@ -67,7 +67,7 @@ data IMetadata01 = IMetadata01 {
 
 
 data IMetadata02 = IMetadata02
-  { id    :: Int
+  { id    :: Num
   , name  :: String
   , image :: String
   , description :: String
@@ -110,18 +110,18 @@ instance ToJSON IMetadata02 where
     , "description" .= toJSON (description metadataObj)
     ]
 
-instance FromJSON IMetadata
+--instance FromJSON IMetadata
 --instance FromJSON IMetadata01
 instance FromJSON IMetadata02
 
--- instance FromJSON IMetadata where
---   parseJSON = withObject "IMetadata" $ \o -> do
---     _pid <- o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" -- "nft_name"
---     return $ IMetadata _pid
+instance FromJSON IMetadata where
+  parseJSON = withObject "IMetadata" $ \o -> do
+    _iMeta01 <- o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" -- "nft_name"
+    return $ IMetadata _iMeta01
   
 instance FromJSON IMetadata01 where
-  parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
-    _nftName <- o .: "TheCypherbox" -- "nft_name"
+  parseJSON = withObject "IMetadata01" $ \o -> do
+    _nftName <- o .: "TheCypherBox" -- "nft_name"
     return $ IMetadata01 _nftName
 
 
