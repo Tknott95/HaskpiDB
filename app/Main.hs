@@ -221,16 +221,22 @@ main = do
   let custTypeEither = A.eitherDecode iij :: Either String IMetadata
   let custType = A.decode iij :: Maybe IMetadata
 
+
+
   putStrLn $ alt 
     ++  (show $ Just custType) 
     ++ clr
 
-  let x =  maybe custType
+  let unwrappedObj = maybeUnwrap custType
+  let unwrappedObj01 = policy_id unwrappedObj
 
   putStrLn $ alt2 
-    ++ (show $  custType)
+    ++ (show $  maybeUnwrap custType)
     ++ clr
 
+  putStrLn $ bRed 
+    ++ (show $  nft_name unwrappedObj01)
+    ++ clr
   -- putStrLn $ dYlw ++  policy_id custType ++ clr
   -- let z =  (i !! 0)
   -- print $ show $ i -- z
@@ -239,3 +245,6 @@ main = do
   
   -- print $ abcc
   
+maybeUnwrap :: Maybe a -> a
+maybeUnwrap (Just n) = n
+maybeUnwrap Nothing = undefined
