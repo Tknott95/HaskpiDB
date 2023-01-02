@@ -56,13 +56,13 @@ instance FromJSON IMeta
 instance ToJSON IMeta
 
 data IMetadata = IMetadata {
-  policy_id :: [IMetadata01]
+  f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6 :: IMetadata01
 } deriving (Show, Generic)
 
 -- will pass in a, as a parameterized type, after one run to set name if possible
 -- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
-  nft_name :: [IMetadata02]
+  nft_name :: IMetadata02
 } deriving (Show, Generic)
 
 
@@ -93,7 +93,7 @@ instance ToJSON Items
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (policy_id metadataObj)
+      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6 metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
@@ -110,6 +110,10 @@ instance ToJSON IMetadata02 where
     , "description" .= toJSON (description metadataObj)
     ]
 
+instance FromJSON IMetadata
+instance FromJSON IMetadata01
+instance FromJSON IMetadata02
+
 -- instance FromJSON IMetadata where
 --   parseJSON = withObject "IMetadata" $ \o -> do
 --     _pid <- o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" -- "nft_name"
@@ -121,29 +125,29 @@ instance ToJSON IMetadata02 where
 --     return $ IMetadata01 _nftName
 
 
-instance FromJSON IMetadata where
-  parseJSON = withObject "IMetadata" $ \o -> IMetadata
-    <$> o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+-- instance FromJSON IMetadata where
+--   parseJSON = withObject "IMetadata" $ \o -> IMetadata
+--     <$> o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
 
-instance FromJSON IMetadata01 where
-  parseJSON = withObject "IMetadata01" $ \o -> IMetadata01
-    <$> o .: "TheCypherBox"
+-- instance FromJSON IMetadata01 where
+--   parseJSON = withObject "IMetadata01" $ \o -> IMetadata01
+--     <$> o .: "TheCypherBox"
 
+
+-- -- instance FromJSON IMetadata02 where
+-- --   parseJSON = withObject "TheCypherbox" $ \o -> do
+-- --     _id <- o .: "id"
+-- --     _name <- o .: "name"
+-- --     _image <- o .: "image"
+-- --     _description <- o .: "description"
+-- --     return $ IMetadata02 _id _name _image _description
 
 -- instance FromJSON IMetadata02 where
---   parseJSON = withObject "TheCypherbox" $ \o -> do
---     _id <- o .: "id"
---     _name <- o .: "name"
---     _image <- o .: "image"
---     _description <- o .: "description"
---     return $ IMetadata02 _id _name _image _description
-
-instance FromJSON IMetadata02 where
-  parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
-    <$> o .: "id"
-    <*> o .: "name"
-    <*> o .: "image"
-    <*> o .: "description"
+--   parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
+--     <$> o .: "id"
+--     <*> o .: "name"
+--     <*> o .: "image"
+--     <*> o .: "description"
 
 -- GENERICS
 -- instance ToJSON IMetadata
@@ -166,7 +170,7 @@ localPG = defaultConnectInfo
 -- setup fromfield foreach and it should be good 
 grabMeta :: Connection -> String -> IO AT.Value -- IMetadata -- 
 grabMeta conn pid = do 
-  [Only ijk] <- query conn "SELECT json(tx_metadata.json) \
+  [Only ijk]  <- query conn "SELECT json(tx_metadata.json) \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
    \ AS policy_id, encode(multi_asset.name, 'escape') \
    \ AS asset_name, multi_asset.fingerprint \
