@@ -229,6 +229,7 @@ main = do
 
   let unwrappedObj = maybeUnwrap custType
   let unwrappedObj01 = policy_id unwrappedObj
+  let unwrappedObj02 = nft_name unwrappedObj01
 
   putStrLn $ alt2 
     ++ (show $  maybeUnwrap custType)
@@ -239,7 +240,11 @@ main = do
     ++ clr
   
   putStrLn $ bRed 
-    ++ (show $  nft_name unwrappedObj01)
+    ++ (show $  unwrappedObj02)
+    ++ clr
+  
+  putStrLn $ bCyan 
+    ++ (show $  image unwrappedObj02)
     ++ clr
   -- putStrLn $ dYlw ++  policy_id custType ++ clr
   -- let z =  (i !! 0)
