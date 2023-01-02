@@ -222,9 +222,9 @@ main = do
   -- let fxt =  iij !! 0
   -- putStrLn $ show fxt
 
-  let abcc = A.eitherDecode bstring ::Either String Object
+  let abcc = A.eitherDecode iij ::Either String Object
   --  A.decode iij :: Maybe Object
-  let abc = A.eitherDecode bstring :: Either String IMetadata
+  let abc = A.eitherDecode iij :: Either String IMetadata
   print $ show $ Just abc
   print $ show $ abc
   -- let z =  (i !! 0)
