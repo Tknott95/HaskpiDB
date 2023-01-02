@@ -67,7 +67,7 @@ data IMetadata01 = IMetadata01 {
 
 
 data IMetadata02 = IMetadata02
-  { id    :: Num
+  { id    :: Int
   , name  :: String
   , image :: String
   , description :: String
