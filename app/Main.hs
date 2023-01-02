@@ -56,7 +56,7 @@ instance FromJSON IMeta
 instance ToJSON IMeta
 
 data IMetadata = IMetadata {
-  f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6 :: IMetadata01
+  policy_id :: IMetadata01
 } deriving (Show, Generic)
 
 -- will pass in a, as a parameterized type, after one run to set name if possible
@@ -93,7 +93,7 @@ instance ToJSON Items
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6 metadataObj)
+      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
@@ -230,6 +230,8 @@ main = do
   --  A.decode iij :: Maybe Object
   let abc = A.eitherDecode iij :: Either String IMetadata
   print $ show $ Just abc
+  print $ show $ abc
+
   print $ show $ abc
   -- let z =  (i !! 0)
   -- print $ show $ i -- z
