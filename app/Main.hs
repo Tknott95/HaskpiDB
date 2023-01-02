@@ -9,11 +9,9 @@ import Colors
 import GHC.Generics
 
 import Text.JSON
--- import qualified Data.ByteString.Lazy.Char8 as BLC
 import qualified Data.ByteString.Lazy as LB
-import Data.ByteString.Lazy.UTF8 as BLU -- from utf8-string
+import Data.ByteString.Lazy.UTF8 as BLU
 
--- import Text.JSONb.Simple as TJS
 import Data.Aeson.Types as AT
 import Data.Aeson   as A
 
@@ -24,45 +22,20 @@ import Data.Maybe
 import Data.Row.Aeson
 
 import Prelude hiding (id)
-import Database.PostgreSQL.Simple.FromField hiding (name)
-import Data.Aeson.KeyMap
-import  Database.PostgreSQL.Simple.FromRow
-
-import Data.Aeson.Encode.Pretty
-import Data.Aeson.QQ
 
 import Data.Aeson.Lens
 
 import Data.Maybe (maybeToList)
 
--- import qualified Data.ByteString.Char8 as BS
--- import qualified Data.Text             as T
 
--- {"f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6": 
--- {"TheCypherBox": 
--- {"id": "1", "name": "The Cypher Box", "image": 
--- "ipfs://QmQumL3C5yqa3KxtFUogo6RLvjTfss7Xwp1S4C3YuVV6if", "description": "This is a little cypher box NFT."}}}
-
-
--- will pass in a and b, as parameterized types, after one run to set name if possible
--- probably can just set things in TOJSON
-
-
--- data IMetada = IMetada {
---   meta_under_policy :: [IMetadata]
--- } deriving (Show, Eq)
-
-
-data IMeta = IMeta [IMetadata] deriving (Show, Generic)
-instance FromJSON IMeta
-instance ToJSON IMeta
+-- data IMeta = IMeta [IMetadata] deriving (Show, Generic)
+-- instance FromJSON IMeta
+-- instance ToJSON IMeta
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
 } deriving (Show, Generic)
 
--- will pass in a, as a parameterized type, after one run to set name if possible
--- probably can just set things in TOJSON
 data IMetadata01 = IMetadata01 { 
   nft_name :: IMetadata02
 } deriving (Show, Generic)
@@ -74,16 +47,6 @@ data IMetadata02 = IMetadata02
   , image :: String
   , description :: String
   } deriving (Show, Generic)
-
-
--- instance FromRow IMetadata where
---     fromRow = IMetadata <$> field
-
--- instance FromRow IMetadata01 where
---     fromRow = IMetadata01 <$> field
-
--- instance FromRow IMetadata02 where
---     fromRow = IMetadata02 <$> field  <*> field  <*> field  <*> field
 
 newtype Items = Items
   { items :: [IMetadata]
@@ -180,8 +143,6 @@ main = do
 
   print $ show $  i
 
-  print $ show $ encodePretty i
-  
 
   let bstring = BLU.fromString $ show i
   putStrLn $ dYlw ++ "\n BYTESTRING " ++ show bstring ++ clr
