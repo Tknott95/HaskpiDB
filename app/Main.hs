@@ -228,17 +228,23 @@ main = do
 
   let abcc = A.eitherDecode iij ::Either String Object
   --  A.decode iij :: Maybe Object
-  let abc = A.eitherDecode iij :: Either String IMetadata
-  print $ show $ Just abc
-  print $ show $ abc
+  let custType = A.eitherDecode iij :: Either String IMetadata
+  -- let custType = A.decode iij ::  Maybe IMetadata
 
-  print $ show $ abc
+  putStrLn $ dYlw 
+    ++  (show $ Just custType) 
+    ++ clr
+  putStrLn $ dYlw 
+    ++ (show $ custType)
+    ++ clr
+
+  -- putStrLn $ dYlw ++  policy_id custType ++ clr
   -- let z =  (i !! 0)
   -- print $ show $ i -- z
 
-  print $ abcc
+  -- print $ abcc
   
-  print $ abcc
+  -- print $ abcc
   
 
 
