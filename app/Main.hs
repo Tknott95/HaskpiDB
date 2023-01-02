@@ -23,10 +23,6 @@ import Data.Row.Aeson
 
 import Prelude hiding (id)
 
-import Data.Aeson.Lens
-
-import Data.Maybe (maybeToList)
-
 
 -- data IMeta = IMeta [IMetadata] deriving (Show, Generic)
 -- instance FromJSON IMeta
