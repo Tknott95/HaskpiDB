@@ -13,7 +13,7 @@ import qualified Data.ByteString.Lazy as LB
 import Data.ByteString.Lazy.UTF8 as BLU
 
 import Data.Aeson.Types as AT
-import Data.Aeson   as A
+import Data.Aeson as A
 
 import Data.Text
 import Data.Either
@@ -22,11 +22,6 @@ import Data.Maybe
 import Data.Row.Aeson
 
 import Prelude hiding (id)
-
-
--- data IMeta = IMeta [IMetadata] deriving (Show, Generic)
--- instance FromJSON IMeta
--- instance ToJSON IMeta
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
