@@ -211,13 +211,13 @@ main = do
   
 
   let bstring = BLU.fromString $ show i
-  print $ "\n " ++ show bstring
+  putStrLn $ dYlw ++ "\n BYTESTRING " ++ show bstring ++ clr
   -- print $ show $ (i !! 0)
 
   putStrLn "\n\n  "
 
   let iij =  A.encode i :: LB.ByteString
-  putStrLn $ show iij
+  putStrLn $ bYlw ++ "\n a.ecnode bytesring \n " ++  show iij ++ clr
 
   -- let fxt =  iij !! 0
   -- putStrLn $ show fxt
