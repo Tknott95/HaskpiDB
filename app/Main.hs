@@ -127,10 +127,6 @@ main = do
     ++ clr
   conn <- connect localPG
   i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  -- mapM_ print =<< grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  -- print $ show $ ((A.encode (bst i)) :: IMetadata)
-  -- print (show (A.decode (Just i) :: Maybe AT.Value))
-  -- d <- (eitherDecode <$> (Just i)) :: IO (Either String [IMetadata])
 
   print $ show $  i
 
