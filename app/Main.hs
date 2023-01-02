@@ -112,9 +112,6 @@ instance ToJSON IMetadata02 where
     , "description" .= toJSON (description metadataObj)
     ]
 
---instance FromJSON IMetadata
---instance FromJSON IMetadata01
-instance FromJSON IMetadata02
 
 instance FromJSON IMetadata where
   parseJSON = withObject "IMetadata" $ \o -> do
@@ -126,30 +123,12 @@ instance FromJSON IMetadata01 where
     _nftName <- o .: "TheCypherBox" -- "nft_name"
     return $ IMetadata01 _nftName
 
-
--- instance FromJSON IMetadata where
---   parseJSON = withObject "IMetadata" $ \o -> IMetadata
---     <$> o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-
--- instance FromJSON IMetadata01 where
---   parseJSON = withObject "IMetadata01" $ \o -> IMetadata01
---     <$> o .: "TheCypherBox"
-
-
--- -- instance FromJSON IMetadata02 where
--- --   parseJSON = withObject "TheCypherbox" $ \o -> do
--- --     _id <- o .: "id"
--- --     _name <- o .: "name"
--- --     _image <- o .: "image"
--- --     _description <- o .: "description"
--- --     return $ IMetadata02 _id _name _image _description
-
--- instance FromJSON IMetadata02 where
---   parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
---     <$> o .: "id"
---     <*> o .: "name"
---     <*> o .: "image"
---     <*> o .: "description"
+instance FromJSON IMetadata02 where
+  parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
+    <$> o .: "id"
+    <*> o .: "name"
+    <*> o .: "image"
+    <*> o .: "description"
 
 -- GENERICS
 -- instance ToJSON IMetadata
