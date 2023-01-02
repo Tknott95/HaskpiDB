@@ -246,14 +246,8 @@ main = do
   putStrLn $ bCyan 
     ++ (show $  image unwrappedObj02)
     ++ clr
-  -- putStrLn $ dYlw ++  policy_id custType ++ clr
-  -- let z =  (i !! 0)
-  -- print $ show $ i -- z
 
-  -- print $ abcc
-  
-  -- print $ abcc
-  
+
 maybeUnwrap :: Maybe a -> a
 maybeUnwrap (Just n) = n
 maybeUnwrap Nothing = undefined
