@@ -224,7 +224,7 @@ main = do
     ++  (show $ Just custType) 
     ++ clr
   putStrLn $ alt2 
-    ++ (show $ custType)
+    ++ (show $ fromMaybe custType)
     ++ clr
 
   -- putStrLn $ dYlw ++  policy_id custType ++ clr
