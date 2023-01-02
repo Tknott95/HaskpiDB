@@ -111,7 +111,7 @@ instance ToJSON IMetadata02 where
     ]
 
 instance FromJSON IMetadata
-instance FromJSON IMetadata01
+--instance FromJSON IMetadata01
 instance FromJSON IMetadata02
 
 -- instance FromJSON IMetadata where
@@ -119,10 +119,10 @@ instance FromJSON IMetadata02
 --     _pid <- o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" -- "nft_name"
 --     return $ IMetadata _pid
   
--- instance FromJSON IMetadata01 where
---   parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
---     _nftName <- o .: "TheCypherbox" -- "nft_name"
---     return $ IMetadata01 _nftName
+instance FromJSON IMetadata01 where
+  parseJSON = withObject "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" $ \o -> do
+    _nftName <- o .: "TheCypherbox" -- "nft_name"
+    return $ IMetadata01 _nftName
 
 
 -- instance FromJSON IMetadata where
