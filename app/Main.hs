@@ -30,9 +30,7 @@ policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 server1 :: [IMetadata] -> Connection -> Server MetaAPI_00
-server1 ijk conn = do
-   meta <- liftIO $ getMeta conn
-   return ijk
+server1 ijk conn = return $ liftIO $ getMeta conn
 
 metaAPI :: Proxy MetaAPI_00
 metaAPI = Proxy
@@ -40,13 +38,13 @@ metaAPI = Proxy
 app1 :: [IMetadata] -> Connection -> Application
 app1 imeta conn = serve metaAPI (server1 imeta conn)
 
-getMeta :: Connection -> IO IMetadata
+getMeta :: Connection -> IO [IMetadata]
 getMeta conn = do
   jj <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe IMetadata
   let unwrappedObj = maybeUnwrap jType
-  return unwrappedObj
+  return [unwrappedObj]
 
 
 main :: IO ()
