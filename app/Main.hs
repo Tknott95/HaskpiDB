@@ -48,8 +48,7 @@ getMeta conn = do
 
 
 main :: IO ()
-main =  run 8081 (app1 [unwrappedObj] conn)
- do
+main = do
   putStrLn $ bCyan
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
