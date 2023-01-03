@@ -157,7 +157,8 @@ main = do
   putStrLn $ bCyan 
     ++ "\n\n    API serving on port 8081\n"
     ++ alt
-    ++ "  |GET|  /metadata"
+    ++ "  |GET|  /metadata/<policy-id>"
+    ++ "  |GET|  /metadata_by_name/<policy-id>/<unhashed-asset-name>"
     ++ clr
   
   -- unwrp <- getMeta conn
