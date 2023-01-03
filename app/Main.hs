@@ -124,6 +124,8 @@ main = do
   
   putStrLn $ bCyan 
     ++ "\n\n    API serving on port 8081\n"
+    ++ alt
+    ++ "  GET \\metadata"
     ++ clr
 
   run 8081 (app1 [unwrappedObj] conn)
