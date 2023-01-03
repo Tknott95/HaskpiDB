@@ -39,7 +39,7 @@ data IMetadata02 = IMetadata02
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      defaultPID .= toJSON (policy_id metadataObj)
+      (setdefaultPID defaultPID) .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
