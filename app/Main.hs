@@ -25,16 +25,17 @@ import           Servant.API
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
-server1 :: Server MetaAPI_00
-server1 = return [meta]
-  where meta = getMeta
+-- server1 ::  Connection -> Server MetaAPI_00
+-- server1 conn = do
+--    meta <- getMeta conn
+--    return [meta]
 
 
-getMeta :: Connection -> IMetadata
-getMeta = do
-  j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
-  let j_bstring =  encode j :: LB.ByteString
-  let jType = decode iij :: Maybe IMetadata
+getMeta :: Connection -> IO IMetadata
+getMeta conn = do
+  jj <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
+  let j_bstring =  encode jj :: LB.ByteString
+  let jType = decode j_bstring :: Maybe IMetadata
   let unwrappedObj = maybeUnwrap jType
   return unwrappedObj
 
@@ -44,7 +45,9 @@ main = do
   putStrLn $ bCyan
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
+  
   conn <- connect localPG
+
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
