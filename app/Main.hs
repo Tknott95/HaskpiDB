@@ -31,7 +31,12 @@ policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 server1 :: Connection -> Server MetaAPI_00
-server1 conn =  return getMeta "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+server1 conn = x :<|> y
+  where 
+    x :: Text -> Handler [IMetadata]
+    x _pid = getMeta _pid
+    y :: Text -> Text -> Handler [IMetadata]  
+    y _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName) 
   -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
 
@@ -48,15 +53,30 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [IMetadata]
 getMeta _policyID = do
-  liftIO $ print $ "\\x" ++ (unpack _policyID)
+  let paramPID = "\\" ++ (unpack _policyID)
+  liftIO $ print $ "\\" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
+  jj <- liftIO $ grabMetaWithPID conn paramPID
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe IMetadata
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
 
+getMetaByName :: Text -> Text -> Handler [IMetadata]
+getMetaByName _policyID _hashedAssetName = do
+  let paramPID = "\\" ++ (unpack _policyID)
+  let hashedAssetName = "\\" ++ (unpack _hashedAssetName)
+
+  liftIO $ print $ "\\" ++ (unpack _hashedAssetName)
+  liftIO $ print $ "\\" ++ (unpack _policyID)
+  -- QUERY PARAM WORKING
+  conn <- liftIO $ connect localPG
+  jj <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
+  let j_bstring =  encode jj :: LB.ByteString
+  let jType = decode j_bstring :: Maybe IMetadata
+  let unwrappedObj = maybeUnwrap jType
+  return [unwrappedObj]
 -- getMeta :: Connection -> Int -> IO [IMetadata]
 -- getMeta conn testID = do
 --   print $ testID
