@@ -98,9 +98,6 @@ main = do
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
-  -- print $ show $  j
-  -- print $ show $  i
-
   let bstring = BLU.fromString $ show i
   putStrLn $ dYlw ++ "\n BYTESTRING " ++ show bstring ++ clr
   -- print $ show $ (i !! 0)
