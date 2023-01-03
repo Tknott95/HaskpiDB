@@ -100,4 +100,3 @@ grabMeta conn pid = do
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [pid :: String] 
 
   return ijk
-
