@@ -12,10 +12,9 @@ import PSQL
 
 import Database.PostgreSQL.Simple
 
-
 import Data.Aeson as A
 import qualified Data.ByteString.Lazy as LB
-import Data.ByteString.Lazy.UTF8 as BLU
+import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
 
 main :: IO ()
