@@ -30,6 +30,11 @@ import Data.Text (Text, unpack)
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
+data IGlobal = IGlobal 
+{  polID :: Key,
+   assNameHash :: Key
+}
+
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
   where 
