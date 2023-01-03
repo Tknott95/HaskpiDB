@@ -13,7 +13,9 @@ import Data.Aeson as A
 
 import Text.JSON
 
+-- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
+defaultNftNameUnhashed = "TheCypherBox" :: Key
 
 setdefaultPID :: Key -> Key
 setdefaultPID a = a
@@ -44,7 +46,7 @@ instance ToJSON IMetadata where
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
     [
-      "TheCypherBox" .= toJSON (nft_name metadataObj)
+      defaultNftNameUnhashed .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
