@@ -12,6 +12,7 @@ import Prelude hiding (id)
 import Colors
 import Utils as U
 
+import Control.Monad.IO.Class (liftIO)
 
 import Database.PostgreSQL.Simple
 
@@ -30,7 +31,7 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 server1 :: [IMetadata] -> Connection -> Server MetaAPI_00
 server1 ijk conn = do
-   -- meta <- getMeta conn
+   meta <- liftIO $ getMeta conn
    return ijk
 
 metaAPI :: Proxy MetaAPI_00
