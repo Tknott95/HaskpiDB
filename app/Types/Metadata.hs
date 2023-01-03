@@ -11,8 +11,10 @@ import GHC.Generics
 import Database.PostgreSQL.Simple
 import Data.Aeson.Types as AT
 import Data.Aeson as A
+import Data.Aeson.Key (fromString)
 -- import Text.JSON
 import Data.Text (Text, unpack)
+import Control.Monad.Trans.State (State, put)
 
 import           Servant
 import           Servant.API
@@ -25,6 +27,9 @@ type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [I
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
 
 
+setGlobalStateAll :: String -> String -> State IGlobalState ()
+setGlobalStateAll _policyID _hashedName = do
+ put $ IGlobalState (fromString _policyID) (fromString _hashedName)
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)
 -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
