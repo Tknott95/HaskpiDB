@@ -16,7 +16,7 @@ import Control.Monad.IO.Class (liftIO)
 
 import Database.PostgreSQL.Simple
 
-import Data.Aeson (encode, eitherDecode, decode, Object)
+import Data.Aeson (encode, eitherDecode, decode, Object, Key)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
@@ -30,8 +30,7 @@ import Data.Text (Text, unpack)
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
-data IGlobal = IGlobal 
-{  polID :: Key,
+data IGlobal = IGlobal {  polID :: Key,
    assNameHash :: Key
 }
 
