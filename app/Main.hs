@@ -76,9 +76,9 @@ main = do
   putStrLn $ alt2 
     ++ (show $ image $ nft_name $ policy_id $ U.maybeUnwrap custType)
     ++ clr
-  -- putStrLn $ alt2 
-  --   ++ (show $ description $ nft_name $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
+  putStrLn $ alt2 
+    ++ (show $ description $ nft_name $ policy_id $ U.maybeUnwrap custType)
+    ++ clr
  
 
   putStrLn $ dYlw 
