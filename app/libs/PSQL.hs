@@ -28,14 +28,12 @@ data IMetadata01 = IMetadata01 {
   nft_name :: IMetadata02
 } deriving (Show, Generic)
 
-
 data IMetadata02 = IMetadata02
   { id    :: String
   , name  :: String
   , image :: String
   , description :: String
   } deriving (Show, Generic)
-
 
 instance ToJSON IMetadata where
   toJSON metadataObj = object
