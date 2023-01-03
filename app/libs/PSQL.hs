@@ -13,6 +13,8 @@ import Data.Aeson as A
 
 import Text.JSON
 
+ijkl = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
+
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
 } deriving (Show, Generic)
@@ -33,7 +35,7 @@ data IMetadata02 = IMetadata02
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" .= toJSON (policy_id metadataObj)
+      ijkl .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
