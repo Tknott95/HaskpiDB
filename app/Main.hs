@@ -98,9 +98,8 @@ main = do
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
-  print $ show $  j
-  print $ show $  i
-
+  -- print $ show $  j
+  -- print $ show $  i
 
   let bstring = BLU.fromString $ show i
   putStrLn $ dYlw ++ "\n BYTESTRING " ++ show bstring ++ clr
@@ -111,11 +110,8 @@ main = do
   let iij =  encode i :: LB.ByteString
   putStrLn $ bYlw ++ "\n a.ecnode bytesring \n " ++  show iij ++ clr
 
-  -- let fxt =  iij !! 0
-  -- putStrLn $ show fxt
 
   let abcc = eitherDecode iij ::Either String Object
-  --  A.decode iij :: Maybe Object
   let custTypeEither = eitherDecode iij :: Either String IMetadata
   let custType = decode iij :: Maybe IMetadata
 
