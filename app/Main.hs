@@ -30,7 +30,8 @@ policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 server1 :: Connection -> Server MetaAPI_00
-server1 conn = return $ liftIO $ getMeta conn 3
+server1 conn =  return getMeta 2
+  -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
 
 -- server2 :: Server UserAPI2
@@ -44,14 +45,25 @@ metaAPI = Proxy
 app1 :: Connection -> Application
 app1 conn = serve metaAPI (server1 conn)
 
-getMeta :: Connection -> Int -> IO [IMetadata]
-getMeta conn testID = do
-  print $ testID
-  jj <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
+getMeta :: Int -> Handler [IMetadata]
+getMeta testID = do
+  liftIO $ print $ testID
+  -- QUERY PARAM WORKING
+  conn <- liftIO $ connect localPG
+  jj <- liftIO $ grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe IMetadata
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
+
+-- getMeta :: Connection -> Int -> IO [IMetadata]
+-- getMeta conn testID = do
+--   print $ testID
+--   jj <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
+--   let j_bstring =  encode jj :: LB.ByteString
+--   let jType = decode j_bstring :: Maybe IMetadata
+--   let unwrappedObj = maybeUnwrap jType
+--   return [unwrappedObj]
 
 
 main :: IO ()
