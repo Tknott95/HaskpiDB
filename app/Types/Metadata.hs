@@ -12,12 +12,12 @@ import Database.PostgreSQL.Simple
 import Data.Aeson.Types as AT
 import Data.Aeson as A
 -- import Text.JSON
-import Data.Text
+import Data.Text (Text, unpack)
 
 import           Servant
 import           Servant.API
 
-type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Int :>  Get '[JSON] [IMetadata]
+type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
 
 
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)
