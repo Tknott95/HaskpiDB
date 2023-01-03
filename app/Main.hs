@@ -29,6 +29,7 @@ main = do
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
+  print $ show $  j
   print $ show $  i
 
 
