@@ -30,6 +30,11 @@ server1 ijk conn = do
    -- meta <- getMeta conn
    return ijk
 
+metaAPI :: Proxy MetaAPI_00
+metaAPI = Proxy
+
+app1 :: [IMetadata] -> Connection -> Application
+app1 imeta conn = serve metaAPI (server1 imeta conn)
 
 getMeta :: Connection -> IO IMetadata
 getMeta conn = do
@@ -41,7 +46,8 @@ getMeta conn = do
 
 
 main :: IO ()
-main = do
+main =  run 8081 (app1 [unwrappedObj] conn)
+ do
   putStrLn $ bCyan
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
@@ -114,3 +120,4 @@ main = do
     ++ (show $  image unwrappedObj02)
     ++ clr
 
+  run 8081 (app1 [unwrappedObj] conn)
