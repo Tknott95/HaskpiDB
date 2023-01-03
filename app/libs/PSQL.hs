@@ -4,6 +4,7 @@
 
 module PSQL where
 
+import Prelude hiding (id)
 import GHC.Generics
 
 import Database.PostgreSQL.Simple
@@ -11,10 +12,6 @@ import Data.Aeson.Types as AT
 import Data.Aeson as A
 
 import Text.JSON
--- import Data.Text
--- import Data.Either
--- import Data.Maybe
-import Prelude hiding (id)
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
