@@ -18,12 +18,6 @@ import qualified Data.ByteString.Lazy as LB
 import Data.ByteString.Lazy.UTF8 as BLU
 
 
-import Data.Text
-import Data.Either
-import Data.Maybe
-
-
-
 main :: IO ()
 main = do
   putStrLn $ bCyan
