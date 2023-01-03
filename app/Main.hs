@@ -27,6 +27,7 @@ main = do
     ++ clr
   conn <- connect localPG
   i <- grabMetaWithPID conn policyIDStatic
+  j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
   print $ show $  i
 

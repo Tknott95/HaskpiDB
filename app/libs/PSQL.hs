@@ -111,8 +111,8 @@ grabMetaWithPIDAndName conn asName pid = do
    \ AS tx_id FROM multi_asset JOIN ma_tx_mint ON ma_tx_mint.ident = multi_asset.id JOIN tx ON tx.id = ma_tx_mint.tx_id \
    \ JOIN tx_metadata ON tx_metadata.tx_id = ma_tx_mint.tx_id \
    \ WHERE tx_metadata.key IN(721) \
-   \ AND multi_asset.policy = ? \
+   \ AND multi_asset.policy = '\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6' \
    \ AND multi_asset.name = ? \
-   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [asName :: String, pid :: String] 
+   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [asName :: String] 
 
   return ijk
