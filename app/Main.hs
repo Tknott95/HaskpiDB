@@ -16,6 +16,7 @@ import Data.Aeson (encode, eitherDecode, decode, Object)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
+policyIDStatic = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 
 main :: IO ()
 main = do
@@ -23,7 +24,7 @@ main = do
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
   conn <- connect localPG
-  i <- grabMeta conn "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  i <- grabMetaWithPID conn policyIDStatic
 
   print $ show $  i
 
