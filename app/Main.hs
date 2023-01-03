@@ -53,8 +53,8 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [IMetadata]
 getMeta _policyID = do
-  let paramPID = "\\" ++ (unpack _policyID)
-  liftIO $ print $ "\\" ++ (unpack _policyID)
+  let paramPID = "\\x" ++ (unpack _policyID)
+  liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithPID conn paramPID
@@ -65,11 +65,11 @@ getMeta _policyID = do
 
 getMetaByName :: Text -> Text -> Handler [IMetadata]
 getMetaByName _policyID _hashedAssetName = do
-  let paramPID = "\\" ++ (unpack _policyID)
-  let hashedAssetName = "\\" ++ (unpack _hashedAssetName)
+  let paramPID = "\\x" ++ (unpack _policyID)
+  let hashedAssetName = "\\x" ++ (unpack _hashedAssetName)
 
-  liftIO $ print $ "\\" ++ (unpack _hashedAssetName)
-  liftIO $ print $ "\\" ++ (unpack _policyID)
+  liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
+  liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
