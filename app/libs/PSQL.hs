@@ -101,7 +101,7 @@ grabMetaWithPID conn pid = do
   return ijk
 
 grabMetaWithPIDAndName :: Connection -> String -> String -> IO AT.Value -- IMetadata -- 
-grabMetaWithPIDAndName conn assName pid = do 
+grabMetaWithPIDAndName conn asName pid = do 
   [Only ijk]  <- query conn "SELECT json(tx_metadata.json) \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
    \ AS policy_id, encode(multi_asset.name, 'escape') \
@@ -113,6 +113,6 @@ grabMetaWithPIDAndName conn assName pid = do
    \ WHERE tx_metadata.key IN(721) \
    \ AND multi_asset.policy = ? \
    \ AND multi_asset.name = ? \
-   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [assName :: String, pid :: String] 
+   \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [asName :: String, pid :: String] 
 
   return ijk
