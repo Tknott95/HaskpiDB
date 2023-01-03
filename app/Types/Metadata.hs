@@ -31,7 +31,7 @@ data IMetadata02 = IMetadata02
   { id    :: String
   , name  :: String
   , image :: String
-  , description :: String
+  -- , description :: String
   } deriving (Show, Generic)
 
 instance ToJSON IMetadata where
@@ -51,7 +51,7 @@ instance ToJSON IMetadata02 where
     [ "id" .= toJSON (id metadataObj)
     , "name" .= toJSON (name metadataObj)
     , "image" .= toJSON (image metadataObj)
-    , "description" .= toJSON (description metadataObj)
+  --   , "description" .= toJSON (description metadataObj)
     ]
 
 instance FromJSON IMetadata where
@@ -69,4 +69,4 @@ instance FromJSON IMetadata02 where
     <$> o .: "id"
     <*> o .: "name"
     <*> o .: "image"
-    <*> o .: "description"
+ --    <*> o .: "description"
