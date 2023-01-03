@@ -48,7 +48,8 @@ executable HaskpiDB
       servant >= 0.19.1,
       servant-server >= 0.18.3,
       -- wai >= 3.2.3,
-      warp >= 3.3.23
+      warp >= 3.3.23,
+      transformers >= 0.4.2.0
   
     hs-source-dirs:   
       app, 
