@@ -118,8 +118,12 @@ main = do
     ++ (show $ unwrappedObj02)
     ++ clr
   
-  putStrLn $ bCyan 
+  putStrLn $ alt2 
     ++ (show $  image unwrappedObj02)
+    ++ clr
+  
+  putStrLn $ bCyan 
+    ++ "\n\n    API serving on port 8081\n"
     ++ clr
 
   run 8081 (app1 [unwrappedObj] conn)
