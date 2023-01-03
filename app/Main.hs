@@ -16,8 +16,8 @@ import Data.Aeson (encode, eitherDecode, decode, Object)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
-policyIDStatic = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
-assetNameHashStatic = "\\x546865437970686572426f78" :: String
+policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
+assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 main :: IO ()
 main = do
