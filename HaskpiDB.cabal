@@ -46,7 +46,9 @@ executable HaskpiDB
       -- lens-aeson >= 1.2.1,
       -- lens >= 5.1.1,
       servant >= 0.19.1,
-      servant-server >= 0.18.3
+      servant-server >= 0.18.3,
+      wai >= 3.2.3,
+      warp >= 3.3.23
   
     hs-source-dirs:   
       app, 
