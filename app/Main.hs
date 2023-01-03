@@ -31,7 +31,7 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = return $ liftIO $ getMeta conn 3
--- 3 is supposed to be the val of the query param
+-- 3 is supposed to be the val of the query apram
 
 -- server2 :: Server UserAPI2
 -- server2 = return users2
