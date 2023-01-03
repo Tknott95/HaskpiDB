@@ -39,7 +39,6 @@ instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
       defaultPID .= toJSON (policy_id metadataObj)
-      --(setdefaultPID "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6") .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
