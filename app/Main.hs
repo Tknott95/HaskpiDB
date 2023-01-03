@@ -4,6 +4,7 @@
 
 module Main where
 
+import Prelude hiding (id)
 
 import Colors
 import Utils as U
@@ -57,8 +58,18 @@ main = do
   let unwrappedObj02 = nft_name unwrappedObj01
 
   putStrLn $ alt2 
+    ++ (show $ id $ nft_name $ policy_id $ U.maybeUnwrap custType)
+    ++ clr
+  putStrLn $ alt2 
+    ++ (show $ name $ nft_name $ policy_id $ U.maybeUnwrap custType)
+    ++ clr
+  putStrLn $ alt2 
     ++ (show $ image $ nft_name $ policy_id $ U.maybeUnwrap custType)
     ++ clr
+  putStrLn $ alt2 
+    ++ (show $ description $ nft_name $ policy_id $ U.maybeUnwrap custType)
+    ++ clr
+ 
 
   putStrLn $ dYlw 
     ++ (show $ unwrappedObj01)
