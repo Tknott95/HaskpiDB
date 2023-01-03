@@ -36,7 +36,7 @@ executable HaskpiDB
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
     build-depends:    
-      base ^>=4.14.3.0,
+      base ^>=4.16.4.0,
       postgresql-simple >= 0.5.3.0,
       aeson >=2.1.1,
       json >= 0.10,
