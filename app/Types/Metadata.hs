@@ -17,7 +17,7 @@ import Data.Text
 import           Servant
 import           Servant.API
 
-type MetaAPI_00 = "metadata" :> QueryParam "policy_id" Text :>  Get '[JSON] [IMetadata]
+type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Int :>  Get '[JSON] [IMetadata]
 
 
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)

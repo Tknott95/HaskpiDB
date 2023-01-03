@@ -29,17 +29,24 @@ import           Network.Wai.Handler.Warp
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
-server1 :: [IMetadata] -> Connection -> Server MetaAPI_00
-server1 ijk conn = return $ liftIO $ getMeta conn
+server1 :: Connection -> Server MetaAPI_00
+server1 conn = return $ liftIO $ getMeta conn 3
+-- 3 is supposed to be the val of the query param
+
+-- server2 :: Server UserAPI2
+-- server2 = return users2
+--      :<|> return albert
+--      :<|> return isaac
 
 metaAPI :: Proxy MetaAPI_00
 metaAPI = Proxy
 
-app1 :: [IMetadata] -> Connection -> Application
-app1 imeta conn = serve metaAPI (server1 imeta conn)
+app1 :: Connection -> Application
+app1 conn = serve metaAPI (server1 conn)
 
-getMeta :: Connection -> IO [IMetadata]
-getMeta conn = do
+getMeta :: Connection -> Int -> IO [IMetadata]
+getMeta conn testID = do
+  print $ testID
   jj <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe IMetadata
@@ -130,4 +137,4 @@ main = do
   -- unwrp <- getMeta conn
   -- print $ unwrp
 
-  run 8081 (app1 [unwrappedObj, unwrappedObj, unwrappedObj] conn)
+  run 8081 (app1 conn)
