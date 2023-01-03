@@ -57,7 +57,6 @@ instance ToJSON IMetadata02 where
     , "description" .= toJSON (description metadataObj)
     ]
 
-
 instance FromJSON IMetadata where
   parseJSON = withObject "IMetadata" $ \o -> do
     _iMeta01 <- o .: "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" -- "nft_name"
