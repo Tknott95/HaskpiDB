@@ -75,14 +75,6 @@ instance FromJSON IMetadata02 where
     <*> o .: "image"
     <*> o .: "description"
 
--- GENERICS
--- instance ToJSON IMetadata
--- instance FromJSON IMetadata
--- instance ToJSON IMetadata01
--- instance FromJSON IMetadata01
--- instance ToJSON IMetadata02
--- instance FromJSON IMetadata02
-
 localPG :: ConnectInfo
 localPG = defaultConnectInfo
   { connectHost = "127.0.0.1"
