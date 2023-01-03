@@ -128,4 +128,4 @@ main = do
     ++ "  |GET|  /metadata"
     ++ clr
 
-  run 8081 (app1 [unwrappedObj] conn)
+  run 8081 (app1 [unwrappedObj, unwrappedObj, unwrappedObj] conn)
