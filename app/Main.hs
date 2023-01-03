@@ -12,7 +12,7 @@ import PSQL
 
 import Database.PostgreSQL.Simple
 
-import Data.Aeson as A
+import Data.Aeson (encode, eitherDecode, decode, Object)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
@@ -34,17 +34,16 @@ main = do
 
   putStrLn "\n\n  "
 
-  let iij =  A.encode i :: LB.ByteString
+  let iij =  encode i :: LB.ByteString
   putStrLn $ bYlw ++ "\n a.ecnode bytesring \n " ++  show iij ++ clr
 
   -- let fxt =  iij !! 0
   -- putStrLn $ show fxt
 
-  let abcc = A.eitherDecode iij ::Either String Object
+  let abcc = eitherDecode iij ::Either String Object
   --  A.decode iij :: Maybe Object
-  let custTypeEither = A.eitherDecode iij :: Either String IMetadata
-  let custType = A.decode iij :: Maybe IMetadata
-
+  let custTypeEither = eitherDecode iij :: Either String IMetadata
+  let custType = decode iij :: Maybe IMetadata
 
 
   putStrLn $ alt 
