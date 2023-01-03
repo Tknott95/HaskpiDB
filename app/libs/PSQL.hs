@@ -85,8 +85,6 @@ localPG = defaultConnectInfo
   }
 
 
--- this is dogshit
--- setup fromfield foreach and it should be good 
 grabMeta :: Connection -> String -> IO AT.Value -- IMetadata -- 
 grabMeta conn pid = do 
   [Only ijk]  <- query conn "SELECT json(tx_metadata.json) \
