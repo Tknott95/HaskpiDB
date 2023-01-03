@@ -29,12 +29,6 @@ data IMetadata02 = IMetadata02
   , description :: String
   } deriving (Show, Generic)
 
--- newtype Items = Items
---   { items :: [IMetadata]
---   } deriving (Generic, Show)
-
--- instance FromJSON Items
--- instance ToJSON Items
 
 instance ToJSON IMetadata where
   toJSON metadataObj = object
