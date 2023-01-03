@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cabal install HaskpiDB
+cabal install HaskpiDB --overwrite-policy=always
 
