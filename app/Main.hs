@@ -127,5 +127,8 @@ main = do
     ++ alt
     ++ "  |GET|  /metadata"
     ++ clr
+  
+  -- unwrp <- getMeta conn
+  -- print $ unwrp
 
   run 8081 (app1 [unwrappedObj, unwrappedObj, unwrappedObj] conn)
