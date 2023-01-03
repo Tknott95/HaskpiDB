@@ -58,6 +58,12 @@ main = do
   let unwrappedObj02 = nft_name unwrappedObj01
 
   putStrLn $ alt2 
+    ++ (show $ nft_name $ policy_id $ U.maybeUnwrap custType)
+    ++ clr
+  putStrLn $ alt2
+    ++ (show $ policy_id $ U.maybeUnwrap custType)
+    ++ clr
+  putStrLn $ alt2 
     ++ (show $ id $ nft_name $ policy_id $ U.maybeUnwrap custType)
     ++ clr
   putStrLn $ alt2 
