@@ -6,7 +6,9 @@ module Main where
 
 
 import Colors
+import Utils as U
 import PSQL
+
 
 import Database.PostgreSQL.Simple
 
@@ -19,6 +21,7 @@ import Data.ByteString.Lazy.UTF8 as BLU
 import Data.Text
 import Data.Either
 import Data.Maybe
+
 
 
 main :: IO ()
@@ -60,7 +63,7 @@ main = do
   let unwrappedObj02 = nft_name unwrappedObj01
 
   putStrLn $ alt2 
-    ++ (show $ image $ nft_name $ policy_id $ maybeUnwrap custType)
+    ++ (show $ image $ nft_name $ policy_id $ U.maybeUnwrap custType)
     ++ clr
 
   putStrLn $ dYlw 
@@ -75,7 +78,3 @@ main = do
     ++ (show $  image unwrappedObj02)
     ++ clr
 
-
-maybeUnwrap :: Maybe a -> a
-maybeUnwrap (Just n) = n
-maybeUnwrap Nothing = undefined
