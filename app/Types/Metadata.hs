@@ -39,13 +39,13 @@ defaultNftNameUnhashed = "TheCypherBox" :: Key
 setdefaultPID :: Key -> Key
 setdefaultPID a = a
 
--- data IMetadata = IMetadata {
---   policy_id :: IMetadata01
--- } deriving (Show, Generic)
+data IMetadata = IMetadata {
+  policy_id :: IMetadata01
+} deriving (Show, Generic)
 
--- data IMetadata01 = IMetadata01 { 
---   nft_name :: IMetadata02
--- } deriving (Show, Generic)
+data IMetadata01 = IMetadata01 { 
+  nft_name :: IMetadata02
+} deriving (Show, Generic)
 
 data IMetadata02 = IMetadata02
   { id    :: String
