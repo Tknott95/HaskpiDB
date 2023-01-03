@@ -4,11 +4,13 @@
 
 module Main where
 
+import Metadata 
+import PSQL
+
 import Prelude hiding (id)
 
 import Colors
 import Utils as U
-import PSQL
 
 
 import Database.PostgreSQL.Simple

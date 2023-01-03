@@ -30,6 +30,7 @@ executable HaskpiDB
     other-modules:
       Colors,
       Utils,
+      Metadata,
       PSQL
 
     -- LANGUAGE extensions used by modules in this package.
@@ -49,5 +50,6 @@ executable HaskpiDB
       lens >= 5.1.1
     hs-source-dirs:   
       app, 
-      app/libs
+      app/libs,
+      app/types
     default-language: Haskell2010
