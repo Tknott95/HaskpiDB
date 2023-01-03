@@ -17,6 +17,10 @@ import Data.Text (Text, unpack)
 import           Servant
 import           Servant.API
 
+data IGlobalState = IGlobalState {  polID :: Key,
+   assNameHash :: Key
+}
+
 type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
 
