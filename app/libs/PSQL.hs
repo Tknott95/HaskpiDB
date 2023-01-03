@@ -97,8 +97,8 @@ grabMetaWithPID conn pid = do
    \ WHERE tx_metadata.key IN(721) \
    \ AND multi_asset.policy = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;" [pid :: String] 
-
   return ijk
+
 
 grabMetaWithPIDAndName :: Connection -> String -> String -> IO AT.Value -- IMetadata -- 
 grabMetaWithPIDAndName conn asName pid = do 
@@ -114,5 +114,4 @@ grabMetaWithPIDAndName conn asName pid = do
    \ AND multi_asset.policy = ? \
    \ AND multi_asset.name = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;"  (pid, asName)
-
   return ijk
