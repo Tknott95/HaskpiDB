@@ -77,6 +77,8 @@ getMetaByName _policyID _hashedAssetName = do
   let jType = decode j_bstring :: Maybe IMetadata
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
+
+-- old function before using handlers for query params
 -- getMeta :: Connection -> Int -> IO [IMetadata]
 -- getMeta conn testID = do
 --   print $ testID
