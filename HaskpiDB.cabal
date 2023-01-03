@@ -50,6 +50,6 @@ executable HaskpiDB
       lens >= 5.1.1
     hs-source-dirs:   
       app, 
-      app/libs,
-      app/types
+      app/Libs,
+      app/Types
     default-language: Haskell2010
