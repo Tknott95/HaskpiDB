@@ -30,6 +30,7 @@ type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [I
 setGlobalStateAll :: String -> String -> State IGlobalState ()
 setGlobalStateAll _policyID _hashedName = do
  put $ IGlobalState (fromString _policyID) (fromString _hashedName)
+
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)
 -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key

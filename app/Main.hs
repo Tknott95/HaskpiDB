@@ -13,12 +13,14 @@ import Colors
 import Utils as U
 
 import Control.Monad.IO.Class (liftIO)
+import Control.Monad.Trans.State.Lazy (runState)
 
 import Database.PostgreSQL.Simple
 
 import Data.Aeson (encode, eitherDecode, decode, Object, Key)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
+
 
 import           Servant
 import           Servant.API
@@ -90,6 +92,8 @@ getMetaByName _policyID _hashedAssetName = do
 --   let unwrappedObj = maybeUnwrap jType
 --   return [unwrappedObj]
 
+-- defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
+-- defaultNftNameUnhashed = "TheCypherBox" 
 
 main :: IO ()
 main = do
@@ -98,6 +102,8 @@ main = do
     ++ clr
   
   conn <- connect localPG
+
+  jjh <- runState $ setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" 
 
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
