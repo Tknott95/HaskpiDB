@@ -19,8 +19,25 @@ import Data.Aeson (encode, eitherDecode, decode, Object)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
+import           Servant
+import           Servant.API
+
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
+
+server1 :: Server MetaAPI_00
+server1 = return [meta]
+  where meta = getMeta
+
+
+getMeta :: Connection -> IMetadata
+getMeta = do
+  j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
+  let j_bstring =  encode j :: LB.ByteString
+  let jType = decode iij :: Maybe IMetadata
+  let unwrappedObj = maybeUnwrap jType
+  return unwrappedObj
+
 
 main :: IO ()
 main = do

@@ -13,7 +13,7 @@ import Data.Aeson.Types as AT
 import Data.Aeson as A
 -- import Text.JSON
 
--- import           Servant
+import           Servant
 import           Servant.API
 
 type MetaAPI_00 = "metadata" :> Get '[JSON] [IMetadata]

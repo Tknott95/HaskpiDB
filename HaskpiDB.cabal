@@ -45,7 +45,8 @@ executable HaskpiDB
       text >= 2.0.1,
       -- lens-aeson >= 1.2.1,
       -- lens >= 5.1.1,
-      servant >= 0.19.1
+      servant >= 0.19.1,
+      servant-server >= 0.18.3
   
     hs-source-dirs:   
       app, 
