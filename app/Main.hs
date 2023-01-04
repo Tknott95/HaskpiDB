@@ -39,11 +39,19 @@ import System.IO.Unsafe
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
--- -- rigging states here first
--- {-# NOINLINE globalPolicyIDState #-}
--- globalPolicyIDState :: IORef String
--- globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
+-- putGlob :: String -> IO ()
+-- -- putGlob _  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
+-- putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
+
+--   -- ijk <- readIORef globalPolicyIDState
+--   -- print 
+--   -- put $ globalPolicyIDState "globalString"
+
+-- getGlob :: IO ()
+-- getGlob = do
+--   ijk <- readIORef globalPolicyIDState
+--   print ijk
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
@@ -115,7 +123,7 @@ main = do
   conn <- connect localPG
 
   liftIO $ getGlob
-  liftIO $ putGlob "global-state-overwritten"
+  liftIO $ putGlob "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   liftIO $ getGlob
 
   -- liftIO $ evalState $ (setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" )
