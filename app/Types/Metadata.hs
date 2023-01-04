@@ -48,9 +48,8 @@ getGlobIO = do
   print ijk
 
 getGlob :: IO String
-getGlob = do
-  ijk <- readIORef globalPolicyIDState
-  return ijk
+getGlob = ijk
+  where ijk = readIORef globalPolicyIDState
 
 type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
@@ -70,6 +69,9 @@ defaultNftNameUnhashed = "TheCypherBox" :: Key
 setdefaultPID :: Key -> Key
 setdefaultPID a = a
 
+getGlobalPID :: String
+getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
+
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
 } deriving (Show, Generic)
@@ -88,7 +90,7 @@ data IMetadata02 = IMetadata02
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      defaultPID .= toJSON (policy_id metadataObj)
+      (fromString getGlobalPID) .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
