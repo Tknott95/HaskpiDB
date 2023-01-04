@@ -50,8 +50,12 @@ getGlob :: IO String
 getGlob = ijk
   where ijk = readIORef globalPolicyIDState
 
-type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
-  :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
+setdefaultPID :: Key -> Key
+setdefaultPID a = a
+
+getGlobalPID :: String
+getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
+
 
 
 -- setGlobalStateAll :: String -> String -> State IGlobalState ()
@@ -65,11 +69,9 @@ defaultNftNameUnhashed = "TheCypherBox" :: Key
 -- if i cant get globals like state machines handling these vars with the hadnler return function then i will have to firugre something out with query params setting globals.
 -- maybe even nott typing and running A.Value values instead of Custom Types
 
-setdefaultPID :: Key -> Key
-setdefaultPID a = a
+type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
+  :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
 
-getGlobalPID :: String
-getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
 
 data IMetadata = IMetadata {
   policy_id :: IMetadata01
