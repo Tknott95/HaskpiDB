@@ -13,7 +13,7 @@ import Colors
 import Utils as U
 
 import Control.Monad.IO.Class (liftIO)
-import Control.Monad.Trans.State.Lazy (runState, execState)
+import Control.Monad.Trans.State.Lazy (runState, evalState)
 
 import Database.PostgreSQL.Simple
 
@@ -105,7 +105,7 @@ main = do
   
   conn <- connect localPG
 
-  -- setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" 
+  -- liftIO $ evalState $ (setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" )
 
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
