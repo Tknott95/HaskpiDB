@@ -42,10 +42,12 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 -- rigging states here first
 {-# NOINLINE globalPolicyIDState #-}
 globalPolicyIDState :: IORef String
-globalPolicyIDState = unsafePerformIO $ newIORef ""
+globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
 putGlob :: String -> IO ()
-putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
+-- putGlob _  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
+putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
+
   -- ijk <- readIORef globalPolicyIDState
   -- print 
   -- put $ globalPolicyIDState "globalString"
