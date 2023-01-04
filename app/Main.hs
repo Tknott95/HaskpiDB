@@ -170,7 +170,7 @@ main = do
     ++ "\n\n    API serving on port 8081\n"
     ++ alt
     ++ "  |GET|  /metadata/<policy-id>\n"
-    ++ "  |GET|  /metadata_by_name/<policy-id>/<unhashed-asset-name>"
+    ++ "  |GET|  /metadata_by_name/<policy-id>/<hashed-asset-name>"
     ++ clr
   
   -- unwrp <- getMeta conn
