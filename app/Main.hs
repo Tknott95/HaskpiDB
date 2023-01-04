@@ -105,7 +105,7 @@ main = do
   
   conn <- connect localPG
 
-  -- extract $ setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" 
+  -- setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" 
 
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
