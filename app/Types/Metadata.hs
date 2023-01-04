@@ -14,17 +14,39 @@ import Data.Aeson as A
 import Data.Aeson.Key (fromString)
 -- import Text.JSON
 import Data.Text (Text, unpack)
-import Control.Monad.Trans.State (State, put)
 
 import           Servant
 import           Servant.API
 
+import Control.Monad.State
+
+-- Global IORef Imports
+import Data.IORef
+import System.IO.Unsafe
+
+-- WILL MOVE TO A GLOBALS.HS FILE
 data IGlobalState = IGlobalState {  polID :: Key,
    assNameHash :: Key
 }
 
+putGlob :: String -> IO ()
+-- putGlob _  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
+putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
+
+getGlob :: IO ()
+getGlob = do
+  ijk <- readIORef globalPolicyIDState
+  print ijk
+
 type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
+
+
+
+-- rigging states here first
+{-# NOINLINE globalPolicyIDState #-}
+globalPolicyIDState :: IORef String
+globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
 
 setGlobalStateAll :: String -> String -> State IGlobalState ()
