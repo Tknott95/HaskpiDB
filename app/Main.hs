@@ -76,6 +76,16 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [IMetadata]
 getMeta _policyID = do
+  liftIO $ putStrLn $ dYlw ++
+    "\n\n  BEFORE\n" ++
+    " liftIO $ getGlobIO \
+    \ liftIO $ putGlob _policyID \
+    \ liftIO $ getGlobIO"
+    ++ clr
+  liftIO $ getGlobIO
+  liftIO $ putGlob (unpack _policyID)
+  liftIO $ getGlobIO
+
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
@@ -123,8 +133,8 @@ main = do
   conn <- connect localPG
 
   liftIO $ getGlobIO
-  liftIO $ putGlob "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  liftIO $ getGlobIO
+  -- liftIO $ putGlob "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
+  -- liftIO $ getGlobIO
 
   x <- liftIO $ getGlob
   print $ x

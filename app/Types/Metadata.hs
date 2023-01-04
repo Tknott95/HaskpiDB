@@ -50,12 +50,11 @@ getGlob :: IO String
 getGlob = ijk
   where ijk = readIORef globalPolicyIDState
 
-setdefaultPID :: Key -> Key
-setdefaultPID a = a
-
 getGlobalPID :: String
 getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
 
+setdefaultPID :: Key -> Key
+setdefaultPID a = a
 
 
 -- setGlobalStateAll :: String -> String -> State IGlobalState ()
