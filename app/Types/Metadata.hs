@@ -42,10 +42,15 @@ putGlob :: String -> IO ()
 -- putGlob _  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
 putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
 
-getGlob :: IO ()
-getGlob = do
+getGlobIO :: IO ()
+getGlobIO = do
   ijk <- readIORef globalPolicyIDState
   print ijk
+
+getGlob :: IO String
+getGlob = do
+  ijk <- readIORef globalPolicyIDState
+  return ijk
 
 type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
