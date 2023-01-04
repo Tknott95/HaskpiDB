@@ -23,6 +23,8 @@ import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
 import Data.Monoid.Instances.Stateful (extract)
 
+import Control.Monad.State
+
 
 import           Servant
 import           Servant.API
@@ -31,10 +33,27 @@ import           Network.Wai.Handler.Warp
 
 import Data.Text (Text, unpack)
 
+import Data.IORef
+import System.IO.Unsafe
+
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
+-- rigging states here first
+{-# NOINLINE globalPolicyIDState #-}
+globalPolicyIDState :: IORef String
+globalPolicyIDState = unsafePerformIO $ newIORef ""
 
+putGlob :: String -> IO ()
+putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
+  -- ijk <- readIORef globalPolicyIDState
+  -- print 
+  -- put $ globalPolicyIDState "globalString"
+
+getGlob :: IO ()
+getGlob = do
+  ijk <- readIORef globalPolicyIDState
+  print ijk
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y

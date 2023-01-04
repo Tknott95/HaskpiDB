@@ -50,7 +50,8 @@ executable HaskpiDB
       -- wai >= 3.2.3,
       warp >= 3.3.23,
       transformers >= 0.4.2.0,
-      monoid-subclasses >= 1.2.1
+      monoid-subclasses >= 1.2.1,
+      mtl >= 2.2.2
   
     hs-source-dirs:   
       app, 
