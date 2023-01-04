@@ -35,6 +35,8 @@ setGlobalStateAll _policyID _hashedName = do
 -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
 defaultNftNameUnhashed = "TheCypherBox" :: Key
+-- if i cant get globals like state machines handling these vars with the hadnler return function then i will have to firugre something out with query params setting globals.
+-- maybe even nott typing and running A.Value values instead of Custom Types
 
 setdefaultPID :: Key -> Key
 setdefaultPID a = a
