@@ -76,7 +76,7 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [IMetadata]
 getMeta _policyID = do
-  liftIO $ putStrLn $ dYlw ++
+  liftIO $ putStrLn $ bRed ++
     "\n\n  BEFORE\n" ++
     " liftIO $ getGlobIO \
     \ liftIO $ putGlob _policyID \
@@ -85,6 +85,12 @@ getMeta _policyID = do
   liftIO $ getGlobIO
   liftIO $ putGlob (unpack _policyID)
   liftIO $ getGlobIO
+  liftIO $ putStrLn $ alt ++
+    "\n\n  AFTER\n" ++
+    " liftIO $ getGlobIO \
+    \ liftIO $ putGlob _policyID \
+    \ liftIO $ getGlobIO"
+    ++ clr
 
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
