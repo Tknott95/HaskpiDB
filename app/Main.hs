@@ -21,6 +21,8 @@ import Data.Aeson (encode, eitherDecode, decode, Object, Key)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
+import Data.Monoid.Instances.Stateful (extract)
+
 
 import           Servant
 import           Servant.API
@@ -103,7 +105,7 @@ main = do
   
   conn <- connect localPG
 
-  extract $ setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" 
+  -- extract $ setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" 
 
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
