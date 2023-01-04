@@ -84,7 +84,6 @@ getMeta _policyID = do
     ++ clr
   liftIO $ getGlobIO
   liftIO $ putGlob (unpack _policyID)
-  liftIO $ getGlobIO
   liftIO $ putStrLn $ alt ++
     "\n\n  AFTER\n" ++
     " liftIO $ getGlobIO \
