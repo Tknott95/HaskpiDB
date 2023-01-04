@@ -39,7 +39,6 @@ globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-polic
 
 
 putGlob :: String -> IO ()
--- putGlob _  = atomicModifyIORef globalPolicyIDState  (\m -> ("this-is-a-global-state" , ())) 
 putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
 
 getGlobIO :: IO ()
