@@ -7,9 +7,13 @@ import System.IO.Unsafe
 globalPolicyIDState :: IORef String
 globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
+{-# NOINLINE globalPolicyIDState #-}
+globalAssetHash :: IORef String
+globalAssetHash = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
-putGlob :: String -> IO ()
-putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
+
+putGlobPID :: String -> IO ()
+putGlobPID _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
 
 getGlobIO :: IO ()
 getGlobIO = do

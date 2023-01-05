@@ -80,16 +80,14 @@ getMeta :: Text -> Handler [IMetadata]
 getMeta _policyID = do
   liftIO $ putStrLn $ bRed ++
     "\n\n  BEFORE\n" ++
-    " liftIO $ getGlobIO \
-    \ liftIO $ putGlob _policyID \
+    " liftIO $ putGlobPID _policyID \
     \ liftIO $ getGlobIO"
     ++ clr
   liftIO $ getGlobIO
-  liftIO $ putGlob (unpack _policyID)
+  liftIO $ putGlobPID (unpack _policyID)
   liftIO $ putStrLn $ alt ++
     "\n\n  AFTER\n" ++
-    " liftIO $ getGlobIO \
-    \ liftIO $ putGlob _policyID \
+    " liftIO $ putGlobPID _policyID \
     \ liftIO $ getGlobIO"
     ++ clr
 
