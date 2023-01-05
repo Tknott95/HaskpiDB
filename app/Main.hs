@@ -153,7 +153,7 @@ main = do
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
-  putStrLn $ bCyan 
+  putStrLn $ bCyan
     ++ "\n\n    API serving on port 8081\n"
     ++ alt
     ++ "  |GET|  /metadata/<policy-id>\n"
