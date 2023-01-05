@@ -60,11 +60,6 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 --   ijk <- readIORef globalPolicyIDState
 --   print ijk
 
-unhexEither :: String -> String -- String
-unhexEither ijk = case unhex ijk of 
-  Left err  -> err
-  Right ijk -> ijk  
-
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
   where 
