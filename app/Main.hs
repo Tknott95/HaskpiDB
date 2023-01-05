@@ -110,7 +110,22 @@ getMetaByName :: Text -> Text -> Handler [IMetadata]
 getMetaByName _policyID _hashedAssetName = do
   let paramPID = "\\x" ++ (unpack _policyID)
   let hashedAssetName = "\\x" ++ (unpack _hashedAssetName)
-
+  liftIO $ putStrLn $ dYlw ++
+    "\n\n  BEFORE\n" ++
+    " liftIO $ putGlobPID _policyID \
+    \ liftIO $ putAssetHash (unpack _hashedAssetName) \
+    \ liftIO $ getGlobIO"
+    ++ clr
+  liftIO $ getGlobAllIO
+  liftIO $ putGlobPID (unpack _policyID)
+  liftIO $ putAssetHash (unpack _hashedAssetName)
+  liftIO $ putStrLn $ alt2 ++
+    "\n\n  AFTER\n" ++
+    " liftIO $ putGlobPID _policyID \
+    \ liftIO $ putAssetHash (unpack _hashedAssetName) \
+    \ liftIO $ getGlobIO"
+    ++ clr
+  
   liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING

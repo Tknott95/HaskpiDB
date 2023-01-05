@@ -23,6 +23,14 @@ getGlobIO = do
   ijk <- readIORef globalPolicyIDState
   print ijk
 
+
+getGlobAllIO :: IO ()
+getGlobAllIO = do
+  i <- readIORef globalPolicyIDState
+  j <- readIORef globalAssetHash
+  print i
+  print j
+
 getGlob :: IO String
 getGlob = ijk
   where ijk = readIORef globalPolicyIDState
