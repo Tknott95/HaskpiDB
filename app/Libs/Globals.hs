@@ -38,6 +38,8 @@ getGlob = ijk
 getGlobalPID :: String
 getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
 
+getGlobalHash :: String
+getGlobalHash = unsafePerformIO $ readIORef globalAssetHash
 
 getGlobAssetHash :: String
 getGlobAssetHash =  unsafePerformIO $ readIORef globalAssetHash
