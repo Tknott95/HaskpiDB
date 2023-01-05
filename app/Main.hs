@@ -165,8 +165,7 @@ main = do
   
   let unhexedKey = hex "TheCypherBox" :: String
 
-  putStrLn $ bRed
-    ++ "\n\n HEX to UNHEX \n"
+  putStrLn $ "\n\n HEX to UNHEX \n" ++ bRed
     ++ (hex "TheCypherBox") ++ "\n"
     ++ (unhexEither $ hex "TheCypherBox")
     -- ++ (unhexEither unhexedKey)
