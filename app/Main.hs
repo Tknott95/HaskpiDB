@@ -128,6 +128,9 @@ getMetaByName _policyID _hashedAssetName = do
   
   liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
+
+  --   liftIO $ print $ unhexEither "546865437970686572426f78"
+  liftIO $ print $ unhexEither getGlobAssetHash
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
