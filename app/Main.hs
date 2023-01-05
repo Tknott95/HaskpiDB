@@ -60,10 +60,10 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 --   ijk <- readIORef globalPolicyIDState
 --   print ijk
 
-unhexEither :: String -> IO () -- String
+unhexEither :: String -> String -- String
 unhexEither ijk = case unhex ijk of 
-  Left err  -> print $ "ERROR" ++ err
-  Right ijk -> print $ ijk  
+  Left err  -> err
+  Right ijk -> ijk  
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
@@ -168,13 +168,13 @@ main = do
     ++ "  |GET|  /metadata_by_name/<policy-id>/<hashed-asset-name>"
     ++ clr
   
-  let sfx = hex "TheCypherBox" :: String
-  liftIO $ unhexEither sfx
+  let unhexedKey = hex "TheCypherBox" :: String
 
-  let ij = (unhex sfx)
-  putStrLn $ bCyan
-    ++ "\n\n"
-    ++ (hex "TheCypherBox") 
+  putStrLn $ bRed
+    ++ "\n\n HEX to UNHEX \n"
+    ++ (hex "TheCypherBox") ++ "\n"
+    ++ (unhexEither $ hex "TheCypherBox")
+    -- ++ (unhexEither unhexedKey)
     -- ++ ij
     ++ "\n"
     ++ clr
