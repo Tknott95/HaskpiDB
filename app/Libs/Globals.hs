@@ -29,3 +29,7 @@ getGlob = ijk
 
 getGlobalPID :: String
 getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
+
+
+getGlobAssetHash :: String
+getGlobAssetHash =  unsafePerformIO $ readIORef globalAssetHash
