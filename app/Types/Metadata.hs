@@ -96,7 +96,7 @@ instance ToJSON IMetadata where
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
     [
-      (fromString getGlobAssetHash) .= toJSON (nft_name metadataObj)
+      (fromString $ unhexEither getGlobAssetHash) .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
@@ -109,13 +109,24 @@ instance ToJSON IMetadata02 where
 
 instance FromJSON IMetadata where
   parseJSON = withObject "IMetadata" $ \o -> do
-    _iMeta01 <- o .: (fromString getGlobalPID) -- "nft_name"
+    _iMeta01 <- o .: defaultPID -- "nft_name"
     return $ IMetadata _iMeta01
   
 instance FromJSON IMetadata01 where
   parseJSON = withObject "IMetadata01" $ \o -> do
-    _nftName <- o .:(fromString getGlobAssetHash)  -- policy_id
+    _nftName <- o .: defaultNftNameUnhashed -- "nft_name"
     return $ IMetadata01 _nftName
+
+-- instance FromJSON IMetadata where
+--   parseJSON = withObject "IMetadata" $ \o -> do
+--     _iMeta01 <- o .: (fromString getGlobalPID) -- "nft_name"
+--     return $ IMetadata _iMeta01
+  
+-- instance FromJSON IMetadata01 where
+--   parseJSON = withObject "IMetadata01" $ \o -> do
+--     _nftName <- o .: (fromString getGlobAssetHash)  -- policy_id
+--     return $ IMetadata01 _nftName
+ 
 
 instance FromJSON IMetadata02 where
   parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
