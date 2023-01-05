@@ -55,9 +55,6 @@ import Globals (getGlobalPID)
 -- getGlobalPID :: String
 -- getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
 
--- setdefaultPID :: Key -> Key
--- setdefaultPID a = a
-
 
 -- setGlobalStateAll :: String -> String -> State IGlobalState ()
 -- setGlobalStateAll _policyID _hashedName = do
