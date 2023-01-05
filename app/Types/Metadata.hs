@@ -24,6 +24,8 @@ import Control.Monad.State
 import Data.IORef
 import System.IO.Unsafe
 
+import Globals (getGlobalPID)
+
 -- WILL MOVE TO A GLOBALS.HS FILE
 -- data IGlobalState = IGlobalState {  
 --    polID :: Key,
@@ -33,25 +35,25 @@ import System.IO.Unsafe
 -- WILL MOVE TO A GLOBALS.HS FILE
 
 -- rigging states here first
-{-# NOINLINE globalPolicyIDState #-}
-globalPolicyIDState :: IORef String
-globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
+-- {-# NOINLINE globalPolicyIDState #-}
+-- globalPolicyIDState :: IORef String
+-- globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
 
-putGlob :: String -> IO ()
-putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
+-- putGlob :: String -> IO ()
+-- putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
 
-getGlobIO :: IO ()
-getGlobIO = do
-  ijk <- readIORef globalPolicyIDState
-  print ijk
+-- getGlobIO :: IO ()
+-- getGlobIO = do
+--   ijk <- readIORef globalPolicyIDState
+--   print ijk
 
-getGlob :: IO String
-getGlob = ijk
-  where ijk = readIORef globalPolicyIDState
+-- getGlob :: IO String
+-- getGlob = ijk
+--   where ijk = readIORef globalPolicyIDState
 
-getGlobalPID :: String
-getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
+-- getGlobalPID :: String
+-- getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
 
 setdefaultPID :: Key -> Key
 setdefaultPID a = a

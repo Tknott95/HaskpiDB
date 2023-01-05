@@ -31,7 +31,8 @@ executable HaskpiDB
       Colors,
       Utils,
       Metadata,
-      PSQL
+      PSQL,
+      Globals
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
