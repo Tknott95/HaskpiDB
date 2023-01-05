@@ -24,7 +24,8 @@ import Control.Monad.State
 import Data.IORef
 import System.IO.Unsafe
 
-import Globals (getGlobalPID)
+import Globals (getGlobalPID, getGlobAssetHash)
+import Utils (unhexEither)
 
 -- WILL MOVE TO A GLOBALS.HS FILE
 -- data IGlobalState = IGlobalState {  
@@ -95,7 +96,7 @@ instance ToJSON IMetadata where
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
     [
-      defaultNftNameUnhashed .= toJSON (nft_name metadataObj)
+      (fromString $ unhexEither getGlobAssetHash) .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
