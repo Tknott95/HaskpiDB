@@ -9,7 +9,7 @@ globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-polic
 
 {-# NOINLINE globalAssetHash #-}
 globalAssetHash :: IORef String
-globalAssetHash = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
+globalAssetHash = unsafePerformIO $ newIORef "this-is-a-default-asset-hash"
 
 
 putAssetHash :: String -> IO ()
