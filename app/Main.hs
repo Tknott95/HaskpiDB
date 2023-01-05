@@ -95,6 +95,7 @@ getMeta _policyID = do
     " liftIO $ putGlobPID _policyID \
     \ liftIO $ getGlobIO"
     ++ clr
+  liftIO $ getGlobIO
 
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
@@ -125,6 +126,8 @@ getMetaByName _policyID _hashedAssetName = do
     \ liftIO $ putAssetHash (unpack _hashedAssetName) \
     \ liftIO $ getGlobIO"
     ++ clr
+  liftIO $ getGlobAllIO
+
   
   liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
