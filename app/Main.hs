@@ -139,12 +139,12 @@ main = do
   
   conn <- connect localPG
 
-  liftIO $ getGlobIO
+  -- liftIO $ getGlobIO
   -- liftIO $ putGlob "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
   -- liftIO $ getGlobIO
 
-  x <- liftIO $ getGlob
-  print $ x
+  -- x <- liftIO $ getGlob
+  -- print $ x
 
   print getGlobalPID
 
