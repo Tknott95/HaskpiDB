@@ -7,7 +7,7 @@ import System.IO.Unsafe
 globalPolicyIDState :: IORef String
 globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
-{-# NOINLINE globalPolicyIDState #-}
+{-# NOINLINE globalAssetHash #-}
 globalAssetHash :: IORef String
 globalAssetHash = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
