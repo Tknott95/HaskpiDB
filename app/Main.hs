@@ -153,62 +153,6 @@ main = do
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
 
-  -- let bstring = BLU.fromString $ show i
-  -- putStrLn $ dYlw ++ "\n BYTESTRING " ++ show bstring ++ clr
-  -- -- print $ show $ (i !! 0)
-
-  -- putStrLn "\n\n  "
-
-  -- let iij =  encode i :: LB.ByteString
-  -- putStrLn $ bYlw ++ "\n a.ecnode bytesring \n " ++  show iij ++ clr
-
-
-  -- let abcc = eitherDecode iij ::Either String Object
-  -- let custTypeEither = eitherDecode iij :: Either String IMetadata
-  -- let custType = decode iij :: Maybe IMetadata
-
-
-  -- putStrLn $ alt 
-  --   ++  (show $ Just custType) 
-  --   ++ clr
-
-  -- let unwrappedObj = maybeUnwrap custType
-  -- let unwrappedObj01 = policy_id unwrappedObj
-  -- let unwrappedObj02 = nft_name unwrappedObj01
-
-  -- -- INSTEAD OF UNWRAPPING COULD JUST <$>
-  -- putStrLn $ alt2 
-  --   ++ (show $ nft_name $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
-  -- putStrLn $ alt2
-  --   ++ (show $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
-  -- putStrLn $ alt2 
-  --   ++ (show $ id $ nft_name $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
-  -- putStrLn $ alt2 
-  --   ++ (show $ name $ nft_name $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
-  -- putStrLn $ alt2 
-  --   ++ (show $ image $ nft_name $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
-  -- putStrLn $ alt2 
-  --   ++ (show $ description $ nft_name $ policy_id $ U.maybeUnwrap custType)
-  --   ++ clr
- 
-
-  -- putStrLn $ dYlw 
-  --   ++ (show $ unwrappedObj01)
-  --   ++ clr
-  
-  -- putStrLn $ bRed 
-  --   ++ (show $ unwrappedObj02)
-  --   ++ clr
-  
-  -- putStrLn $ alt2 
-  --   ++ (show $  image unwrappedObj02)
-  --   ++ clr
-  
   putStrLn $ bCyan 
     ++ "\n\n    API serving on port 8081\n"
     ++ alt
