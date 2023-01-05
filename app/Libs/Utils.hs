@@ -6,7 +6,7 @@ maybeUnwrap :: Maybe a -> a
 maybeUnwrap (Just n) = n
 maybeUnwrap Nothing = undefined
 
-unhexEither :: String -> String -- String
+unhexEither :: String -> String 
 unhexEither ijk = case unhex ijk of 
   Left err  -> err
-  Right ijk -> ijk 
+  Right ijk -> ijk
