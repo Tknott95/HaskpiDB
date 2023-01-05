@@ -28,12 +28,13 @@ import Control.Monad.State
 import Data.Hex
 
 
+
 import           Servant
 import           Servant.API
 -- import           Network.Wai
 import           Network.Wai.Handler.Warp
 
-import Data.Text (Text, unpack)
+import Data.Text (Text, unpack, pack)
 
 import Data.IORef
 import System.IO.Unsafe
@@ -58,6 +59,11 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 -- getGlob = do
 --   ijk <- readIORef globalPolicyIDState
 --   print ijk
+
+unhexEither :: String -> IO () -- String
+unhexEither ijk = case unhex ijk of 
+  Left err  -> print $ "ERROR" ++ err
+  Right ijk -> print $ ijk  
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
@@ -163,7 +169,9 @@ main = do
     ++ clr
   
   let sfx = hex "TheCypherBox" :: String
-  let ij = read (unhex sfx)
+  liftIO $ unhexEither sfx
+
+  let ij = (unhex sfx)
   putStrLn $ bCyan
     ++ "\n\n"
     ++ (hex "TheCypherBox") 
