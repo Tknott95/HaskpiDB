@@ -12,6 +12,9 @@ globalAssetHash :: IORef String
 globalAssetHash = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
 
 
+putAssetHash :: String -> IO ()
+putAssetHash _string  = atomicModifyIORef globalAssetHash  (\m -> (_string , ())) 
+
 putGlobPID :: String -> IO ()
 putGlobPID _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
 
