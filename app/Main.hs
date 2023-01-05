@@ -25,6 +25,8 @@ import Data.Monoid.Instances.Stateful (extract)
 
 import Control.Monad.State
 
+import Data.Hex
+
 
 import           Servant
 import           Servant.API
@@ -37,6 +39,8 @@ import Data.IORef
 import System.IO.Unsafe
 
 import Globals
+
+import Data.Hex
 
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
@@ -156,6 +160,15 @@ main = do
     ++ alt
     ++ "  |GET|  /metadata/<policy-id>\n"
     ++ "  |GET|  /metadata_by_name/<policy-id>/<hashed-asset-name>"
+    ++ clr
+  
+  let sfx = hex "TheCypherBox" :: String
+  let ij = read (unhex sfx)
+  putStrLn $ bCyan
+    ++ "\n\n"
+    ++ (hex "TheCypherBox") 
+    -- ++ ij
+    ++ "\n"
     ++ clr
   
   -- unwrp <- getMeta conn

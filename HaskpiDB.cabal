@@ -52,7 +52,8 @@ executable HaskpiDB
       warp >= 3.3.23,
       transformers >= 0.4.2.0,
       monoid-subclasses >= 1.2.1,
-      mtl >= 2.2.2
+      mtl >= 2.2.2,
+      hex >= 0.1
   
     hs-source-dirs:   
       app, 
