@@ -24,7 +24,7 @@ import Control.Monad.State
 import Data.IORef
 import System.IO.Unsafe
 
-import Globals (getGlobalPID, getGlobAssetHash, globalAssetHash)
+import Globals (getGlobalPID, getGlobAssetHash) -- , globalAssetHash
 import Utils (unhexEither)
 
 -- WILL MOVE TO A GLOBALS.HS FILE
