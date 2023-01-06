@@ -166,17 +166,8 @@ main = do
   
   conn <- connect localPG
 
-  -- liftIO $ getGlobIO
-  -- liftIO $ putGlobPID "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"
-  -- liftIO $ getGlobIO
-
-  -- x <- liftIO $ getGlob
-  -- print $ x
-
   print getGlobalPID
   print getGlobAssetHash
-
-  -- liftIO $ evalState $ (setGlobalStateAll "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6"  "TheCypherBox" )
 
   i <- grabMetaWithPID conn policyIDStatic
   j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
@@ -193,8 +184,6 @@ main = do
   putStrLn $ "\n\n HEX to UNHEX \n" ++ bRed
     ++ (hex "TheCypherBox") ++ "\n"
     ++ (unhexEither $ hex "TheCypherBox")
-    -- ++ (unhexEither unhexedKey)
-    -- ++ ij
     ++ "\n"
     ++ clr
   
