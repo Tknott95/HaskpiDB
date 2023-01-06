@@ -96,7 +96,7 @@ instance ToJSON IMetadata where
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
     [
-      (fromString $ unhexEither $  unsafePerformIO $ readIORef globalAssetHash) .= toJSON (nft_name metadataObj)
+      (fromString $ unhexEither getGlobAssetHash) .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
