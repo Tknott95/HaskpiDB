@@ -126,7 +126,7 @@ getMetaByName _policyID _hashedAssetName = do
     \ liftIO $ putAssetHash (unpack _hashedAssetName) \
     \ liftIO $ getGlobIO"
     ++ clr
-  -- liftIO $ getGlobAllIO
+  liftIO $ getGlobAllIO
 
   
   -- liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)

@@ -59,7 +59,7 @@ instance ToJSON IMetadata where
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
     [ -- has to be called without the function wrapped as it then doesnt fetch the new set value
-      (fromString $ unsafePerformIO $ readIORef globalAssetHash) .= toJSON (nft_name metadataObj)
+      (fromString getGlobAssetHash) .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
