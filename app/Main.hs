@@ -17,7 +17,7 @@ import Control.Monad.Trans.State.Lazy (runState, evalState)
 
 import Database.PostgreSQL.Simple
 
-import Data.Aeson (encode, eitherDecode, decode, Object, Key)
+import Data.Aeson (encode, eitherDecode, decode, Object, Key, Value)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
@@ -63,9 +63,9 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
   where 
-    x :: Text -> Handler [IMetadata]
+    x :: Text -> Handler [Value]
     x _pid = getMeta _pid
-    y :: Text -> Text -> Handler [IMetadata]  
+    y :: Text -> Text -> Handler [Value]  
     y _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName) 
   -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
@@ -81,7 +81,7 @@ metaAPI = Proxy
 app1 :: Connection -> Application
 app1 conn = serve metaAPI (server1 conn)
 
-getMeta :: Text -> Handler [IMetadata]
+getMeta :: Text -> Handler [Value]
 getMeta _policyID = do
   liftIO $ putStrLn $ bRed ++
     "\n\n  BEFORE\n" ++
@@ -103,11 +103,11 @@ getMeta _policyID = do
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithPID conn paramPID
   let j_bstring =  encode jj :: LB.ByteString
-  let jType = decode j_bstring :: Maybe IMetadata
+  let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
 
-getMetaByName :: Text -> Text -> Handler [IMetadata]
+getMetaByName :: Text -> Text -> Handler [Value]
 getMetaByName _policyID _hashedAssetName = do
   let paramPID = "\\x" ++ (unpack _policyID)
   let hashedAssetName = "\\x" ++ (unpack _hashedAssetName)
@@ -142,7 +142,7 @@ getMetaByName _policyID _hashedAssetName = do
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
   let j_bstring =  encode jj :: LB.ByteString
-  let jType = decode j_bstring :: Maybe IMetadata
+  let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
 

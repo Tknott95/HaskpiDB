@@ -31,8 +31,8 @@ defaultNftNameUnhashed = "TheCypherBox" :: Key
 -- if i cant get globals like state machines handling these vars with the hadnler return function then i will have to firugre something out with query params setting globals.
 -- maybe even nott typing and running A.Value values instead of Custom Types
 
-type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [IMetadata]
-  :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [IMetadata]
+type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [A.Value]
+  :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [A.Value]
 
 
 data IMetadata = IMetadata {
