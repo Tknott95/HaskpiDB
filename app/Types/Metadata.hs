@@ -20,7 +20,6 @@ import           Servant.API
 
 import Data.IORef (readIORef)
 import System.IO.Unsafe (unsafePerformIO)
-import Control.Monad.IO.Class (liftIO)
 
 import Globals -- (getGlobalPID, getGlobAssetHash, globalAssetHash) -- , globalAssetHash
 import Utils (unhexEither)
