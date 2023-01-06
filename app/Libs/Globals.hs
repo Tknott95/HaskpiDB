@@ -41,5 +41,6 @@ getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
 getGlobalHash :: String
 getGlobalHash = unsafePerformIO $ readIORef globalAssetHash
 
+-- returns ddefault not the new set val
 getGlobAssetHash :: String
 getGlobAssetHash =  unsafePerformIO $ readIORef globalAssetHash
