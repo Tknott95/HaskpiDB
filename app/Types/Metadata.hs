@@ -31,6 +31,10 @@ defaultNftNameUnhashed = "TheCypherBox" :: Key
 -- if i cant get globals like state machines handling these vars with the hadnler return function then i will have to firugre something out with query params setting globals.
 -- maybe even nott typing and running A.Value values instead of Custom Types
 
+
+-- @NOTE - using Aeson.Value for the middle man api. 
+-- (Bug comments below with type function) If fetching local another way then ImEtadata is fine if IORef bug is fixed
+
 type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [A.Value]
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [A.Value]
 
@@ -58,7 +62,9 @@ instance ToJSON IMetadata where
 
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
-    [ -- has to be called without the function wrapped as it then doesnt fetch the new set value
+    [ 
+    -- this kills a meta only fetch where this is set from waht comes in. 
+    --This also isn't fetching the new set global a few executed lines prior in the func. Odd tbh as it does above.
       (fromString $ unsafePerformIO $ readIORef globalAssetHash) .= toJSON (nft_name metadataObj)
     ]
 
