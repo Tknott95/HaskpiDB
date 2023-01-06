@@ -135,6 +135,7 @@ getMetaByName _policyID _hashedAssetName = do
   --   liftIO $ print $ unhexEither "546865437970686572426f78"
   -- DOESNT WORK IDK WHY
 
+  liftIO $ print getGlobAssetHash
   liftIO $ print $ unsafePerformIO $ readIORef globalAssetHash
   liftIO $ print $ unhexEither $ unsafePerformIO $ readIORef globalAssetHash
   -- QUERY PARAM WORKING

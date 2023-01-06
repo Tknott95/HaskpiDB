@@ -1,3 +1,8 @@
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DataKinds         #-}
+{-# LANGUAGE TypeOperators #-}
+
 module Globals where
 
 import Data.IORef

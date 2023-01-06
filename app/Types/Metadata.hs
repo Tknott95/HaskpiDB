@@ -18,7 +18,11 @@ import Data.Text (Text, unpack)
 import           Servant
 import           Servant.API
 
-import Globals (getGlobalPID, getGlobAssetHash) -- , globalAssetHash
+import Data.IORef (readIORef)
+import System.IO.Unsafe (unsafePerformIO)
+import Control.Monad.IO.Class (liftIO)
+
+import Globals -- (getGlobalPID, getGlobAssetHash, globalAssetHash) -- , globalAssetHash
 import Utils (unhexEither)
 
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)
@@ -50,13 +54,13 @@ data IMetadata02 = IMetadata02
 instance ToJSON IMetadata where
   toJSON metadataObj = object
     [
-      (fromString getGlobalPID) .= toJSON (policy_id metadataObj)
+      (fromString $ unsafePerformIO $ readIORef globalPolicyIDState) .= toJSON (policy_id metadataObj)
     ]
 
 instance ToJSON IMetadata01 where
   toJSON metadataObj = object
-    [
-      (fromString $ unhexEither getGlobAssetHash) .= toJSON (nft_name metadataObj)
+    [ -- has to be called without the function wrapped as it then doesnt fetch the new set value
+      (fromString $ unsafePerformIO $ readIORef globalAssetHash) .= toJSON (nft_name metadataObj)
     ]
 
 instance ToJSON IMetadata02 where
