@@ -18,48 +18,8 @@ import Data.Text (Text, unpack)
 import           Servant
 import           Servant.API
 
-import Control.Monad.State
-
--- Global IORef Imports
-import Data.IORef
-import System.IO.Unsafe
-
 import Globals (getGlobalPID, getGlobAssetHash) -- , globalAssetHash
 import Utils (unhexEither)
-
--- WILL MOVE TO A GLOBALS.HS FILE
--- data IGlobalState = IGlobalState {  
---    polID :: Key,
---    assNameHash :: Key
--- }
-
--- WILL MOVE TO A GLOBALS.HS FILE
-
--- rigging states here first
--- {-# NOINLINE globalPolicyIDState #-}
--- globalPolicyIDState :: IORef String
--- globalPolicyIDState = unsafePerformIO $ newIORef "this-is-a-default-global-policy-id"
-
-
--- putGlob :: String -> IO ()
--- putGlob _string  = atomicModifyIORef globalPolicyIDState  (\m -> (_string , ())) 
-
--- getGlobIO :: IO ()
--- getGlobIO = do
---   ijk <- readIORef globalPolicyIDState
---   print ijk
-
--- getGlob :: IO String
--- getGlob = ijk
---   where ijk = readIORef globalPolicyIDState
-
--- getGlobalPID :: String
--- getGlobalPID =  unsafePerformIO $ readIORef globalPolicyIDState
-
-
--- setGlobalStateAll :: String -> String -> State IGlobalState ()
--- setGlobalStateAll _policyID _hashedName = do
---  put $ IGlobalState (fromString _policyID) (fromString _hashedName)
 
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)
 -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
