@@ -83,19 +83,19 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [Value]
 getMeta _policyID = do
-  liftIO $ putStrLn $ bRed ++
-    "\n\n  BEFORE\n" ++
-    " liftIO $ putGlobPID _policyID \
-    \ liftIO $ getGlobIO"
-    ++ clr
-  liftIO $ getGlobIO
-  liftIO $ putGlobPID (unpack _policyID)
-  liftIO $ putStrLn $ alt ++
-    "\n\n  AFTER\n" ++
-    " liftIO $ putGlobPID _policyID \
-    \ liftIO $ getGlobIO"
-    ++ clr
-  liftIO $ getGlobIO
+  -- liftIO $ putStrLn $ bRed ++
+  --   "\n\n  BEFORE\n" ++
+  --   " liftIO $ putGlobPID _policyID \
+  --   \ liftIO $ getGlobIO"
+  --   ++ clr
+  -- liftIO $ getGlobIO
+  -- liftIO $ putGlobPID (unpack _policyID)
+  -- liftIO $ putStrLn $ alt ++
+  --   "\n\n  AFTER\n" ++
+  --   " liftIO $ putGlobPID _policyID \
+  --   \ liftIO $ getGlobIO"
+  --   ++ clr
+  -- liftIO $ getGlobIO
 
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
@@ -111,22 +111,22 @@ getMetaByName :: Text -> Text -> Handler [Value]
 getMetaByName _policyID _hashedAssetName = do
   let paramPID = "\\x" ++ (unpack _policyID)
   let hashedAssetName = "\\x" ++ (unpack _hashedAssetName)
-  liftIO $ putStrLn $ dYlw ++
-    "\n\n  BEFORE\n" ++
-    " liftIO $ putGlobPID _policyID \
-    \ liftIO $ putAssetHash (unpack _hashedAssetName) \
-    \ liftIO $ getGlobIO"
-    ++ clr
-  liftIO $ getGlobAllIO
-  liftIO $ putAssetHash (unpack _hashedAssetName)
-  liftIO $ putGlobPID (unpack _policyID)
-  liftIO $ putStrLn $ alt2 ++
-    "\n\n  AFTER\n" ++
-    " liftIO $ putGlobPID _policyID \
-    \ liftIO $ putAssetHash (unpack _hashedAssetName) \
-    \ liftIO $ getGlobIO"
-    ++ clr
-  liftIO $ getGlobAllIO
+  -- liftIO $ putStrLn $ dYlw ++
+  --   "\n\n  BEFORE\n" ++
+  --   " liftIO $ putGlobPID _policyID \
+  --   \ liftIO $ putAssetHash (unpack _hashedAssetName) \
+  --   \ liftIO $ getGlobIO"
+  --   ++ clr
+  -- liftIO $ getGlobAllIO
+  -- liftIO $ putAssetHash (unpack _hashedAssetName)
+  -- liftIO $ putGlobPID (unpack _policyID)
+  -- liftIO $ putStrLn $ alt2 ++
+  --   "\n\n  AFTER\n" ++
+  --   " liftIO $ putGlobPID _policyID \
+  --   \ liftIO $ putAssetHash (unpack _hashedAssetName) \
+  --   \ liftIO $ getGlobIO"
+  --   ++ clr
+  -- liftIO $ getGlobAllIO
 
   
   -- liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
