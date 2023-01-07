@@ -7,8 +7,6 @@ import PSQL
 import Data.Aeson (Value, encode, decode)
 import           Servant
 import           Servant.API
--- import           Network.Wai
--- import           Network.Wai.Handler.Warp
 
 import Metadata (MetaAPI_00)
 
