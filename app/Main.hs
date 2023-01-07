@@ -76,8 +76,5 @@ main = do
     ++ (unhexEither $ hex "TheCypherBox")
     ++ "\n"
     ++ clr
-  
-  -- unwrp <- getMeta conn
-  -- print $ unwrp
 
   run 8081 (app1 conn)

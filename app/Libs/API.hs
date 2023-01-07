@@ -15,7 +15,6 @@ import Database.PostgreSQL.Simple (Connection, connect)
 import Data.Text (Text, unpack)
 import Control.Monad.IO.Class (liftIO)
 
-
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = x :<|> y
   where 
