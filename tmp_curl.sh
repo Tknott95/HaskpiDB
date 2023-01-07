@@ -1,7 +1,7 @@
 #!/bin/sh
 
 url=127.0.0.1
-port=8081
+port=1339
 
 tmp_pol_id=f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6
 tmp_name_hash=546865437970686572426f78 
