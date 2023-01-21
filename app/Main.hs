@@ -71,11 +71,11 @@ main = do
   --     print "127.0.0.1"
   
   
-  putStrLn $ bCyan
+  putStrLn $ alt2
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
   
-  putStrLn $ bRed
+  putStrLn $ bYlw
     ++ "\n ON IP: " ++ show (getIP cliArgs) ++ "\n"
     ++ clr
   
