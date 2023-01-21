@@ -46,11 +46,16 @@ import Data.Text (Text, unpack, pack)
 import Data.IORef
 import System.IO.Unsafe
 
+import Data.Streaming.Network.Internal
 
 import Data.Hex
 
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
+
+getIP :: [a] -> Data.Streaming.Network.Internal.HostPreference
+getIP [a]  = "192.168.0.16"
+getIP _ = "127.0.0.1"
 
 main :: IO ()
 main = do
@@ -59,12 +64,13 @@ main = do
 
   -- let IP_USING = "127.0.0.1";
 
-  if (length cliArgs > 0) 
-    then
-      print "192.168.0.*"
-    else 
-      print "127.0.0.1"
+  -- if (length cliArgs > 0) 
+  --   then
+  --     print "192.168.0.*"
+  --   else 
+  --     print "127.0.0.1"
   
+  print(getIP (cliArgs))
   putStrLn $ bCyan
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
@@ -92,6 +98,6 @@ main = do
     ++ "\n"
     ++ clr
 
-  let settings = setHost "127.0.0.1" defaultSettings
+  let settings = setHost (getIP (cliArgs)) defaultSettings
   runSettings settings (app1 conn)
   run 1339 (app1 conn)
