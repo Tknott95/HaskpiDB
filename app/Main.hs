@@ -55,12 +55,12 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 main :: IO ()
 main = do
   cliArgs <- getArgs
-  let arg00 = cliArgs !! 0
+
 
   -- let IP_USING = "127.0.0.1";
 
-  if (arg00 == "pub") 
-    then 
+  if (length cliArgs > 0) 
+    then
       print "192.168.0.*"
     else 
       print "127.0.0.1"
