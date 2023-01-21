@@ -30,7 +30,10 @@ import Control.Monad.State
 import Data.Hex
 
 import Database.PostgreSQL.Simple (connect)
-import           Network.Wai.Handler.Warp (run)
+import  Network.Wai.Handler.Warp (run,
+ runSettings,
+ defaultSettings,
+ setHost)
 
 -- import           Servant
 -- import           Servant.API
@@ -77,4 +80,6 @@ main = do
     ++ "\n"
     ++ clr
 
+  let settings = setHost "127.0.0.1" defaultSettings
+  runSettings settings (app1 conn)
   run 1339 (app1 conn)
