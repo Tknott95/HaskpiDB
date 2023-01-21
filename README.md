@@ -1,6 +1,17 @@
 # HaskpiDB
 Haskell middleman api to serve cardano-db-sync sql queries
 
+```HOW TO RUN
+
+cabal install HaskpiDB
+
+HaskpiDB
+
+or
+
+HaskpiDB pub
+```
+
 @TODO 
 - refactor the api code to a file called API.hs 
 - set such accordingly and run a test with API.hs to call in Main.hs
