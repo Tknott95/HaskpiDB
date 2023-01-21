@@ -103,6 +103,6 @@ main = do
     ++ "\n"
     ++ clr
 
-  let settings = setPort 1339 $ setHost (getIP (cliArgs)) defaultSettings
+  let settings = setPort 1339 $ setHost (getIP cliArgs) defaultSettings
   runSettings settings (app1 conn)
   -- run 1339 (app1 conn)
