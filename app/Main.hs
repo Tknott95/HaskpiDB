@@ -70,9 +70,13 @@ main = do
   --   else 
   --     print "127.0.0.1"
   
-  print(getIP (cliArgs))
+  
   putStrLn $ bCyan
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
+    ++ clr
+  
+  putStrLn $ bRed
+    ++ "\n ON IP: " ++ show (getIP cliArgs) ++ "\n"
     ++ clr
   
   conn <- connect localPG
