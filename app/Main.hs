@@ -77,7 +77,7 @@ main = do
     ++ clr
   
   putStrLn $ bYlw
-    ++ "\n ON IP: " ++ show (getIP cliArgs) ++ "\n"
+    ++ "\n      ON IP: " ++ show (getIP cliArgs) ++ "\n"
     ++ clr
   
   conn <- connect localPG
