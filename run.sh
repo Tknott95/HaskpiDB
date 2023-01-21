@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cabal run HaskpiDB
+cabal run HaskpiDB "local"
 

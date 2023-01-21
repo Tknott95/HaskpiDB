@@ -8,6 +8,7 @@ import Metadata
 import PSQL
 
 import Prelude hiding (id)
+import System.Environment  (getArgs)
 
 import Colors
 import Utils as U
@@ -53,6 +54,16 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 main :: IO ()
 main = do
+  cliArgs <- getArgs
+  let arg00 = cliArgs !! 0
+  -- let IP_USING = "127.0.0.1";
+
+  if (arg00 == "pub") 
+    then 
+      print "192.168.0.*"
+    else 
+      print "127.0.0.1"
+  
   putStrLn $ bCyan
     ++ "\n CONNECTING TO: The cardano-db-sync postgresql database... \n" 
     ++ clr
