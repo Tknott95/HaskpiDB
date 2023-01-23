@@ -55,7 +55,7 @@ assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
 -- will use a proc to return ip below
 getIP :: [a] -> Data.Streaming.Network.Internal.HostPreference
-getIP [a]  = "192.168.0.16"
+getIP [a]  = "192.168.0.8"
 getIP _ = "127.0.0.1"
 
 main :: IO ()
