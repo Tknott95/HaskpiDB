@@ -113,7 +113,7 @@ metaBySKey _sKey = do
   liftIO $ print $ skey
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithStakeKey conn skey
+  jj <- liftIO $ grabMetaWithStakeKey conn (unpack skey)
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
