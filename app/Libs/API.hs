@@ -109,7 +109,7 @@ getMetaByName _policyID _hashedAssetName = do
 
 metaByStakeKey :: Text -> Handler [Value]
 metaByStakeKey _sKey = do
-  liftIO $ print $ unpack _skey
+  liftIO $ print $ unpack _sKey
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
