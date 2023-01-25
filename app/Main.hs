@@ -92,7 +92,7 @@ main = do
     ++ "\n\n    API serving on port 1339\n"
     ++ alt
     ++ "  |GET|  /metadata/<policy-id>\n"
-    ++ "  |GET|  /metadata_by_name/<policy-id>/<hashed-asset-name>"
+    ++ "  |GET|  /metadata_by_name/<policy-id>/<hashed-asset-name>\n"
     ++ "  |GET|  /metadata_by_stake_key/<stake-key>"
     ++ clr
   
