@@ -23,7 +23,7 @@ server1 conn = metaByPID :<|> metaByPIDAName :<|> metaByStakeKey
     metaByPIDAName :: Text -> Text -> Handler [Value]  
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
     metaByStakeKey :: Text -> Handler [Value]
-    metaByStakeKey _skey = grabMetaWithStakeKey _sKey
+    metaByStakeKey _sKey = grabMetaWithStakeKey _sKey
   -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
 
