@@ -16,12 +16,12 @@ import Data.Text (Text, unpack)
 import Control.Monad.IO.Class (liftIO)
 
 server1 :: Connection -> Server MetaAPI_00
-server1 conn = x :<|> y
+server1 conn = byPID :<|> byPIDAName
   where 
-    x :: Text -> Handler [Value]
-    x _pid = getMeta _pid
-    y :: Text -> Text -> Handler [Value]  
-    y _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName) 
+    byPID :: Text -> Handler [Value]
+    byPID _pid = getMeta _pid
+    byPIDAName :: Text -> Text -> Handler [Value]  
+    byPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName) 
   -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
 
