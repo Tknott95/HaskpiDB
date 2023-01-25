@@ -59,3 +59,13 @@ grabMetaWithPIDAndName conn asName pid = do
    \ AND multi_asset.name = ? \
    \ GROUP BY multi_asset.id) a JOIN tx_metadata ON tx_metadata.id = a.tx_metadata_id;"  (pid, asName)
   return ijk
+
+
+-- stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq
+grabMetaWithStakeKey :: Connection -> String -> IO .AT.Value
+grabMetaWithStakeKey conn sKey = do
+  [Only ijk] <- query conn "SELECT json FROM utxo_view \
+  \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
+  \ RIGHT JOIN tx_metadata \
+  \ ON utxo_view.tx_id=tx_metadata.tx_id \
+  \ WHERE view = '?';" [sKey :: String]
