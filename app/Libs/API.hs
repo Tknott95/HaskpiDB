@@ -23,7 +23,7 @@ server1 conn = metaByPID :<|> metaByPIDAName :<|> metaByStakeKey
     metaByPIDAName :: Text -> Text -> Handler [Value]  
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
     metaByStakeKey :: Text -> Handler [Value]
-    metaByStakeKey _sKey = metaByStakeKey _sKey
+    metaByStakeKey _sKey = metaBySKey _sKey
   -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
 
@@ -107,8 +107,8 @@ getMetaByName _policyID _hashedAssetName = do
   return [unwrappedObj]
 
 
-metaByStakeKey :: Text -> Handler [Value]
-metaByStakeKey _sKey = do
+metaBySKey :: Text -> Handler [Value]
+metaBySKey _sKey = do
   let skey = unpack _sKey
   liftIO $ print $ skey
   -- QUERY PARAM WORKING
