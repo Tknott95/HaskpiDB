@@ -23,7 +23,7 @@ server1 conn = metaByPID :<|> metaByPIDAName :<|> metaByStakeKey
     metaByPIDAName :: Text -> Text -> Handler [Value]  
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
     metaByStakeKey :: Text -> Handler [Value]
-    metaByStakeKey _sKey = grabMetaWithStakeKey _sKey
+    metaByStakeKey _sKey = metaByStakeKey _sKey
   -- return $ liftIO $ getMeta conn 3
 -- 3 is supposed to be the val of the query apram
 
@@ -101,6 +101,18 @@ getMetaByName _policyID _hashedAssetName = do
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
+  let j_bstring =  encode jj :: LB.ByteString
+  let jType = decode j_bstring :: Maybe Value
+  let unwrappedObj = maybeUnwrap jType
+  return [unwrappedObj]
+
+
+metaByStakeKey :: Text -> Handler [Value]
+metaByStakeKey _sKey = do
+  liftIO $ print $ unpack _skey
+  -- QUERY PARAM WORKING
+  conn <- liftIO $ connect localPG
+  jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
