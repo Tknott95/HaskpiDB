@@ -66,7 +66,7 @@ grabMetaWithPIDAndName conn asName pid = do
 grabMetaWithStakeKey :: Connection -> String -> IO AT.Value
 grabMetaWithStakeKey conn sKey = do
   --[Only ijk] <- query conn "select json from utxo_view join stake_address on stake_address.id = utxo_view.stake_address_id RIGHT JOIN tx_metadata on utxo_view.tx_id=tx_metadata.tx_id where view = ?;" [sKey :: String]
-  [Only ijk] <- query conn "SELECT json(json) FROM utxo_view \
+  [[Only ijk]] <- query conn "SELECT json(json) FROM utxo_view \
    \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
    \ RIGHT JOIN tx_metadata ON utxo_view.tx_id=tx_metadata.tx_id \
    \ WHERE view = ?" [sKey :: String]
