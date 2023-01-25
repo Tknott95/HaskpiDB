@@ -53,3 +53,11 @@ TESTING RESOURCES
 -- defaultNftNameUnhashed = "TheCypherBox" 
 
 ```
+
+
+### QUERIES
+
+* metadata json from stake-key
+```
+select json from utxo_view join stake_address on stake_address.id = utxo_view.stake_address_id RIGHT JOIN tx_metadata on utxo_view.tx_id=tx_metadata.tx_id where view = 'stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq';
+```
