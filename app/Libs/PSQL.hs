@@ -68,5 +68,5 @@ grabMetaWithStakeKey conn sKey = do
   \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
   \ RIGHT JOIN tx_metadata \
   \ ON utxo_view.tx_id=tx_metadata.tx_id \
-  \ WHERE view = '?';" [sKey :: String]
+  \ WHERE view = ?;" [sKey :: String]
   return ijk
