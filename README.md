@@ -13,6 +13,10 @@ HaskpiDB pub
 ```
 
 @TODO 
+- add new query for fetching metadata from stake-key
+- possibly want to move to this middleman for most analytics. 
+- possibly even run anodapi inside to use haskell to get POSTS and work with the cardano-node
+ * anodapi is an internal lib I built for haskell to interact with the cardano-node and cardano-cli
 - refactor the api code to a file called API.hs 
 - set such accordingly and run a test with API.hs to call in Main.hs
 
