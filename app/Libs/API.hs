@@ -109,10 +109,11 @@ getMetaByName _policyID _hashedAssetName = do
 
 metaByStakeKey :: Text -> Handler [Value]
 metaByStakeKey _sKey = do
-  liftIO $ print $ unpack _sKey
+  let skey = unpack _sKey
+  liftIO $ print $ skey
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
+  jj <- liftIO $ grabMetaWithStakeKey conn skey
   let j_bstring =  encode jj :: LB.ByteString
   let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
