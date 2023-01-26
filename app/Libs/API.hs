@@ -106,19 +106,21 @@ getMetaByName _policyID _hashedAssetName = do
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
 
+-- had to unwrape to solve a bug where I was forced to pass a tuple
+unwrapTuple :: [(Int, Value)] -> [Value]
+unwrapTuple = fmap snd
 
 metaBySKey :: Text -> Handler [Value]
 metaBySKey _sKey = do
   let skey = unpack _sKey
   liftIO $ print $ skey
   -- QUERY PARAM WORKING
-  -- had an odd bug with only returning json so made a tuple with first el being an int. Extracty second el and throw into an array with a map to return
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
-  -- jObj <- map snd jj
+  qlQuery <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
+  let qlUnwrapped =  unwrapTuple qlQuery
   -- <$> (\x -> fst x)
 
-  let j_bstring =  encode jj :: LB.ByteString
+  let j_bstring =  encode qlUnwrapped :: LB.ByteString
   let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
   -- jji <- fmap (\x -> fst x) unwrappedObj

@@ -66,9 +66,9 @@ grabMetaWithPIDAndName conn asName pid = do
 -- BUG IS BECAUSE IT RETURNS MORE THAN ONE VAL
 -- stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq
 -- adding an int bypasses error of no instance of FromRow I can't seem to get past without it. Keaving for now.
+-- I use a function called unwrapTuple to unwrap this tuple to serve only [AT.Value] as a workaround
 grabMetaWithStakeKey :: Connection -> String ->  IO [(Int, AT.Value)]
 grabMetaWithStakeKey conn sKey = query conn "SELECT  0, json(json) FROM utxo_view \
    \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
    \ RIGHT JOIN tx_metadata ON utxo_view.tx_id=tx_metadata.tx_id \
    \ WHERE view = ?;" [sKey :: String]
-
