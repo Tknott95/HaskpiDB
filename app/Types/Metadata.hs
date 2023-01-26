@@ -24,6 +24,9 @@ import System.IO.Unsafe (unsafePerformIO)
 import Globals -- (getGlobalPID, getGlobAssetHash, globalAssetHash) -- , globalAssetHash
 import Utils (unhexEither)
 
+-- THIS IS NOT IN USE. THIS POSSIBLY WILL BE REMOVED AND THE NAMING IS UGLY FROM JUST RIGGIN AN MVP RETURN.
+-- I REMOVED THIS TYPING AS Aeson.Value allows for alreayd built ambiguity.
+
 -- passing these in on the get call and setting so will figure it all out (needs to be concurrent if doing such shyte bc setting these types dynamic? idfk rn will think)
 -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
