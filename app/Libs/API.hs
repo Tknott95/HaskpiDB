@@ -70,3 +70,17 @@ metaBySKey _sKey = do
 
   let qlUnwrapped =  unwrapTuple qlQuery
   return qlUnwrapped
+
+getMetaByNameUnhashed :: Text -> Text -> Handler [Value]
+getMetaByNameUnhashed _policyID _unhashedAssetName = do
+  liftIO $ print $ "\\x" ++ (unpack _policyID)
+  liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
+  liftIO $ print $ (unhexEither $ unpack _unhashedAssetName)
+  let paramPID = "\\x" ++ (unpack _policyID)
+  let hashedAssetName = "\\x" ++ (unpack _unhashedAssetName)
+  let unhashedAssetName = unhexEither $ unpack _unhashedAssetName
+
+  conn <- liftIO $ connect localPG
+  qlQuery <- liftIO $ grabMetaWithPIDAndName conn unhashedAssetName paramPID
+  return [qlQuery]
+
