@@ -50,12 +50,8 @@ getMetaByName _policyID _hashedAssetName = do
   let paramPID = "\\x" ++ (unpack _policyID)
   let hashedAssetName = "\\x" ++ (unpack _hashedAssetName)
   
-  -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
-  -- let j_bstring =  encode jj :: LB.ByteString
-  -- let jType = decode j_bstring :: Maybe Value
-  -- let unwrappedObj = maybeUnwrap jType
   return [qlQuery]
 
 -- had to unwrap to solve a bug where I was forced to pass a tuple
@@ -70,10 +66,6 @@ metaBySKey _sKey = do
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
+
   let qlUnwrapped =  unwrapTuple qlQuery
-
-  -- let j_bstring =  encode qlUnwrapped :: LB.ByteString
-  -- let jType = decode j_bstring :: Maybe Value
-  -- let unwrappedObj = maybeUnwrap jType
-
   return qlUnwrapped
