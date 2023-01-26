@@ -65,7 +65,7 @@ grabMetaWithPIDAndName conn asName pid = do
 
 -- BUG IS BECAUSE IT RETURNS MORE THAN ONE VAL
 -- stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq
-grabMetaWithStakeKey :: Connection -> String -> IO [Aeson a]
+grabMetaWithStakeKey :: Connection -> String -> IO [A.Value]
 grabMetaWithStakeKey conn sKey = do
   [ijk] <- query conn "SELECT json(json) FROM utxo_view \
    \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
