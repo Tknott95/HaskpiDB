@@ -13,6 +13,8 @@ import Database.PostgreSQL.Simple
 import Data.Aeson.Types as AT
 import Data.Aeson as A
 
+import Database.PostgreSQL.Simple.Newtypes
+
 import Text.JSON
 
 -- -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
@@ -63,11 +65,12 @@ grabMetaWithPIDAndName conn asName pid = do
 
 -- BUG IS BECAUSE IT RETURNS MORE THAN ONE VAL
 -- stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq
-grabMetaWithStakeKey :: Connection -> String -> IO [AT.Value]
+grabMetaWithStakeKey :: Connection -> String -> IO [Aeson a]
 grabMetaWithStakeKey conn sKey = do
-  --[Only ijk] <- query conn "select json from utxo_view join stake_address on stake_address.id = utxo_view.stake_address_id RIGHT JOIN tx_metadata on utxo_view.tx_id=tx_metadata.tx_id where view = ?;" [sKey :: String]
-  [Only ijk] <- query conn "SELECT json(json) FROM utxo_view \
+  [ijk] <- query conn "SELECT json(json) FROM utxo_view \
    \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
    \ RIGHT JOIN tx_metadata ON utxo_view.tx_id=tx_metadata.tx_id \
-   \ WHERE view = ?;" [sKey :: String]
+   \ WHERE view = 'stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq';"
   return [ijk]
+
+

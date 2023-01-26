@@ -55,7 +55,8 @@ executable HaskpiDB
       monoid-subclasses >= 1.2.1,
       mtl >= 2.2.2,
       hex >= 0.1,
-      streaming-commons >= 0.2.2.5
+      streaming-commons >= 0.2.2.5,
+      
   
     hs-source-dirs:   
       app, 
