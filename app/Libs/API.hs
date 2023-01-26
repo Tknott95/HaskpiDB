@@ -114,7 +114,8 @@ metaBySKey _sKey = do
   -- QUERY PARAM WORKING
   -- had an odd bug with only returning json so made a tuple with first el being an int. Extracty second el and throw into an array with a map to return
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey) 
+  jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
+  -- jObj <- map snd jj
   -- <$> (\x -> fst x)
 
   let j_bstring =  encode jj :: LB.ByteString
