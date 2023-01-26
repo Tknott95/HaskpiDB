@@ -24,13 +24,6 @@ server1 conn = metaByPID :<|> metaByPIDAName :<|> metaByStakeKey
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
-  -- return $ liftIO $ getMeta conn 3
--- 3 is supposed to be the val of the query apram
-
--- server2 :: Server UserAPI2
--- server2 = return users2
---      :<|> return albert
---      :<|> return isaac
 
 metaAPI :: Proxy MetaAPI_00
 metaAPI = Proxy
@@ -40,19 +33,6 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [Value]
 getMeta _policyID = do
-  -- liftIO $ putStrLn $ bRed ++
-  --   "\n\n  BEFORE\n" ++
-  --   " liftIO $ putGlobPID _policyID \
-  --   \ liftIO $ getGlobIO"
-  --   ++ clr
-  -- liftIO $ getGlobIO
-  -- liftIO $ putGlobPID (unpack _policyID)
-  -- liftIO $ putStrLn $ alt ++
-  --   "\n\n  AFTER\n" ++
-  --   " liftIO $ putGlobPID _policyID \
-  --   \ liftIO $ getGlobIO"
-  --   ++ clr
-  -- liftIO $ getGlobIO
 
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
@@ -71,33 +51,7 @@ getMetaByName _policyID _hashedAssetName = do
   liftIO $ print $ (unhexEither $ unpack _hashedAssetName)
   let paramPID = "\\x" ++ (unpack _policyID)
   let hashedAssetName = "\\x" ++ (unpack _hashedAssetName)
-  -- liftIO $ putStrLn $ dYlw ++
-  --   "\n\n  BEFORE\n" ++
-  --   " liftIO $ putGlobPID _policyID \
-  --   \ liftIO $ putAssetHash (unpack _hashedAssetName) \
-  --   \ liftIO $ getGlobIO"
-  --   ++ clr
-  -- liftIO $ getGlobAllIO
-  -- liftIO $ putAssetHash (unpack _hashedAssetName)
-  -- liftIO $ putGlobPID (unpack _policyID)
-  -- liftIO $ putStrLn $ alt2 ++
-  --   "\n\n  AFTER\n" ++
-  --   " liftIO $ putGlobPID _policyID \
-  --   \ liftIO $ putAssetHash (unpack _hashedAssetName) \
-  --   \ liftIO $ getGlobIO"
-  --   ++ clr
-  -- liftIO $ getGlobAllIO
-
   
-  -- liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
-  -- liftIO $ print $ "\\x" ++ (unpack _policyID)
-
-  --   liftIO $ print $ unhexEither "546865437970686572426f78"
-  -- DOESNT WORK IDK WHY
-
-  -- liftIO $ print getGlobAssetHash
-  -- liftIO $ print $ unsafePerformIO $ readIORef globalAssetHash
-  -- liftIO $ print $ unhexEither $ unsafePerformIO $ readIORef globalAssetHash
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
