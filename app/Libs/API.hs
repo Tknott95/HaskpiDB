@@ -16,7 +16,9 @@ import Data.Text (Text, unpack)
 import Control.Monad.IO.Class (liftIO)
 
 server1 :: Connection -> Server MetaAPI_00
-server1 conn = metaByPID :<|> metaByPIDAName :<|> metaByStakeKey
+server1 conn = metaByPID 
+  :<|> metaByPIDAName 
+  :<|> metaByStakeKey
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
