@@ -115,7 +115,6 @@ metaBySKey _sKey = do
   conn <- liftIO $ connect localPG
   jj <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
   let j_bstring =  encode jj :: LB.ByteString
-  print $ j_bstring
   let jType = decode j_bstring :: Maybe Value
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
