@@ -26,7 +26,7 @@ server1 conn = metaByPID
     metaByPIDAName :: Text -> Text -> Handler [Value]  
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
     metaByPIDANameUnhashed :: Text -> Text -> Handler [Value]  
-    metaByPIDANameUnhashed _pid _hashedAssetName = (getMetaByNameUnhashed _pid _hashedAssetName)
+    metaByPIDANameUnhashed _pid _unhashedAssetName = (getMetaByNameUnhashed _pid _unhashedAssetName)
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
 
@@ -80,10 +80,9 @@ getMetaByNameUnhashed _policyID _unhashedAssetName = do
   liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
   liftIO $ print $ (unhexEither $ unpack _unhashedAssetName)
   let paramPID = "\\x" ++ (unpack _policyID)
-  let hashedAssetName = "\\x" ++ (unpack _unhashedAssetName)
-  let unhashedAssetName = unhexEither $ unpack _unhashedAssetName
+  let hashedAssetName = "\\x" ++ (hex $ unpack _unhashedAssetName)
 
   conn <- liftIO $ connect localPG
-  qlQuery <- liftIO $ grabMetaWithPIDAndName conn unhashedAssetName paramPID
+  qlQuery <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
   return [qlQuery]
 
