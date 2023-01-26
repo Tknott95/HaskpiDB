@@ -30,7 +30,7 @@ localPG = defaultConnectInfo
   }
 
 
-grabMetaWithPID :: Connection -> String -> IO AT.Value -- IMetadata -- 
+grabMetaWithPID :: Connection -> String -> IO [AT.Value] -- IMetadata -- 
 grabMetaWithPID conn pid = do 
   [Only ijk]  <- query conn "SELECT json(tx_metadata.json) \
    \ FROM ( SELECT multi_asset.id, encode(multi_asset.policy, 'hex') \
