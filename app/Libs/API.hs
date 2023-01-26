@@ -120,9 +120,8 @@ metaBySKey _sKey = do
   qlQuery <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
   let qlUnwrapped =  unwrapTuple qlQuery
 
-  let j_bstring =  encode qlUnwrapped :: LB.ByteString
-  let jType = decode j_bstring :: Maybe Value
-  let unwrappedObj = maybeUnwrap jType
-  -- jji <- fmap (\x -> fst x) unwrappedObj
+  -- let j_bstring =  encode qlUnwrapped :: LB.ByteString
+  -- let jType = decode j_bstring :: Maybe Value
+  -- let unwrappedObj = maybeUnwrap jType
 
-  return [unwrappedObj]
+  return qlUnwrapped
