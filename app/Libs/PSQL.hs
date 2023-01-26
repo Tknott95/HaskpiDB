@@ -65,7 +65,7 @@ grabMetaWithPIDAndName conn asName pid = do
 
 -- BUG IS BECAUSE IT RETURNS MORE THAN ONE VAL
 -- stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq
--- will need to get returns without an int later. It was causing from row issues without it so this is for MVP then will refactor HaskpiDB the sexy thing it is. 
+-- adding an int bypasses error of no instance of FromRow I can't seem to get past without it. Keaving for now.
 grabMetaWithStakeKey :: Connection -> String -> IO [(Int, AT.Value)]
 grabMetaWithStakeKey conn sKey = query conn "SELECT  0, json(json) FROM utxo_view \
    \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
