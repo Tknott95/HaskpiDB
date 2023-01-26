@@ -9,4 +9,4 @@ skey='stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq'
 
 curl http://$url:$port/metadata/$tmp_pol_id; echo -e "\n"
 curl http://$url:$port/metadata_by_name/$tmp_pol_id/$tmp_name_hash;  echo -e "\n"
-curl http://$url:$port/metadata_by_skey/$skey | jq
+curl -s http://$url:$port/metadata_by_skey/$skey | jq
