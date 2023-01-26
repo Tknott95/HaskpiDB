@@ -4,6 +4,8 @@ import Utils (maybeUnwrap, unhexEither)
 import Globals 
 import PSQL
 
+import Colors
+
 import Data.Aeson (Value, encode, decode)
 import           Servant
 import           Servant.API
@@ -76,6 +78,7 @@ metaBySKey _sKey = do
 
 getMetaByNameUnhashed :: Text -> Text -> Handler [Value]
 getMetaByNameUnhashed _policyID _unhashedAssetName = do
+  liftIO $ putStrLn
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
   liftIO $ print $ (hex $ unpack _unhashedAssetName)
