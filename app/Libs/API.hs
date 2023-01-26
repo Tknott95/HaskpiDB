@@ -100,11 +100,11 @@ getMetaByName _policyID _hashedAssetName = do
   -- liftIO $ print $ unhexEither $ unsafePerformIO $ readIORef globalAssetHash
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
-  let j_bstring =  encode jj :: LB.ByteString
-  let jType = decode j_bstring :: Maybe Value
-  let unwrappedObj = maybeUnwrap jType
-  return [unwrappedObj]
+  qlQuery <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
+  -- let j_bstring =  encode jj :: LB.ByteString
+  -- let jType = decode j_bstring :: Maybe Value
+  -- let unwrappedObj = maybeUnwrap jType
+  return [qlQuery]
 
 -- had to unwrap to solve a bug where I was forced to pass a tuple
 -- could rmv this and just call it inline but I like the clarity for now. Will possibly on refactor. I imagine I will use this more.
