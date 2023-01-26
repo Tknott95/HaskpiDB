@@ -78,7 +78,7 @@ getMetaByNameUnhashed :: Text -> Text -> Handler [Value]
 getMetaByNameUnhashed _policyID _unhashedAssetName = do
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
-  liftIO $ print $ (unhexEither $ unpack _unhashedAssetName)
+  liftIO $ print $ (hex $ unpack _unhashedAssetName)
   let paramPID = "\\x" ++ (unpack _policyID)
   let hashedAssetName = "\\x" ++ (hex $ unpack _unhashedAssetName)
 
