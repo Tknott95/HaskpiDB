@@ -106,7 +106,8 @@ getMetaByName _policyID _hashedAssetName = do
   let unwrappedObj = maybeUnwrap jType
   return [unwrappedObj]
 
--- had to unwrape to solve a bug where I was forced to pass a tuple
+-- had to unwrap to solve a bug where I was forced to pass a tuple
+-- could rmv this and just call it inline but I like the clarity for now. Will possibly on refactor. I imagine I will use this more.
 unwrapTuple :: [(Int, Value)] -> [Value]
 unwrapTuple = fmap snd
 
@@ -118,7 +119,6 @@ metaBySKey _sKey = do
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
   let qlUnwrapped =  unwrapTuple qlQuery
-  -- <$> (\x -> fst x)
 
   let j_bstring =  encode qlUnwrapped :: LB.ByteString
   let jType = decode j_bstring :: Maybe Value
