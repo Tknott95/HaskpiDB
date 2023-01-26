@@ -13,7 +13,7 @@ import Database.PostgreSQL.Simple
 import Data.Aeson.Types as AT
 import Data.Aeson as A
 
-import Database.PostgreSQL.Simple.Newtypes
+-- import Database.PostgreSQL.Simple.Newtypes
 
 import Text.JSON
 
