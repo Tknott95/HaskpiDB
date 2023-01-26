@@ -40,7 +40,7 @@ getMeta _policyID = do
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithPID conn paramPID
 
-  return [qlQuery]
+  return qlQuery
 
 getMetaByName :: Text -> Text -> Handler [Value]
 getMetaByName _policyID _hashedAssetName = do
