@@ -33,7 +33,6 @@ app1 conn = serve metaAPI (server1 conn)
 
 getMeta :: Text -> Handler [Value]
 getMeta _policyID = do
-
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
