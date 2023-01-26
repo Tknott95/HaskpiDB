@@ -17,13 +17,16 @@ import Control.Monad.IO.Class (liftIO)
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = metaByPID 
-  :<|> metaByPIDAName 
+  :<|> metaByPIDAName
+  :<|> metaByPIDANameUnhashed 
   :<|> metaByStakeKey
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
     metaByPIDAName :: Text -> Text -> Handler [Value]  
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
+    metaByPIDANameUnhashed :: Text -> Text -> Handler [Value]  
+    metaByPIDANameUnhashed _pid _hashedAssetName = (getMetaByNameUnhashed _pid _hashedAssetName)
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
 
