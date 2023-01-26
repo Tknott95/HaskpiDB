@@ -82,12 +82,6 @@ main = do
   
   conn <- connect localPG
 
-  print getGlobalPID
-  print getGlobAssetHash
-
-  i <- grabMetaWithPID conn policyIDStatic
-  j <- grabMetaWithPIDAndName conn assetNameHashStatic policyIDStatic
-
   putStrLn $ bCyan
     ++ "\n\n    API serving on port 1339\n"
     ++ alt
@@ -106,4 +100,3 @@ main = do
 
   let settings = setPort 1339 $ setHost (getIP cliArgs) defaultSettings
   runSettings settings (app1 conn)
-  -- run 1339 (app1 conn)
