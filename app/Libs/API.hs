@@ -38,11 +38,9 @@ getMeta _policyID = do
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
-  jj <- liftIO $ grabMetaWithPID conn paramPID
-  let j_bstring =  encode jj :: LB.ByteString
-  let jType = decode j_bstring :: Maybe Value
-  let unwrappedObj = maybeUnwrap jType
-  return [unwrappedObj]
+  qlQuery <- liftIO $ grabMetaWithPID conn paramPID
+
+  return [qlQuery]
 
 getMetaByName :: Text -> Text -> Handler [Value]
 getMetaByName _policyID _hashedAssetName = do
