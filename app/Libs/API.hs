@@ -90,6 +90,15 @@ metaBySKey _sKey = do
   let qlUnwrapped =  unwrapTuple qlQuery
   return qlUnwrapped
 
+
+-- this might be sloppy to do just to return a wrapped
+-- data IMultiAsset =  IMultiAsset Text Text Text Value deriving (Show)
+-- instance Show IMultiAsset where
+--   show (IMultiAsset a t l v) = "IMultiAsset { asset: " ++ show a ++ ", type: " ++ show t ++ ", location: " ++ show l ++ ", value: " ++ show v ++ " }"
+
+-- multiAssets ::  [(Text, Text, Text, Value)] -> [IMultiAsset]
+-- multiAssets _ijk = [IMultiAsset a t l v | (a, t, l, v) <- _ijk]
+
 metaFullBySKey :: Text -> Handler [(Text, Text, Text, Value)]
 metaFullBySKey _sKey = do
   liftIO $ 
@@ -99,7 +108,10 @@ metaFullBySKey _sKey = do
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabFullMetaWithStakeKey conn (unpack _sKey)
-
+ 
+  -- liftIO $ print $ multiAssets qlQuery
+  -- let multi = IMultiAsset (qlQuery !! 0) (qlQuery !! 1) (qlQuery !! 2)
+  -- let val = qlQuery !! 4
   return qlQuery
 
 getMetaByNameUnhashed :: Text -> Text -> Handler [Value]
