@@ -5,6 +5,7 @@ Haskell middleman api to serve cardano-db-sync sql queries
 ###  API REF
 *  |GET|  /metadata/**policy-id** 
 *  |GET|  /metadata_by_name/**policy-id**/**hashed-asset-name** 
+*  |GET|  /metadata_by_name_unhashed/**policy-id**/**unhashed-asset-name**
 *  |GET|  /metadata_by_skey/**stake-key** 
 ###### @API_TODO
 * add unhashed pol-id/asset-name call
