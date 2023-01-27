@@ -26,10 +26,13 @@ server1 conn = metaByPID
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
+
     metaByPIDAName :: Text -> Text -> Handler [Value]  
     metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
+
     metaByPIDANameUnhashed :: Text -> Text -> Handler [Value]  
     metaByPIDANameUnhashed _pid _unhashedAssetName = (getMetaByNameUnhashed _pid _unhashedAssetName)
+
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
 
