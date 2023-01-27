@@ -36,6 +36,9 @@ server1 conn = metaByPID
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
 
+    metaFullByStakeKey :: Text -> Handler [Value]
+    metaFullByStakeKey _sKey = metaFullBySKey _sKey
+
 metaAPI :: Proxy MetaAPI_00
 metaAPI = Proxy
 
@@ -82,6 +85,19 @@ metaBySKey _sKey = do
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
+
+  let qlUnwrapped =  unwrapTuple qlQuery
+  return qlUnwrapped
+
+metaFullBySKey :: Text -> Handler [Value]
+metaFullBySKey _sKey = do
+  liftIO $ 
+    putStrLn $ alt2 ++ "\n  metaFullBySKey" ++ clr
+  let skey = unpack _sKey
+  liftIO $ print $ skey
+  -- QUERY PARAM WORKING
+  conn <- liftIO $ connect localPG
+  qlQuery <- liftIO $ grabFullMetaWithStakeKey conn (unpack _sKey)
 
   let qlUnwrapped =  unwrapTuple qlQuery
   return qlUnwrapped
