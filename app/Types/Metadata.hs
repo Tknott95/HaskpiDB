@@ -42,6 +42,8 @@ type MetaAPI_00 = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [A
   :<|> "metadata_by_name" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [A.Value]
   :<|> "metadata_by_name_unhashed" :> Capture "policy_id_test" Text :> Capture "asset_name_hash" Text  :>  Get '[JSON] [A.Value]
   :<|> "metadata_by_skey" :> Capture "skey" Text :>  Get '[JSON] [A.Value]
+  :<|> "meta_full_by_skey" :> Capture "skey" Text :>  Get '[JSON] [A.Value]
+
 
 
 data IMetadata = IMetadata {
