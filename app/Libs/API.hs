@@ -100,8 +100,7 @@ metaFullBySKey _sKey = do
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabFullMetaWithStakeKey conn (unpack _sKey)
 
-  let qlUnwrapped =  unwrapTuple qlQuery
-  return qlUnwrapped
+  return qlQuery
 
 getMetaByNameUnhashed :: Text -> Text -> Handler [Value]
 getMetaByNameUnhashed _policyID _unhashedAssetName = do
