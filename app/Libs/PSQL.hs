@@ -87,16 +87,3 @@ grabFullMetaWithStakeKey conn sKey = query conn "SELECT encode(multi_asset.name:
 \ RIGHT JOIN ma_tx_mint ON ma_tx_mint.tx_id = tx_metadata.tx_id \
 \ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
 \ WHERE view = ?;" [sKey :: String]
-  
---   query conn "SELECT encode(multi_asset.name, 'hex'), \
--- \ encode(multi_asset.fingerprint::bytea, 'escape'), \
--- \ encode(multi_asset.policy::bytea, 'hex'), json(json) \
--- \ FROM utxo_view JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
--- \ RIGHT JOIN tx_metadata ON utxo_view.tx_id=tx_metadata.tx_id \
--- \ LEFT JOIN multi_asset ON multi_asset.id = tx_metadata.key \
--- \ WHERE view = ?;" [sKey :: String]
-
-
--- CHANGE ABOVE TO THIS QUERY
--- METADATA JSON WITH FINGERPRINT WRAPPER --
--- SELECT encode(multi_asset.name::bytea, 'escape'), encode(multi_asset.fingerprint::bytea, 'escape'), encode(multi_asset.policy::bytea, 'hex'), json(json) FROM utxo_view JOIN stake_address ON stake_address.id = utxo_view.stake_address_id RIGHT JOIN tx_metadata ON utxo_view.tx_id = tx_metadata.tx_id RIGHT JOIN ma_tx_mint ON ma_tx_mint.tx_id = tx_metadata.tx_id LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id WHERE view = 'stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq';
