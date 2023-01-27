@@ -42,7 +42,7 @@ app1 conn = serve metaAPI (server1 conn)
 getMeta :: Text -> Handler [Value]
 getMeta _policyID = do
   liftIO $ 
-    putStrLn $ dYlw ++ "  getMeta\n" ++ clr
+    putStrLn $ alt2 ++ "\n  getMeta" ++ clr
   let paramPID = "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- QUERY PARAM WORKING
@@ -54,7 +54,7 @@ getMeta _policyID = do
 getMetaByName :: Text -> Text -> Handler [Value]
 getMetaByName _policyID _hashedAssetName = do
   liftIO $ 
-    putStrLn $ dYlw ++ "  getMetaByName\n" ++ clr
+    putStrLn $ alt2 ++ "\n  getMetaByName" ++ clr
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _hashedAssetName)
   liftIO $ print $ (unhexEither $ unpack _hashedAssetName)
@@ -73,7 +73,7 @@ unwrapTuple = fmap snd
 metaBySKey :: Text -> Handler [Value]
 metaBySKey _sKey = do
   liftIO $ 
-    putStrLn $ dYlw ++ "  metaBySKey\n" ++ clr
+    putStrLn $ alt2 ++ "\n  metaBySKey" ++ clr
   let skey = unpack _sKey
   liftIO $ print $ skey
   -- QUERY PARAM WORKING
@@ -86,7 +86,7 @@ metaBySKey _sKey = do
 getMetaByNameUnhashed :: Text -> Text -> Handler [Value]
 getMetaByNameUnhashed _policyID _unhashedAssetName = do
   liftIO $ 
-    putStrLn $ dYlw ++ "  getMetaByNameUnhashed\n" ++ clr
+    putStrLn $ alt2 ++ "\n  getMetaByNameUnhashed" ++ clr
 
   liftIO $ print $ "\\x" ++ (unpack _policyID)
   liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
