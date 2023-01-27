@@ -23,6 +23,7 @@ server1 conn = metaByPID
   :<|> metaByPIDAName
   :<|> metaByPIDANameUnhashed 
   :<|> metaByStakeKey
+  :<|> metaFullByStakeKey
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
