@@ -16,6 +16,7 @@ import Data.Aeson as A
 -- import Database.PostgreSQL.Simple.Newtypes
 
 import Text.JSON
+import Data.Text (Text)
 
 -- -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 -- defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
@@ -75,8 +76,10 @@ grabMetaWithStakeKey conn sKey = query conn "SELECT  0, json(json) FROM utxo_vie
    \ WHERE view = ?;" [sKey :: String]
 
 
-grabFullMetaWithStakeKey :: Connection -> String ->  IO [(String, String, String, AT.Value)]
-grabFullMetaWithStakeKey conn sKey = query conn "SELECT multi_asset.name, multi_asset.fingerprint, multi_asset.policy, json(json) \
+grabFullMetaWithStakeKey :: Connection -> String ->  IO [(Text, Text, Text, AT.Value)]
+grabFullMetaWithStakeKey conn sKey = query conn "SELECT encode(multi_asset.name::bytea, 'escape'), \
+\ encode(multi_asset.fingerprint::bytea, 'escape'), \
+\ encode(multi_asset.policy::bytea, 'escape'), json(json) \
 \ FROM utxo_view JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
 \ RIGHT JOIN tx_metadata ON utxo_view.tx_id=tx_metadata.tx_id \
 \ LEFT JOIN multi_asset ON multi_asset.id = tx_metadata.key \

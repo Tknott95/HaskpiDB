@@ -37,7 +37,7 @@ server1 conn = metaByPID
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
 
-    metaFullByStakeKey :: Text -> Handler  [(String, String, String, Value)]
+    metaFullByStakeKey :: Text -> Handler  [(Text, Text, Text, Value)]
     metaFullByStakeKey _sKey = metaFullBySKey _sKey
 
 metaAPI :: Proxy MetaAPI_00
@@ -90,7 +90,7 @@ metaBySKey _sKey = do
   let qlUnwrapped =  unwrapTuple qlQuery
   return qlUnwrapped
 
-metaFullBySKey :: Text -> Handler [(String, String, String, Value)]
+metaFullBySKey :: Text -> Handler [(Text, Text, Text, Value)]
 metaFullBySKey _sKey = do
   liftIO $ 
     putStrLn $ alt2 ++ "\n  metaFullBySKey" ++ clr
