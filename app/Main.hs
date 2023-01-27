@@ -28,7 +28,7 @@ import Data.Monoid.Instances.Stateful (extract)
 
 import Control.Monad.State
 
-import Data.Hex
+import Data.Hex (hex)
 
 import Database.PostgreSQL.Simple (connect)
 import  Network.Wai.Handler.Warp (run, setPort,

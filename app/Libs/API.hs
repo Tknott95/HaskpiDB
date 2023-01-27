@@ -16,6 +16,7 @@ import qualified Data.ByteString.Lazy as LB (ByteString)
 import Database.PostgreSQL.Simple (Connection, connect)
 import Data.Text (Text, unpack)
 import Control.Monad.IO.Class (liftIO)
+import Data.Hex (hex)
 
 server1 :: Connection -> Server MetaAPI_00
 server1 conn = metaByPID 
