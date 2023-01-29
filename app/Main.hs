@@ -89,6 +89,7 @@ main = do
     ++ "  |GET|  /metadata_by_name/<policy-id>/<hashed-asset-name>\n"
     ++ "  |GET|  /metadata_by_name_unhashed/<policy-id>/<unhashed-asset-name>\n"
     ++ "  |GET|  /metadata_by_skey/<stake-key>"
+    ++ "  |GET|  /meta_full_by_skey/<stake-key>"
     ++ clr
   
   let unhexedKey = hex "TheCypherBox" :: String
