@@ -76,7 +76,6 @@ grabMetaWithStakeKey conn sKey = query conn "SELECT  0, json(json) FROM utxo_vie
    \ WHERE view = ?;" [sKey :: String]
 
 
--- GETTING WRONG multi_assset on my ON =
 grabFullMetaWithStakeKey :: Connection -> String ->  IO [(Text, Text, Text, AT.Value)]
 grabFullMetaWithStakeKey conn sKey = query conn "SELECT encode(multi_asset.name::bytea, 'escape'), \
 \ encode(multi_asset.fingerprint::bytea, 'escape'), \
