@@ -1,6 +1,7 @@
 # HaskpiDB
 Haskell middleman api to serve cardano-db-sync sql queries
 
+@TODO
 - make a query for grabbing handles from asset_name
 
 
@@ -27,7 +28,6 @@ HaskpiDB pub
 ```
 ***
 ##### @TODO 
-- add new query for fetching metadata from stake-key
 - possibly want to move to this middleman for most analytics. 
 - add policy-id and unhashed asset-name
 - possibly even run anodapi inside to use haskell to get POSTS and work with the cardano-node
