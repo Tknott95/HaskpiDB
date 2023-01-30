@@ -11,9 +11,9 @@ Haskell middleman api to serve cardano-db-sync sql queries
 *  |GET|  /metadata_by_name/**policy-id**/**hashed-asset-name** 
 *  |GET|  /metadata_by_name_unhashed/**policy-id**/**unhashed-asset-name**
 *  |GET|  /metadata_by_skey/**stake-key** 
-*  |GET|  /meta_full_by_skey/**stake-key**\n"
-*  |GET|  /handle_from_skey/**stake-key**\n"
-*  |GET|  /addr_from_handle/**asset-name**\n"
+*  |GET|  /meta_full_by_skey/**stake-key**
+*  |GET|  /handle_from_skey/**stake-key**
+*  |GET|  /addr_from_handle/**asset-name**
 
 
 ###### @API_TODO
