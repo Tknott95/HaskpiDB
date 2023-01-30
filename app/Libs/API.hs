@@ -27,15 +27,16 @@ server1 conn = metaByPID
   :<|> metaByStakeKey
   :<|> metaFullByStakeKey
   :<|> handlesFromSKey
+  :<|> addrsFromHandle
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
 
     metaByPIDAName :: Text -> Text -> Handler [Value]  
-    metaByPIDAName _pid _hashedAssetName = (getMetaByName _pid _hashedAssetName)
+    metaByPIDAName _pid _hashedAName = (getMetaByName _pid _hashedAName)
 
     metaByPIDANameUnhashed :: Text -> Text -> Handler [Value]  
-    metaByPIDANameUnhashed _pid _unhashedAssetName = (getMetaByNameUnhashed _pid _unhashedAssetName)
+    metaByPIDANameUnhashed _pid _unhashedAName = (getMetaByNameUnhashed _pid _unhashedAName)
 
     metaByStakeKey :: Text -> Handler [Value]
     metaByStakeKey _sKey = metaBySKey _sKey
@@ -45,6 +46,9 @@ server1 conn = metaByPID
 
     handlesFromSKey :: Text -> Handler [Text]
     handlesFromSKey _sKey = getHandlesBySKey _sKey
+
+    addrsFromHandle :: Text -> Handler [Text]
+    addrsFromHandle _hashedAName = getAddrFromHandle _hashedAName
 
 metaAPI :: Proxy IServerType
 metaAPI = Proxy
@@ -134,7 +138,6 @@ getMetaByNameUnhashed _policyID _unhashedAssetName = do
 
 
 
-
 getHandlesBySKey :: Text -> Handler [Text]
 getHandlesBySKey  _sKey = do
   liftIO $ 
@@ -145,6 +148,21 @@ getHandlesBySKey  _sKey = do
 
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabHandlesFromSKey conn skey
+
+  liftIO $ print qlQuery
+  return qlQuery
+
+
+getAddrFromHandle :: Text -> Handler [Text]
+getAddrFromHandle _hashedAName = do 
+ liftIO $ 
+    putStrLn $ alt ++ "\n  getAddrFromHandle" ++ clr
+
+  let assetNameHash = unpack _hashedAName
+  liftIO $ print $ assetNameHash
+
+  conn <- liftIO $ connect localPG
+  qlQuery <- liftIO $ grabAddrFromHandle conn assetNameHash
 
   liftIO $ print qlQuery
   return qlQuery
