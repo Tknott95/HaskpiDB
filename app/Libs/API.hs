@@ -136,7 +136,7 @@ getMetaByNameUnhashed _policyID _unhashedAssetName = do
 
 
 
-getHandlesBySKey :: Text -> Handler [String]
+getHandlesBySKey :: Text -> Handler [Text]
 getHandlesBySKey  _sKey = do
   liftIO $ 
     putStrLn $ alt2 ++ "\n  getHandlesBySKey" ++ clr
