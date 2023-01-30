@@ -40,7 +40,7 @@ server1 conn = metaByPID
     metaFullByStakeKey :: Text -> Handler  [(Text, Text, Text, Value)]
     metaFullByStakeKey _sKey = metaFullBySKey _sKey
 
-    handlesBySKey :: Text -> Handle [Text]
+    handlesBySKey :: Text -> Handler [Text]
     handlesBySKey _sKey = getHandlesBySKey _sKey
 
 metaAPI :: Proxy IServerType
