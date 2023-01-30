@@ -131,4 +131,4 @@ grabAddrFromHandle conn assetName = query conn "SELECT address \
 \ FROM multi_asset ma \
 \ RIGHT JOIN ma_tx_mint mtxm on mtxm.ident = ma.id \
 \ RIGHT JOIN utxo_view uv on uv.tx_id = mtxm.tx_id \
-\ WHERE ma.name = '\\x6a616d6573' LIMIT 1;" [assetName :: String]
+\ WHERE ma.name = ? LIMIT 1;" [assetName :: String]
