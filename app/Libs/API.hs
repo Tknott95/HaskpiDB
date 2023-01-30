@@ -145,11 +145,6 @@ getHandlesBySKey  _sKey = do
 
   let skey = unpack _sKey
   liftIO $ print $ skey
-  -- liftIO $ print $ "\\x" ++ (unpack _policyID)
-  -- liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
-  -- liftIO $ print $ (hex $ unpack _unhashedAssetName)
-  -- let paramPID = "\\x" ++ (unpack _policyID)
-  -- let hashedAssetName = "\\x" ++ (hex $ unpack _unhashedAssetName)
 
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabHandlesFromSKey conn skey
