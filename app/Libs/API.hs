@@ -163,7 +163,7 @@ getAddrFromHandle _hashedAName = do
   
   liftIO $ print $ hex ("papag00se" :: String)
   -- hex val - 706170616730307365
-  
+
 
   let assetNameHash = "\\x" ++ (unpack _hashedAName)
   liftIO $ print $ assetNameHash
