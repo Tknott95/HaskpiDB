@@ -124,3 +124,10 @@ grabHandlesFromSKey conn sKey = query conn "SELECT convert_from(multi_asset.name
 
 -- NEW QUERY TO GRAB ADDRS FROM ASSET NAME (HEXED/HASHED)
 -- select address from multi_asset ma RIGHT JOIN ma_tx_mint mtxm on mtxm.ident = ma.id RIGHT JOIN utxo_view uv on uv.tx_id = mtxm.tx_id  where ma.name = '\x6a616d6573' LIMIT 1;
+
+grabAddrFromHandle :: Connection -> String -> IO [Text]
+grabAddrFromHandle conn assetName = query conn "SELECT address \
+\ FROM multi_asset ma \
+\ RIGHT JOIN ma_tx_mint mtxm on mtxm.ident = ma.id \
+\ RIGHT JOIN utxo_view uv on uv.tx_id = mtxm.tx_id \
+\ WHERE ma.name = '\x6a616d6573' LIMIT 1;" [assetName :: String]
