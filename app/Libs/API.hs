@@ -20,6 +20,9 @@ import Data.Text (Text, unpack)
 import Control.Monad.IO.Class (liftIO)
 import Data.Hex (hex)
 
+import Utils as U
+
+
 server1 :: Connection -> Server IServerType
 server1 conn = metaByPID 
   :<|> metaByPIDAName
@@ -157,9 +160,13 @@ getAddrFromHandle :: Text -> Handler [Text]
 getAddrFromHandle _hashedAName = do 
   liftIO $ 
     putStrLn $ alt ++ "\n  getAddrFromHandle" ++ clr
+  
+  prtin $ hex  "HOSKYt"
+  
 
   let assetNameHash = "\\x" ++ (unpack _hashedAName)
   liftIO $ print $ assetNameHash
+  liftIO $ print $ unhexEither (unpack _hashedAName)
 
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabAddrFromHandle conn assetNameHash
