@@ -152,7 +152,7 @@ getHandlesBySKey  _sKey = do
   -- let hashedAssetName = "\\x" ++ (hex $ unpack _unhashedAssetName)
 
   conn <- liftIO $ connect localPG
-  [qlQuery] <- liftIO $ grabHandlesFromSKey conn skey
+  qlQuery <- liftIO $ grabHandlesFromSKey conn skey
 
   liftIO $ print qlQuery
-  return [qlQuery]
+  return qlQuery

@@ -10,6 +10,8 @@ import Prelude hiding (id)
 import GHC.Generics
 
 import Database.PostgreSQL.Simple
+import Database.PostgreSQL.Simple.FromRow
+
 import Data.Aeson.Types as AT
 import Data.Aeson as A
 
@@ -17,6 +19,10 @@ import Data.Aeson as A
 
 import Text.JSON
 import Data.Text (Text)
+
+
+instance FromRow Text where
+  fromRow = field
 
 -- -- Will take a in values as possibly keys or find a way to convert string to key for dynamic grabs
 -- defaultPID = "f8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: Key
@@ -89,8 +95,7 @@ grabFullMetaWithStakeKey conn sKey = query conn "SELECT encode(multi_asset.name:
 
 
 grabHandlesFromSKey :: Connection -> String -> IO [Text]
-grabHandlesFromSKey conn sKey = do
-  [ijk] <- query conn "SELECT convert_from(multi_asset.name, 'UTF8') \
+grabHandlesFromSKey conn sKey = query conn "SELECT convert_from(multi_asset.name, 'UTF8') \
 \ FROM utxo_view JOIN stake_address \
 \ ON stake_address.id = utxo_view.stake_address_id \
 \ RIGHT JOIN tx_metadata ON utxo_view.tx_id = tx_metadata.tx_id \
@@ -98,7 +103,6 @@ grabHandlesFromSKey conn sKey = do
 \ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
 \ WHERE view = ? \
 \ AND multi_asset.policy='\\xf0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a';" [sKey :: String]
-  return ijk
 
 
 -- stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70
