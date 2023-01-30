@@ -24,6 +24,7 @@ server1 conn = metaByPID
   :<|> metaByPIDANameUnhashed 
   :<|> metaByStakeKey
   :<|> metaFullByStakeKey
+  :<|> handlesFromSKey
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
@@ -40,8 +41,8 @@ server1 conn = metaByPID
     metaFullByStakeKey :: Text -> Handler  [(Text, Text, Text, Value)]
     metaFullByStakeKey _sKey = metaFullBySKey _sKey
 
-    handlesBySKey :: Text -> Handler [Text]
-    handlesBySKey _sKey = getHandlesBySKey _sKey
+    handlesFromSKey :: Text -> Handler [Text]
+    handlesFromSKey _sKey = getHandlesBySKey _sKey
 
 metaAPI :: Proxy IServerType
 metaAPI = Proxy
