@@ -118,6 +118,7 @@ metaFullBySKey _sKey = do
   -- QUERY PARAM WORKING
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabFullMetaWithStakeKey conn (unpack _sKey)
+  liftIO $ print qlQuery
  
   -- liftIO $ print $ multiAssets qlQuery
   -- let multi = IMultiAsset (qlQuery !! 0) (qlQuery !! 1) (qlQuery !! 2)

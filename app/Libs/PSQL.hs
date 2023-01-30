@@ -86,7 +86,7 @@ grabMetaWithStakeKey conn sKey = query conn "SELECT  json(json) FROM utxo_view \
 
 
 grabFullMetaWithStakeKey :: Connection -> String ->  IO [(Text, Text, Text, AT.Value)]
-grabFullMetaWithStakeKey conn sKey = query conn "SELECT encode(multi_asset.name::bytea, 'escape'), \
+grabFullMetaWithStakeKey conn sKey = query conn "SELECT convert_from(multi_asset.name, 'UTF8'), \
 \ encode(multi_asset.fingerprint::bytea, 'escape'), \
 \ encode(multi_asset.policy::bytea, 'hex'), json(json) \
 \ FROM utxo_view JOIN stake_address \
@@ -95,6 +95,7 @@ grabFullMetaWithStakeKey conn sKey = query conn "SELECT encode(multi_asset.name:
 \ RIGHT JOIN ma_tx_mint ON ma_tx_mint.tx_id = tx_metadata.tx_id \
 \ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
 \ WHERE view = ?;" [sKey :: String]
+
 
 
 grabHandlesFromSKey :: Connection -> String -> IO [Text]
