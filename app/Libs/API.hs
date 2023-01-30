@@ -155,7 +155,7 @@ getHandlesBySKey  _sKey = do
 
 getAddrFromHandle :: Text -> Handler [Text]
 getAddrFromHandle _hashedAName = do 
- liftIO $ 
+  liftIO $ 
     putStrLn $ alt ++ "\n  getAddrFromHandle" ++ clr
 
   let assetNameHash = unpack _hashedAName
