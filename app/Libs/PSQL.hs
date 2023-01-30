@@ -119,3 +119,7 @@ grabHandlesFromSKeyFull conn sKey = query conn "SELECT address, view, \
 \ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
 \ WHERE view = 'stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70 \
 \ AND multi_asset.policy='\\xf0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a';" [sKey :: String]
+
+
+-- NEW QUERY TO GRAB ADDRS FROM ASSET NAME (HEXED/HASHED)
+-- select address from multi_asset ma RIGHT JOIN ma_tx_mint mtxm on mtxm.ident = ma.id RIGHT JOIN utxo_view uv on uv.tx_id = mtxm.tx_id  where ma.name = '\x6a616d6573' LIMIT 1;
