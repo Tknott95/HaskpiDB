@@ -145,4 +145,4 @@ getHandlesBySKey  _sKey = do
 
   conn <- liftIO $ connect localPG
   [qlQuery] <- liftIO $ grabHandlesFromSKey conn (unpack _sKey)
-  return qlQuery
+  return [qlQuery]
