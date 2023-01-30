@@ -9,9 +9,12 @@ tmp_name_hash=546865437970686572426f78
 skey='stake_test1uz87hafc2aqhhfrvarqtxf3c25lzhfqa938l8pl4t9fu9jqj0jamq'
 handle_skey='stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70'
 
+hashed_asset_name="706170616730307365"
+
 curl http://$url:$port/metadata/$tmp_pol_id; echo -e "\n"
 curl http://$url:$port/metadata_by_name/$tmp_pol_id/$tmp_name_hash;  echo -e "\n"
 curl -s http://$url:$port/metadata_by_skey/$skey | jq; echo -e "\n"
 curl -s http://$url:$port/meta_full_by_skey/$skey | jq; echo -e "\n"
-curl -s http://$url:$port/handle_from_skey/$handle_skey | jq
+curl -s http://$url:$port/handle_from_skey/$handle_skey | jq; echo -e "\n"
+curl -s http://$url:$port/addr_from_handle/$hashed_asset_name
 
