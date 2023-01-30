@@ -129,3 +129,20 @@ getMetaByNameUnhashed _policyID _unhashedAssetName = do
   qlQuery <- liftIO $ grabMetaWithPIDAndName conn hashedAssetName paramPID
   return [qlQuery]
 
+
+
+
+getHandlesBySKey :: Text -> Handler [Value]
+getHandlesBySKey  _sKey = do
+    liftIO $ 
+    putStrLn $ alt2 ++ "\n  getHandlesBySKey" ++ clr
+
+  -- liftIO $ print $ "\\x" ++ (unpack _policyID)
+  -- liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
+  -- liftIO $ print $ (hex $ unpack _unhashedAssetName)
+  -- let paramPID = "\\x" ++ (unpack _policyID)
+  -- let hashedAssetName = "\\x" ++ (hex $ unpack _unhashedAssetName)
+
+  conn <- liftIO $ connect localPG
+  qlQuery <- liftIO $ grabHandlesFromSKey conn (unpack _sKey)
+  return [qlQuery]
