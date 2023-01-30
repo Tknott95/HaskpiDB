@@ -18,7 +18,7 @@ import Data.Text (Text, unpack)
 import Control.Monad.IO.Class (liftIO)
 import Data.Hex (hex)
 
-server1 :: Connection -> Server MetaAPI_00
+server1 :: Connection -> Server IServerType
 server1 conn = metaByPID 
   :<|> metaByPIDAName
   :<|> metaByPIDANameUnhashed 
@@ -39,6 +39,9 @@ server1 conn = metaByPID
 
     metaFullByStakeKey :: Text -> Handler  [(Text, Text, Text, Value)]
     metaFullByStakeKey _sKey = metaFullBySKey _sKey
+
+    handlesBySKey :: Text -> Handle [Text]
+    handlesBySKey _sKey = getHandlesBySKey _sKey
 
 metaAPI :: Proxy MetaAPI_00
 metaAPI = Proxy
