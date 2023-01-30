@@ -96,7 +96,7 @@ grabHandlesFromSKey conn sKey = do
 \ RIGHT JOIN tx_metadata ON utxo_view.tx_id = tx_metadata.tx_id \
 \ RIGHT JOIN ma_tx_mint ON ma_tx_mint.tx_id = tx_metadata.tx_id \
 \ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
-\ WHERE view = 'stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70' \
+\ WHERE view = '?' \
 \ AND multi_asset.policy='\\xf0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a';" [sKey :: String]
   return ijk
 
