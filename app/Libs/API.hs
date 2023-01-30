@@ -43,7 +43,7 @@ server1 conn = metaByPID
     handlesBySKey :: Text -> Handle [Text]
     handlesBySKey _sKey = getHandlesBySKey _sKey
 
-metaAPI :: Proxy MetaAPI_00
+metaAPI :: Proxy IServerType
 metaAPI = Proxy
 
 app1 :: Connection -> Application
