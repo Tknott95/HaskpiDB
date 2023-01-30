@@ -93,8 +93,8 @@ metaBySKey _sKey = do
   conn <- liftIO $ connect localPG
   qlQuery <- liftIO $ grabMetaWithStakeKey conn (unpack _sKey)
 
-  let qlUnwrapped =  unwrapTuple qlQuery
-  return qlUnwrapped
+  -- let qlUnwrapped =  unwrapTuple qlQuery
+  return qlQuery
 
 
 -- this might be sloppy to do just to return a wrapped

@@ -78,8 +78,8 @@ grabMetaWithPIDAndName conn asName pid = do
 -- adding an int bypasses error of no instance of FromRow I can't seem to get past without it. Keaving for now.
 -- I use a function called unwrapTuple to unwrap this tuple to serve only [AT.Value] as a workaround
 -- so to void issues I just placeholder a 0 into a tuple then unwrap it for now before serving
-grabMetaWithStakeKey :: Connection -> String ->  IO [(Int, AT.Value)]
-grabMetaWithStakeKey conn sKey = query conn "SELECT  0, json(json) FROM utxo_view \
+grabMetaWithStakeKey :: Connection -> String ->  IO [AT.Value]
+grabMetaWithStakeKey conn sKey = query conn "SELECT  json(json) FROM utxo_view \
    \ JOIN stake_address ON stake_address.id = utxo_view.stake_address_id \
    \ RIGHT JOIN tx_metadata ON utxo_view.tx_id=tx_metadata.tx_id \
    \ WHERE view = ?;" [sKey :: String]
