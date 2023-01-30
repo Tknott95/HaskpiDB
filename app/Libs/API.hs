@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module API where
 
 import Utils (maybeUnwrap, unhexEither)
@@ -141,6 +143,8 @@ getHandlesBySKey  _sKey = do
   liftIO $ 
     putStrLn $ alt2 ++ "\n  getHandlesBySKey" ++ clr
 
+  let skey = unpack _sKey
+  liftIO $ print $ skey
   -- liftIO $ print $ "\\x" ++ (unpack _policyID)
   -- liftIO $ print $ "\\x" ++ (unpack _unhashedAssetName)
   -- liftIO $ print $ (hex $ unpack _unhashedAssetName)
@@ -148,7 +152,7 @@ getHandlesBySKey  _sKey = do
   -- let hashedAssetName = "\\x" ++ (hex $ unpack _unhashedAssetName)
 
   conn <- liftIO $ connect localPG
-  [qlQuery] <- liftIO $ grabHandlesFromSKey conn (unpack _sKey)
+  [qlQuery] <- liftIO $ grabHandlesFromSKey conn skey
 
   liftIO $ print qlQuery
   return [qlQuery]
