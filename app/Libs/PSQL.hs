@@ -108,17 +108,18 @@ grabHandlesFromSKey conn sKey = query conn "SELECT convert_from(multi_asset.name
 \ AND multi_asset.policy='\\xf0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a';" [sKey :: String]
 
 
--- stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70
-grabHandlesFromSKeyFull :: Connection -> String -> IO [(String, String, String)]
-grabHandlesFromSKeyFull conn sKey = query conn "SELECT address, view, \
-\ convert_from(multi_asset.name, 'UTF8') \
-\ FROM utxo_view JOIN stake_address \
-\ ON stake_address.id = utxo_view.stake_address_id \
-\ RIGHT JOIN tx_metadata ON utxo_view.tx_id = tx_metadata.tx_id \
-\ RIGHT JOIN ma_tx_mint ON ma_tx_mint.tx_id = tx_metadata.tx_id \
-\ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
-\ WHERE view = 'stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70 \
-\ AND multi_asset.policy='\\xf0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a';" [sKey :: String]
+-- THIS SEEMS USELESS AND QUITE FRANKLY, REDUNDANT
+-- -- stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70
+-- grabHandlesFromSKeyFull :: Connection -> String -> IO [(String, String, String)]
+-- grabHandlesFromSKeyFull conn sKey = query conn "SELECT address, view, \
+-- \ convert_from(multi_asset.name, 'UTF8') \
+-- \ FROM utxo_view JOIN stake_address \
+-- \ ON stake_address.id = utxo_view.stake_address_id \
+-- \ RIGHT JOIN tx_metadata ON utxo_view.tx_id = tx_metadata.tx_id \
+-- \ RIGHT JOIN ma_tx_mint ON ma_tx_mint.tx_id = tx_metadata.tx_id \
+-- \ LEFT JOIN multi_asset ON ma_tx_mint.ident = multi_asset.id \
+-- \ WHERE view = 'stake_test1urc63cmezfacz9vrqu867axmqrvgp4zsyllxzud3k6danjsn0dn70 \
+-- \ AND multi_asset.policy='\\xf0ff48bbb7bbe9d59a40f1ce90e9e9d0ff5002ec48f232b49ca0fb9a';" [sKey :: String]
 
 
 -- NEW QUERY TO GRAB ADDRS FROM ASSET NAME (HEXED/HASHED)
