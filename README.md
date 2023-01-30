@@ -1,6 +1,8 @@
 # HaskpiDB
 Haskell middleman api to serve cardano-db-sync sql queries
 
+- make a query for grabbing handles from asset_name
+
 
 ***
 ###  API REF
