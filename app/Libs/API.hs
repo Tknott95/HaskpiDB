@@ -161,7 +161,8 @@ getAddrFromHandle _hashedAName = do
   liftIO $ 
     putStrLn $ alt ++ "\n  getAddrFromHandle" ++ clr
   
-  liftIO $ print $ hex "HOSKYt"
+  liftIO $ print $ hex ("papag00se" :: String)
+  -- hex val - 70616c6d6572656b
   
 
   let assetNameHash = "\\x" ++ (unpack _hashedAName)
