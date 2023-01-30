@@ -44,70 +44,70 @@ type IServerType = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [
   :<|> "metadata_by_skey" :> Capture "skey" Text :>  Get '[JSON] [A.Value]
   :<|> "meta_full_by_skey" :> Capture "skey" Text :>  Get '[JSON] [(Text, Text, Text, A.Value)]
   :<|> "handle_from_skey" :> Capture "skey" Text :> Get '[JSON] [Text]
-  :<|> "addr_from_handle" :> Capture "aNameHash" Text :> GET '[JSON] [Text] 
+  :<|> "addr_from_handle" :> Capture "aNameHash" Text :> Get '[JSON] [Text]
 
 
-data IMetadata = IMetadata {
-  policy_id :: IMetadata01
-} deriving (Show, Generic)
+-- data IMetadata = IMetadata {
+--   policy_id :: IMetadata01
+-- } deriving (Show, Generic)
 
-data IMetadata01 = IMetadata01 { 
-  nft_name :: IMetadata02
-} deriving (Show, Generic)
+-- data IMetadata01 = IMetadata01 { 
+--   nft_name :: IMetadata02
+-- } deriving (Show, Generic)
 
-data IMetadata02 = IMetadata02
-  { id    :: String
-  , name  :: String
-  , image :: String
-  , description :: String
-  } deriving (Show, Generic)
+-- data IMetadata02 = IMetadata02
+--   { id    :: String
+--   , name  :: String
+--   , image :: String
+--   , description :: String
+--   } deriving (Show, Generic)
 
-instance ToJSON IMetadata where
-  toJSON metadataObj = object
-    [
-      (fromString $ unsafePerformIO $ readIORef globalPolicyIDState) .= toJSON (policy_id metadataObj)
-    ]
+-- instance ToJSON IMetadata where
+--   toJSON metadataObj = object
+--     [
+--       (fromString $ unsafePerformIO $ readIORef globalPolicyIDState) .= toJSON (policy_id metadataObj)
+--     ]
 
-instance ToJSON IMetadata01 where
-  toJSON metadataObj = object
-    [ 
-    -- this kills a meta only fetch where this is set from waht comes in. 
-    --This also isn't fetching the new set global a few executed lines prior in the func. Odd tbh as it does above.
-      (fromString $ unsafePerformIO $ readIORef globalAssetHash) .= toJSON (nft_name metadataObj)
-    ]
+-- instance ToJSON IMetadata01 where
+--   toJSON metadataObj = object
+--     [ 
+--     -- this kills a meta only fetch where this is set from waht comes in. 
+--     --This also isn't fetching the new set global a few executed lines prior in the func. Odd tbh as it does above.
+--       (fromString $ unsafePerformIO $ readIORef globalAssetHash) .= toJSON (nft_name metadataObj)
+--     ]
 
-instance ToJSON IMetadata02 where
-  toJSON metadataObj = object
-    [ "id" .= toJSON (id metadataObj)
-    , "name" .= toJSON (name metadataObj)
-    , "image" .= toJSON (image metadataObj)
-    , "description" .= toJSON (description metadataObj)
-    ]
-
-instance FromJSON IMetadata where
-  parseJSON = withObject "IMetadata" $ \o -> do
-    _iMeta01 <- o .: defaultPID -- "nft_name"
-    return $ IMetadata _iMeta01
-  
-instance FromJSON IMetadata01 where
-  parseJSON = withObject "IMetadata01" $ \o -> do
-    _nftName <- o .: defaultNftNameUnhashed -- "nft_name"
-    return $ IMetadata01 _nftName
+-- instance ToJSON IMetadata02 where
+--   toJSON metadataObj = object
+--     [ "id" .= toJSON (id metadataObj)
+--     , "name" .= toJSON (name metadataObj)
+--     , "image" .= toJSON (image metadataObj)
+--     , "description" .= toJSON (description metadataObj)
+--     ]
 
 -- instance FromJSON IMetadata where
 --   parseJSON = withObject "IMetadata" $ \o -> do
---     _iMeta01 <- o .: (fromString getGlobalPID) -- "nft_name"
+--     _iMeta01 <- o .: defaultPID -- "nft_name"
 --     return $ IMetadata _iMeta01
   
 -- instance FromJSON IMetadata01 where
 --   parseJSON = withObject "IMetadata01" $ \o -> do
---     _nftName <- o .: (fromString getGlobAssetHash)  -- policy_id
+--     _nftName <- o .: defaultNftNameUnhashed -- "nft_name"
 --     return $ IMetadata01 _nftName
+
+-- -- instance FromJSON IMetadata where
+-- --   parseJSON = withObject "IMetadata" $ \o -> do
+-- --     _iMeta01 <- o .: (fromString getGlobalPID) -- "nft_name"
+-- --     return $ IMetadata _iMeta01
+  
+-- -- instance FromJSON IMetadata01 where
+-- --   parseJSON = withObject "IMetadata01" $ \o -> do
+-- --     _nftName <- o .: (fromString getGlobAssetHash)  -- policy_id
+-- --     return $ IMetadata01 _nftName
  
 
-instance FromJSON IMetadata02 where
-  parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
-    <$> o .: "id"
-    <*> o .: "name"
-    <*> o .: "image"
-    <*> o .: "description"
+-- instance FromJSON IMetadata02 where
+--   parseJSON = withObject "IMetadata02" $ \o -> IMetadata02
+--     <$> o .: "id"
+--     <*> o .: "name"
+--     <*> o .: "image"
+--     <*> o .: "description"
