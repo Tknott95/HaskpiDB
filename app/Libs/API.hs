@@ -158,7 +158,7 @@ getAddrFromHandle _hashedAName = do
   liftIO $ 
     putStrLn $ alt ++ "\n  getAddrFromHandle" ++ clr
 
-  let assetNameHash = unpack _hashedAName
+  let assetNameHash = "\\x" ++ (unpack _hashedAName)
   liftIO $ print $ assetNameHash
 
   conn <- liftIO $ connect localPG
