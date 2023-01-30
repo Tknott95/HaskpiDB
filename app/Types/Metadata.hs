@@ -47,6 +47,7 @@ type IServerType = "metadata" :> Capture "policy_id_test" Text :>  Get '[JSON] [
   :<|> "addr_from_handle" :> Capture "aNameHash" Text :> Get '[JSON] [Text]
 
 
+-- TYPED METADATA BY HAND BEFORE USING AESON TO TYPE AMBIGUOUS JSON ON THE FLY
 -- data IMetadata = IMetadata {
 --   policy_id :: IMetadata01
 -- } deriving (Show, Generic)
