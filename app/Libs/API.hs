@@ -22,7 +22,8 @@ import Data.Hex (hex)
 
 import Utils as U
 
-
+-- there has to be a way to loop this or something if servers get big
+-- i will combine types to make it a tad smaller but I need to make things cleaner with advanced haskell
 server1 :: Connection -> Server IServerType
 server1 conn = metaByPID 
   :<|> metaByPIDAName
@@ -30,7 +31,8 @@ server1 conn = metaByPID
   :<|> metaByStakeKey
   :<|> metaFullByStakeKey
   :<|> handlesFromSKey
-  :<|> addrsFromHandle
+  :<|> addrsFromHandleHash
+  :<|> addrFromHandle
   where 
     metaByPID :: Text -> Handler [Value]
     metaByPID _pid = getMeta _pid
@@ -50,8 +52,11 @@ server1 conn = metaByPID
     handlesFromSKey :: Text -> Handler [Text]
     handlesFromSKey _sKey = getHandlesBySKey _sKey
 
-    addrsFromHandle :: Text -> Handler [Text]
-    addrsFromHandle _hashedAName = getAddrFromHandle _hashedAName
+    addrsFromHandleHash :: Text -> Handler [Text]
+    addrsFromHandleHash _hashedAName = getAddrFromHandle _hashedAName
+
+    addrFromHandle :: Text -> Handler [Text]
+    addrFromHandle _hashedAName = getAddrFromHandle _hashedAName
 
 metaAPI :: Proxy IServerType
 metaAPI = Proxy
