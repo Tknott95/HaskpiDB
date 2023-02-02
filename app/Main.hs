@@ -92,6 +92,7 @@ main = do
     ++ "  |GET|  /meta_full_by_skey/<stake-key>\n"
     ++ "  |GET|  /handle_from_skey/<stake-key>\n"
     ++ "  |GET|  /addr_from_handle/<asset-name>\n"
+    ++ "  |GET|  /addr_from_handle_unhashed/<asset-name>\n"
 
     ++ clr
   
