@@ -175,3 +175,21 @@ getAddrFromHandle _hashedAName = do
 
   liftIO $ print qlQuery
   return qlQuery
+
+
+getAddrFromUnhashedHandle :: Text -> Handler [Text]
+getAddrFromUnhashedHandle _hashedAName = do 
+  liftIO $ 
+    putStrLn $ alt ++ "\n  getAddrFromUnhashedHandle" ++ clr
+  
+
+  
+  let assetNameHash = "\\x" ++ $ hex (unpack _hashedAName)
+  liftIO $ print $ unhexEither (unpack _hashedAName)
+  liftIO $ print $ assetNameHash
+
+  conn <- liftIO $ connect localPG
+  qlQuery <- liftIO $ grabAddrFromHandle conn assetNameHash
+
+  liftIO $ print qlQuery
+  return qlQuery
