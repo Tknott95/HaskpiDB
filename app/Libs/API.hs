@@ -183,13 +183,13 @@ getAddrFromHandleHash _hashedAName = do
 
 
 getAddrFromUnhashedHandle :: Text -> Handler [Text]
-getAddrFromUnhashedHandle _hashedAName = do 
+getAddrFromUnhashedHandle _unhashedAName = do 
   liftIO $ 
     putStrLn $ alt ++ "\n  getAddrFromUnhashedHandle" ++ clr
   
 
-  let assetNameHash = "\\x" ++ ( hex $ unpack _hashedAName)
-  liftIO $ print $ unhexEither (unpack _hashedAName)
+  let assetNameHash = "\\x" ++ ( hex $ unpack _unhashedAName)
+  liftIO $ print $ hex (unpack _unhashedAName)
   liftIO $ print $ assetNameHash
 
   conn <- liftIO $ connect localPG

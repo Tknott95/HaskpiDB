@@ -17,3 +17,4 @@ curl -s http://$url:$port/metadata_by_skey/$skey | jq; echo -e "\n"
 curl -s http://$url:$port/meta_full_by_skey/$skey | jq; echo -e "\n"
 curl -s http://$url:$port/handle_from_skey/$handle_skey | jq; echo -e "\n"
 curl -s http://$url:$port/addr_from_handle/$hashed_asset_name
+curl -s http://$url:$port/addr_from_handle_unhashed/papag00se
