@@ -189,6 +189,7 @@ getAddrFromUnhashedHandle _unhashedAName = do
   
 
   let assetNameHash = "\\x" ++ ( hex $ unpack _unhashedAName)
+  liftIO $ print $ (unpack _unhashedAName)
   liftIO $ print $ hex (unpack _unhashedAName)
   liftIO $ print $ assetNameHash
 
