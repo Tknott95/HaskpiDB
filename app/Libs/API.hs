@@ -53,10 +53,10 @@ server1 conn = metaByPID
     handlesFromSKey _sKey = getHandlesBySKey _sKey
 
     addrsFromHandleHash :: Text -> Handler [Text]
-    addrsFromHandleHash _hashedAName = getAddrFromHandle _hashedAName
+    addrsFromHandleHash _hashedAName = getAddrFromHandleHash _hashedAName
 
     addrFromHandle :: Text -> Handler [Text]
-    addrFromHandle _hashedAName = getAddrFromHandle _hashedAName
+    addrFromHandle _hashedAName = getAddrFromUnhashedHandle _hashedAName
 
 metaAPI :: Proxy IServerType
 metaAPI = Proxy
@@ -162,8 +162,8 @@ getHandlesBySKey  _sKey = do
   return qlQuery
 
 
-getAddrFromHandle :: Text -> Handler [Text]
-getAddrFromHandle _hashedAName = do 
+getAddrFromHandleHash :: Text -> Handler [Text]
+getAddrFromHandleHash _hashedAName = do 
   liftIO $ 
     putStrLn $ alt ++ "\n  getAddrFromHandle" ++ clr
   
