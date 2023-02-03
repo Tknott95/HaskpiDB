@@ -5,6 +5,7 @@ Haskell middleman api to serve cardano-db-sync sql queries
 - make a query for grabbing handles from asset_name
 - query above is made. Maybe make it so I can pass both unhashed and hashed handle names 
 
+
 ***
 
 @QUERY-IDEAS
