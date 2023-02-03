@@ -27,6 +27,8 @@ DOING
 
 ###### @API_TODO
 * add unhashed pol-id/asset-name call
+* some trans queries and then stop using wallet as much?
+* some queries for analytics
 * ...
 ***
 
