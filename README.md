@@ -20,6 +20,7 @@ Haskell middleman api to serve cardano-db-sync sql queries
 *  |GET|  /meta_full_by_skey/**stake-key** (DEPRECATED)
 *  |GET|  /handle_from_skey/**stake-key**
 *  |GET|  /addr_from_handle/**hashed-asset-name**
+*  |GET|  /addr_from_handle_unhashed/**asset-name**
 
 DOING
 * ...
