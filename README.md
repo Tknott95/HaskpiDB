@@ -22,10 +22,9 @@ Haskell middleman api to serve cardano-db-sync sql queries
 *  |GET|  /addr_from_handle/**hashed-asset-name**
 
 DOING
-*
+* ...
 
 ###### @API_TODO
-* add unhashed pol-id/asset-name call
 * some trans queries and then stop using wallet as much?
 * some queries for analytics
 * ...
