@@ -106,4 +106,3 @@ main = do
 
   let settings = setPort 1339 $ setHost (getIP cliArgs) defaultSettings
   runSettings settings (app1 conn)
-
