@@ -17,4 +17,4 @@ curl -s http://$url:$port/metadata_by_skey/$skey | jq; echo -e "\n"
 curl -s http://$url:$port/meta_full_by_skey/$skey | jq; echo -e "\n"
 curl -s http://$url:$port/handle_from_skey/$handle_skey | jq; echo -e "\n"
 curl -s http://$url:$port/addr_from_handle/$hashed_asset_name; echo -e "\n"
-curl -s http://$url:$port/addr_from_handle_unhashed/james  # papag00se
+curl -s http://$url:$port/addr_from_handle_unhashed/james  # papag00se 
