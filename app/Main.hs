@@ -17,8 +17,6 @@ import API
 import Control.Monad.IO.Class (liftIO)
 import Control.Monad.Trans.State.Lazy (runState, evalState)
 
--- import Database.PostgreSQL.Simple
-
 import Data.Aeson (encode, eitherDecode, decode, Object, Key, Value)
 import qualified Data.ByteString.Lazy as LB (ByteString)
 import Data.ByteString.Lazy.UTF8 as BLU (fromString)
