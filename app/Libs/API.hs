@@ -12,7 +12,6 @@ import Data.Aeson (Value, encode, decode)
 import           Servant
 import           Servant.API
 
--- import Metadata (IServerType) - Not using
 import ServerTypes (IServerType)
 
 import qualified Data.ByteString.Lazy as LB (ByteString)

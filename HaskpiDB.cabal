@@ -30,7 +30,6 @@ executable HaskpiDB
     other-modules:
       Colors,
       Utils,
-      Metadata,
       ServerTypes,
       PSQL,
       Globals,
