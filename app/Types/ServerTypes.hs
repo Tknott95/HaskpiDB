@@ -8,6 +8,8 @@ import Servant.API (Capture)
 
 import Data.Aeson as A (Value)
 
+import Data.Text (Text)
+
 -- @NOTE - using Aeson.Value for the middle man api. 
 -- (Bug comments below with type function) If fetching local another way then ImEtadata is fine if IORef bug is fixed
 -- combine types to maybe make this cleaner? Make one foreach type of proc getting done
