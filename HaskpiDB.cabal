@@ -31,6 +31,7 @@ executable HaskpiDB
       Colors,
       Utils,
       Metadata,
+      ServerTypes,
       PSQL,
       Globals,
       API
