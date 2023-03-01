@@ -25,8 +25,6 @@ import Data.ByteString.Lazy.UTF8 as BLU (fromString)
 
 import Data.Monoid.Instances.Stateful (extract)
 
--- import Control.Monad.State
-
 import Data.Hex (hex)
 
 import Database.PostgreSQL.Simple (connect)
