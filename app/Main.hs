@@ -43,7 +43,6 @@ import Data.Hex
 policyIDStatic       = "\\xf8ff8eb4ac1fb039ab105fcc4420217ca3792ed1f8eba8458ac3a6d6" :: String
 assetNameHashStatic  = "\\x546865437970686572426f78" :: String
 
--- will use a proc to return ip below
 getIP :: [a] -> Data.Streaming.Network.Internal.HostPreference
 getIP [a]  = "192.168.0.8"
 getIP _ = "127.0.0.1"
