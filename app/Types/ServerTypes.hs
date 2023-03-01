@@ -1,6 +1,10 @@
+{-# LANGUAGE DataKinds  #-}
+{-# LANGUAGE TypeOperators #-}
+
 module ServerTypes where
 
-import           Servant.API (JSON)
+import Servant (JSON, (:<|>), (:>), Get)
+import Servant.API (Capture)
 
 -- @NOTE - using Aeson.Value for the middle man api. 
 -- (Bug comments below with type function) If fetching local another way then ImEtadata is fine if IORef bug is fixed
