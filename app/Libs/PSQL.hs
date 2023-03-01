@@ -4,8 +4,6 @@
 
 module PSQL where
 
-import Metadata
-
 import Prelude hiding (id)
 import GHC.Generics
 
