@@ -35,11 +35,6 @@ import  Network.Wai.Handler.Warp (run, setPort,
  defaultSettings,
  setHost)
 
--- import           Servant
--- import           Servant.API
--- -- import           Network.Wai
--- import           Network.Wai.Handler.Warp
-
 import Data.Text (Text, unpack, pack)
 
 import Data.IORef
