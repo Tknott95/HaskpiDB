@@ -4,7 +4,6 @@
 
 module Main where
 
-import Metadata 
 import PSQL
 
 import Prelude hiding (id)
