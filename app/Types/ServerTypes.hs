@@ -6,7 +6,7 @@ module ServerTypes where
 import Servant (JSON, (:<|>), (:>), Get)
 import Servant.API (Capture)
 
-import Data.Aeson (Value)
+import Data.Aeson as A (Value)
 
 -- @NOTE - using Aeson.Value for the middle man api. 
 -- (Bug comments below with type function) If fetching local another way then ImEtadata is fine if IORef bug is fixed
