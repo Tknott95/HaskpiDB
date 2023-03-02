@@ -2,6 +2,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE QuasiQuotes #-}
 
+-- CLEAN ALL IMPORTS --
 module Main where
 
 import PSQL
