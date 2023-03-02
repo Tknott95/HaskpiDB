@@ -51,11 +51,6 @@ HaskpiDB pub
 - refactor the api code to a file called API.hs 
 - set such accordingly and run a test with API.hs to call in Main.hs
 
-##### @DONE
-- make a HEX encoder
-- make a HEX decoder
-- map the proper decoded/encoded asset_name to ToJSON object (unhashed)
-- unhashshed asset name is actually hashed
 ***
 
 TESTING RESOURCES
