@@ -1,6 +1,8 @@
 # HaskpiDB
 Haskell middleman api to serve cardano-db-sync sql queries
 
+- prep this to get ready for open source
+
 @TODO
 - rig some haskpiDB api endpoints for use w/ unity
 - make a query for grabbing handles from asset_name
