@@ -1,4 +1,5 @@
 # HaskpiDB
+
 Haskell middleman api to serve cardano-db-sync sql queries
 
 - prep this to get ready for open source
