@@ -1,5 +1,8 @@
 # HaskpiDB
 
+# CODE NEEDS TO BE REFACTORED AND HAS NOT BEEN CLEANED. MANY THINGS ARE "SLOPPY" THAT WERE JUST FOR AN E2E MVP USE BEFORE REFACTOR.
+- Wiil get to refactoring when I have time as tghis code is a tad sloppy where many things can be cleaned.
+
 Haskell middleman api to serve cardano-db-sync sql queries
 
 - prep this to get ready for open source
